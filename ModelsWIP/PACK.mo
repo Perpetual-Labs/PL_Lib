@@ -2,8 +2,8 @@ within PL_Lib.ModelsWIP;
 
 model PACK "Simple plant model with HRB"
   extends Modelica.Icons.Example;
-  replaceable package GasMedium = Modelica.Media.IdealGases.MixtureGases.CombustionAir constrainedby Modelica.Media.Interfaces.PartialMedium;
-  replaceable package WaterMedium = Modelica.Media.Water.WaterIF97_ph constrainedby Modelica.Media.Interfaces.PartialMedium;
+  replaceable package GasMedium = Modelica.Media.Air.DryAirNasa constrainedby Modelica.Media.Interfaces.PartialMedium;
+  
   inner ThermoPower.System system(allowFlowReversal = false, initOpt = ThermoPower.Choices.Init.Options.steadyState) annotation(
     Placement(visible = true, transformation(extent = {{180, 180}, {200, 200}}, rotation = 0)));
   parameter Modelica.SIunits.Time Ts = 4 "Temperature sensor time constant";
@@ -14,13 +14,13 @@ model PACK "Simple plant model with HRB"
   // Turbine maps:
   parameter Real tablePhicT[5, 4] = [1, 90, 100, 110; 2.36, 4.68e-3, 4.68e-3, 4.68e-3; 2.88, 4.68e-3, 4.68e-3, 4.68e-3; 3.56, 4.68e-3, 4.68e-3, 4.68e-3; 4.46, 4.68e-3, 4.68e-3, 4.68e-3];
   parameter Real tableEtaT[5, 4] = [1, 90, 100, 110; 2.36, 89e-2, 89.5e-2, 89.3e-2; 2.88, 90e-2, 90.6e-2, 90.5e-2; 3.56, 90.5e-2, 90.6e-2, 90.5e-2; 4.46, 90.2e-2, 90.3e-2, 90e-2];
-  ThermoPower.Gas.SinkPressure SinkP2(redeclare package Medium = GasMedium, T = 298.15) annotation(
+  ThermoPower.Gas.SinkPressure sinkPressure_BA(redeclare package Medium = GasMedium, T = 298.15) annotation(
     Placement(visible = true, transformation(extent = {{180, -10}, {200, 10}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT_BA_PHXin(redeclare package Medium = GasMedium) annotation(
     Placement(visible = true, transformation(extent = {{-130, -6}, {-110, 14}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT_BA_PHXout(redeclare package Medium = GasMedium) annotation(
     Placement(visible = true, transformation(origin = {-30, 4}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.SensT BA_MHXout(redeclare package Medium = GasMedium) annotation(
+  ThermoPower.Gas.SensT sensT_BA_MHXout(redeclare package Medium = GasMedium) annotation(
     Placement(visible = true, transformation(origin = {150, 4}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.Compressor Compressor(redeclare package Medium = GasMedium, Ndesign = 523.3, Table = ThermoPower.Choices.TurboMachinery.TableTypes.matrix, Tdes_in = 244.4, Tstart_in = 244.4, Tstart_out = 691.4, pstart_in = 0.343e5, pstart_out = 8.3e5, tableEta = tableEtaC, tablePR = tablePR, tablePhic = tablePhicC) annotation(
     Placement(visible = true, transformation(extent = {{-60, -130}, {-20, -90}}, rotation = 0)));
@@ -44,23 +44,23 @@ model PACK "Simple plant model with HRB"
   //  Inertia1.w = 523.3;
   ThermoPower.Gas.SourcePressure sourcePressure_BA(redeclare package Medium = GasMedium, T = 473.15, p0 = 200000) annotation(
     Placement(visible = true, transformation(origin = {-150, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.HeatExchanger PHX annotation(
+  PL_Lib.Components.HeatExchanger PHX(redeclare package GasMedium1 = GasMedium, Dext = 0.012, Dint = 0.01, Lb = 2, Lt = 3, Nr = 10, Nt = 250, Sb = 8, StaticGasBalances = false, cm = 650, rhom = 7800, redeclare package GasMedium2 = GasMedium) annotation(
     Placement(visible = true, transformation(origin = {-80, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  ThermoPower.Gas.SourcePressure sourcePressure_RA annotation(
+  ThermoPower.Gas.SourcePressure sourcePressure_RA(redeclare package Medium = GasMedium) annotation(
     Placement(visible = true, transformation(origin = {-150, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.SensT sensT_RA_PHXin annotation(
+  ThermoPower.Gas.SensT sensT_RA_PHXin(redeclare package Medium = GasMedium) annotation(
     Placement(visible = true, transformation(origin = {-120, 44}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.SensT sensT_RA_PHXout annotation(
+  ThermoPower.Gas.SensT sensT_RA_PHXout(redeclare package Medium = GasMedium) annotation(
     Placement(visible = true, transformation(origin = {-30, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.PressDropLin pipe_RA_PHXout(R = 100)  annotation(
+  ThermoPower.Gas.PressDropLin pipe_RA_PHXout(redeclare package Medium = GasMedium, R = 100)  annotation(
     Placement(visible = true, transformation(origin = {0, -34}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.HeatExchanger MHX annotation(
+  PL_Lib.Components.HeatExchanger MHX(redeclare package GasMedium1 = GasMedium, Dext = 0.012, Dint = 0.01, Lb = 2, Lt = 3, Nr = 10, Nt = 250, Sb = 8, StaticGasBalances = false, cm = 650, rhom = 7800, redeclare package GasMedium2 = GasMedium) annotation(
     Placement(visible = true, transformation(origin = {100, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  ThermoPower.Gas.SensT sensT_RA_MHXout annotation(
+  ThermoPower.Gas.SensT sensT_RA_MHXout(redeclare package Medium = GasMedium) annotation(
     Placement(visible = true, transformation(origin = {150, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.SensT sensT_RA_MHXin annotation(
+  ThermoPower.Gas.SensT sensT_RA_MHXin(redeclare package Medium = GasMedium) annotation(
     Placement(visible = true, transformation(origin = {50, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.SinkPressure sinkPressure_RA annotation(
+  ThermoPower.Gas.SinkPressure sinkPressure_RA(redeclare package Medium = GasMedium) annotation(
     Placement(visible = true, transformation(origin = {190, -34}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(Turbine.outlet, sinkPressure1.flange) annotation(
@@ -79,7 +79,7 @@ equation
     Line(points = {{-24, -94}, {-23, -94}, {-23, -80}, {10, -80}}, color = {159, 159, 223}, thickness = 0.5));
   connect(pressDropLin2.outlet, Turbine.inlet) annotation(
     Line(points = {{30, -80}, {65, -80}, {65, -94}, {64, -94}}, color = {159, 159, 223}, thickness = 0.5));
-  connect(BA_MHXout.outlet, SinkP2.flange) annotation(
+  connect(sensT_BA_MHXout.outlet, sinkPressure_BA.flange) annotation(
     Line(points = {{156, 0}, {180, 0}}, color = {159, 159, 223}));
   connect(sourcePressure_BA.flange, sensT_BA_PHXin.inlet) annotation(
     Line(points = {{-140, 0}, {-126, 0}}, color = {159, 159, 223}));
@@ -97,7 +97,7 @@ equation
     Line(points = {{-24, -34}, {-10, -34}}, color = {159, 159, 223}));
   connect(sensT_BA_MHXin.outlet, MHX.gasIn) annotation(
     Line(points = {{56, 0}, {80, 0}}, color = {159, 159, 223}));
-  connect(MHX.gasOut, BA_MHXout.inlet) annotation(
+  connect(MHX.gasOut, sensT_BA_MHXout.inlet) annotation(
     Line(points = {{120, 0}, {144, 0}}, color = {159, 159, 223}));
   connect(MHX.gas2Out, sensT_RA_MHXout.inlet) annotation(
     Line(points = {{100, -20}, {100, -34}, {144, -34}}, color = {159, 159, 223}));
