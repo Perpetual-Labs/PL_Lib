@@ -5,7 +5,7 @@ model PACK "Simple plant model with HRB"
   replaceable package GasMedium = Modelica.Media.Air.DryAirNasa constrainedby Modelica.Media.Interfaces.PartialMedium;
   
   inner ThermoPower.System system(allowFlowReversal = false, initOpt = ThermoPower.Choices.Init.Options.steadyState) annotation(
-    Placement(visible = true, transformation(extent = {{180, 180}, {200, 200}}, rotation = 0)));
+    Placement(visible = true, transformation(extent = {{160, 80}, {180, 100}}, rotation = 0)));
   parameter Modelica.SIunits.Time Ts = 4 "Temperature sensor time constant";
   // Compressor maps:
   parameter Real tableEtaC[6, 4] = [0, 95, 100, 105; 1, 82.5e-2, 81e-2, 80.5e-2; 2, 84e-2, 82.9e-2, 82e-2; 3, 83.2e-2, 82.2e-2, 81.5e-2; 4, 82.5e-2, 81.2e-2, 79e-2; 5, 79.5e-2, 78e-2, 76.5e-2];
@@ -14,7 +14,7 @@ model PACK "Simple plant model with HRB"
   // Turbine maps:
   parameter Real tablePhicT[5, 4] = [1, 90, 100, 110; 2.36, 4.68e-3, 4.68e-3, 4.68e-3; 2.88, 4.68e-3, 4.68e-3, 4.68e-3; 3.56, 4.68e-3, 4.68e-3, 4.68e-3; 4.46, 4.68e-3, 4.68e-3, 4.68e-3];
   parameter Real tableEtaT[5, 4] = [1, 90, 100, 110; 2.36, 89e-2, 89.5e-2, 89.3e-2; 2.88, 90e-2, 90.6e-2, 90.5e-2; 3.56, 90.5e-2, 90.6e-2, 90.5e-2; 4.46, 90.2e-2, 90.3e-2, 90e-2];
-  ThermoPower.Gas.SinkPressure sinkPressure_BA(redeclare package Medium = GasMedium, T = 298.15) annotation(
+  ThermoPower.Gas.SinkPressure sinkPressure_BA(redeclare package Medium = GasMedium, T = 273.15) annotation(
     Placement(visible = true, transformation(extent = {{180, -94}, {200, -74}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT_BA_PHXin(redeclare package Medium = GasMedium) annotation(
     Placement(visible = true, transformation(extent = {{-150, -6}, {-130, 14}}, rotation = 0)));
@@ -22,21 +22,17 @@ model PACK "Simple plant model with HRB"
     Placement(visible = true, transformation(origin = {-60, 4}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT_BA_MHXout(redeclare package Medium = GasMedium) annotation(
     Placement(visible = true, transformation(origin = {120, 4}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.Compressor Compressor(redeclare package Medium = GasMedium, Ndesign = 523.3, Table = ThermoPower.Choices.TurboMachinery.TableTypes.matrix, Tdes_in = 244.4, Tstart_in = 244.4, Tstart_out = 691.4, pstart_in = 0.343e5, pstart_out = 8.3e5, tableEta = tableEtaC, tablePR = tablePR, tablePhic = tablePhicC) annotation(
+  ThermoPower.Gas.Compressor Compressor(redeclare package Medium = GasMedium, Ndesign = 523.3, Table = ThermoPower.Choices.TurboMachinery.TableTypes.matrix, Tdes_in = 244.4, Tstart_in = 273.15 + 90, Tstart_out = 273.15 + 200, pstart_in = 2e5, pstart_out = 5e5, tableEta = tableEtaC, tablePR = tablePR, tablePhic = tablePhicC) annotation(
     Placement(visible = true, transformation(extent = {{-12, -120}, {28, -80}}, rotation = 0)));
-  ThermoPower.Gas.Turbine Turbine(redeclare package Medium = GasMedium, Ndesign = 523.3, Table = ThermoPower.Choices.TurboMachinery.TableTypes.matrix, Tdes_in = 1400, Tstart_in = 691.4, Tstart_out = 298, pstart_in = 8.3e5, pstart_out = 1.52e5, tableEta = tableEtaT, tablePhic = tablePhicT) annotation(
+  ThermoPower.Gas.Turbine Turbine(redeclare package Medium = GasMedium, Ndesign = 523.3, Table = ThermoPower.Choices.TurboMachinery.TableTypes.matrix, Tdes_in = 1400, Tstart_in = 273.15 + 60, Tstart_out = 273.15, pstart_in = 5e5, pstart_out = 101325, tableEta = tableEtaT, tablePhic = tablePhicT) annotation(
     Placement(visible = true, transformation(extent = {{130, -120}, {170, -80}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT_BA_MHXin(redeclare package Medium = GasMedium) annotation(
     Placement(visible = true, transformation(origin = {40, 4}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.PressDropLin pipe_BA_PHXout(redeclare package Medium = GasMedium, R = 100) annotation(
-    Placement(visible = true, transformation(origin = {-32, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Mechanics.Rotational.Components.Inertia inertia(J = 0.8) annotation(
-    Placement(visible = true, transformation(origin = {70, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   //initial equation
   //  Inertia1.w = 523.3;
   ThermoPower.Gas.SourcePressure sourcePressure_BA(redeclare package Medium = GasMedium, T = 273.15 + 200, p0 (displayUnit = "Pa") = 200000) annotation(
     Placement(visible = true, transformation(origin = {-170, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.HeatExchanger PHX(redeclare package GasMedium1 = GasMedium, Dext = 0.012, Dint = 0.01, Lb = 2, Lt = 3, Nr = 10, Nt = 250, Sb = 8, StaticGasBalances = false, cm = 650, rhom = 7800, redeclare package GasMedium2 = GasMedium) annotation(
+  PL_Lib.Components.HeatExchanger PHX(redeclare package GasMedium1 = GasMedium, redeclare package GasMedium2 = GasMedium, Dext = 0.012, Dint = 0.01, Lb = 2, Lt = 3, Nr = 10, Nt = 250, Sb = 8, StaticGasBalances = false, cm = 650, rhom (displayUnit = "kg/m3") = 7800) annotation(
     Placement(visible = true, transformation(origin = {-100, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   ThermoPower.Gas.SourcePressure sourcePressure_RA(redeclare package Medium = GasMedium, p0(displayUnit = "Pa")) annotation(
     Placement(visible = true, transformation(origin = {-170, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -54,11 +50,11 @@ model PACK "Simple plant model with HRB"
     Placement(visible = true, transformation(origin = {40, -36}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SinkPressure sinkPressure_RA(redeclare package Medium = GasMedium) annotation(
     Placement(visible = true, transformation(origin = {190, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.Rotational.Components.Inertia inertia(J = 0.8) annotation(
+    Placement(visible = true, transformation(origin = {70, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  ThermoPower.Gas.PressDropLin pipe_BA_PHXout(redeclare package Medium = GasMedium, R = 100) annotation(
+    Placement(visible = true, transformation(origin = {-32, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
-  connect(Compressor.shaft_b, inertia.flange_a) annotation(
-    Line(points = {{20, -100}, {60, -100}}, thickness = 0.5));
-  connect(inertia.flange_b, Turbine.shaft_a) annotation(
-    Line(points = {{80, -100}, {138, -100}}, thickness = 0.5));
   connect(sourcePressure_BA.flange, sensT_BA_PHXin.inlet) annotation(
     Line(points = {{-160, 0}, {-146, 0}}, color = {159, 159, 223}));
   connect(sensT_BA_PHXin.outlet, PHX.gasIn) annotation(
@@ -72,7 +68,7 @@ equation
   connect(PHX.gas2Out, sensT_RA_PHXout.inlet) annotation(
     Line(points = {{-100, -20}, {-100, -40}, {-66, -40}}, color = {159, 159, 223}));
   connect(sensT_BA_MHXin.outlet, MHX.gasIn) annotation(
-    Line(points = {{46, 0}, {60, 0}}, color = {159, 159, 223}));
+    Line(points = {{46, 0}, {60, 0}}, color = {159, 159, 223}, thickness = 0.75));
   connect(MHX.gasOut, sensT_BA_MHXout.inlet) annotation(
     Line(points = {{100, 0}, {114, 0}}, color = {159, 159, 223}));
   connect(MHX.gas2Out, sensT_RA_MHXout.inlet) annotation(
@@ -82,19 +78,23 @@ equation
   connect(sensT_RA_MHXout.outlet, sinkPressure_RA.flange) annotation(
     Line(points = {{126, -40}, {180, -40}}, color = {159, 159, 223}));
   connect(Compressor.outlet, sensT_BA_MHXin.inlet) annotation(
-    Line(points = {{24, -84}, {24, 0}, {34, 0}}, color = {159, 159, 223}));
+    Line(points = {{24, -84}, {24, 0}, {34, 0}}, color = {159, 159, 223}, thickness = 0.75));
   connect(sensT_RA_PHXout.outlet, pipe_RA_PHXout.inlet) annotation(
     Line(points = {{-54, -40}, {-42, -40}}, color = {159, 159, 223}));
   connect(pipe_RA_PHXout.outlet, sensT_RA_MHXin.inlet) annotation(
     Line(points = {{-22, -40}, {34, -40}}, color = {159, 159, 223}));
   connect(sensT_BA_MHXout.outlet, Turbine.inlet) annotation(
-    Line(points = {{126, 0}, {134, 0}, {134, -84}}, color = {159, 159, 223}));
+    Line(points = {{126, 0}, {134, 0}, {134, -84}}, color = {159, 159, 223}, thickness = 0.75));
   connect(Turbine.outlet, sinkPressure_BA.flange) annotation(
     Line(points = {{166, -84}, {180, -84}}, color = {159, 159, 223}));
+  connect(inertia.flange_b, Turbine.shaft_a) annotation(
+    Line(points = {{80, -100}, {138, -100}}, thickness = 0.5));
+  connect(Compressor.shaft_b, inertia.flange_a) annotation(
+    Line(points = {{20, -100}, {60, -100}}, thickness = 0.5));
+  connect(pipe_BA_PHXout.outlet, Compressor.inlet) annotation(
+    Line(points = {{-22, 0}, {-8, 0}, {-8, -84}}, color = {159, 159, 223}, thickness = 0.75));
   connect(sensT_BA_PHXout.outlet, pipe_BA_PHXout.inlet) annotation(
     Line(points = {{-54, 0}, {-42, 0}}, color = {159, 159, 223}));
-  connect(pipe_BA_PHXout.outlet, Compressor.inlet) annotation(
-    Line(points = {{-22, 0}, {-8, 0}, {-8, -84}}, color = {159, 159, 223}));
 protected
   annotation(
     Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-200, -200}, {200, 200}}, initialScale = 0.1), graphics),
