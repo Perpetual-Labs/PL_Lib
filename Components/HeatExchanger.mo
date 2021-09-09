@@ -18,22 +18,27 @@ model HeatExchanger "Base class for heat exchanger gas - gas"
   parameter Modelica.SIunits.Length Lb "Length of the boiler";
   parameter Modelica.SIunits.Area St = Dext * pi * Lt * Nt * Nr "Total area of the heat exchange surface";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer gamma_nom = 150 "Nominal heat transfer coefficient - gas side";
+  
   ThermoPower.Gas.FlangeA gasIn(redeclare package Medium = GasMedium1) annotation(
     Placement(transformation(extent = {{-120, -20}, {-80, 20}}, rotation = 0)));
   ThermoPower.Gas.FlangeB gasOut(redeclare package Medium = GasMedium1) annotation(
     Placement(transformation(extent = {{80, -20}, {120, 20}}, rotation = 0)));
-  ThermoPower.Thermal.MetalTubeFV TubeWalls(L = Lt * Nr, Nw = Nr, Tstart1(displayUnit = "K") = 300, TstartN(displayUnit = "K") = 340, lambda = 20, rext = Dext / 2, rhomcm = rhom * cm, rint = Dint / 2) "Tube" annotation(
-    Placement(transformation(extent = {{-20, 0}, {20, -40}}, rotation = 0)));
-  ThermoPower.Gas.Flow1DFV GasSide(redeclare package Medium = GasMedium1, L = Lb, omega = St / Lb, wnom = 10, A = Sb, Dhyd = St / Lb, N = Nr + 1, FFtype = ThermoPower.Choices.Flow1D.FFtypes.NoFriction, QuasiStatic = StaticGasBalances, redeclare model HeatTransfer = ThermoPower.Thermal.HeatTransferFV.FlowDependentHeatTransferCoefficient(gamma_nom = gamma_nom, alpha = 0.6), Tstartin = 670, Tstartout = 370) annotation(
-    Placement(transformation(extent = {{-20, 60}, {20, 20}}, rotation = 0)));
-  ThermoPower.Thermal.CounterCurrentFV CounterCurrent1(Nw = Nr) annotation(
-    Placement(transformation(extent = {{-20, -8}, {20, 32}}, rotation = 0)));
   ThermoPower.Gas.FlangeB gas2Out(redeclare package Medium = GasMedium2) annotation(
     Placement(visible = true, transformation(origin = {0, -100}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {0, -100}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   ThermoPower.Gas.FlangeA gas2In(redeclare package Medium = GasMedium2) annotation(
     Placement(visible = true, transformation(origin = {0, 100}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {0, 100}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  ThermoPower.Gas.Flow1DFV flow1DFV(redeclare package Medium = GasMedium2, A = Sb, Dhyd = St / Lb, FFtype = ThermoPower.Choices.Flow1D.FFtypes.NoFriction, L = Lb, N = Nr + 1, QuasiStatic = StaticGasBalances, Tstartin = 670, Tstartout = 370, omega = St / Lb, wnom = 10) annotation(
+      
+  ThermoPower.Thermal.MetalTubeFV TubeWalls(L = Lt * Nr, Nw = Nr, Tstart1(displayUnit = "K") = 300, TstartN(displayUnit = "K") = 340, lambda = 20, rext = Dext / 2, rhomcm = rhom * cm, rint = Dint / 2) "Tube" annotation(
+    Placement(transformation(extent = {{-20, 0}, {20, -40}}, rotation = 0)));
+  ThermoPower.Thermal.CounterCurrentFV CounterCurrent1(Nw = Nr) annotation(
+    Placement(transformation(extent = {{-20, -8}, {20, 32}}, rotation = 0)));
+      
+  ThermoPower.Gas.Flow1DFV GasSide(redeclare package Medium = GasMedium1, L = Lb, omega = St / Lb, wnom = 10, A = Sb, Dhyd = St / Lb, N = Nr + 1, FFtype = ThermoPower.Choices.Flow1D.FFtypes.NoFriction, QuasiStatic = StaticGasBalances, redeclare model HeatTransfer = ThermoPower.Thermal.HeatTransferFV.FlowDependentHeatTransferCoefficient(gamma_nom = gamma_nom, alpha = 0.6), Tstartin = 670, Tstartout = 370) annotation(
+    Placement(transformation(extent = {{-20, 60}, {20, 20}}, rotation = 0)));
+  
+  ThermoPower.Gas.Flow1DFV GasSide2(redeclare package Medium = GasMedium2, L = Lb, omega = St / Lb, wnom = 10, A = Sb, Dhyd = St / Lb, N = Nr + 1, FFtype = ThermoPower.Choices.Flow1D.FFtypes.NoFriction, QuasiStatic = StaticGasBalances, redeclare model HeatTransfer = ThermoPower.Thermal.HeatTransferFV.FlowDependentHeatTransferCoefficient(gamma_nom = gamma_nom, alpha = 0.6), Tstartin = 670, Tstartout = 370) annotation(
     Placement(visible = true, transformation(origin = {0, -50}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+
 equation
   connect(CounterCurrent1.side2, TubeWalls.ext) annotation(
     Line(points = {{0, 5.8}, {0, 5.8}, {0, -13.8}}, color = {255, 127, 0}));
@@ -43,10 +48,12 @@ equation
     Line(points = {{20, 40}, {60, 40}, {60, 0}, {100, 0}}, color = {159, 159, 223}, thickness = 0.5));
   connect(GasSide.wall, CounterCurrent1.side1) annotation(
     Line(points = {{0, 30}, {0, 18}}, color = {255, 127, 0}, smooth = Smooth.None));
-  connect(gas2Out, flow1DFV.outfl) annotation(
+  connect(gas2Out, GasSide2.outfl) annotation(
     Line(points = {{0, -100}, {0, -72}, {30, -72}, {30, -50}, {20, -50}}, color = {170, 0, 255}, thickness = 0.5));
-  connect(flow1DFV.infl, gas2In) annotation(
+  connect(GasSide2.infl, gas2In) annotation(
     Line(points = {{-20, -50}, {-40, -50}, {-40, 70}, {0, 70}, {0, 100}}, color = {170, 0, 255}, thickness = 0.5));
+  connect(GasSide2.wall, TubeWalls.int) annotation(
+    Line(points = {{0, -40}, {0, -26}}, color = {255, 127, 0}));
   annotation(
     Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics),
     Icon(graphics = {Rectangle(lineColor = {0, 0, 255}, fillColor = {230, 230, 230}, fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}}), Line(points = {{0, -80}, {0, -40}, {40, -20}, {-40, 20}, {0, 40}, {0, 80}}, color = {0, 0, 255}, thickness = 0.5), Text(origin = {0, 211},lineColor = {85, 170, 255}, extent = {{-100, -230}, {100, -290}}, textString = "%name"), Text(origin = {100, 40}, extent = {{-20, 20}, {20, -20}}, textString = "g1o"), Text(origin = {-100, 40}, extent = {{-20, 20}, {20, -20}}, textString = "g1i"), Text(origin = {-40, 120}, extent = {{-20, 20}, {20, -20}}, textString = "g2i"), Text(origin = {40, -100}, extent = {{-20, 20}, {20, -20}}, textString = "g2o")}),
