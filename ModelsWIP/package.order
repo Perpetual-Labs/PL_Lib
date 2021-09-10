@@ -2,3 +2,5 @@ PACK_water_cooled
 PACK
 PACK_segments
 HX_Gas2Gas
+TestGasFlow1DFV_A
+PACK_decomposed
