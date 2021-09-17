@@ -4,3 +4,7 @@ PACK_segments
 HX_Gas2Gas
 TestGasFlow1DFV_A
 PACK_decomposed
+TestGasFlow1DFV_A_HXblock
+TestGasFlow1DFV_A_HXblock_steadystate
+TestGasFlow1DFV_A_HXblock2
+TTECCSfree_testing
