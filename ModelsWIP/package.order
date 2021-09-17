@@ -8,3 +8,4 @@ TestGasFlow1DFV_A_HXblock
 TestGasFlow1DFV_A_HXblock_steadystate
 TestGasFlow1DFV_A_HXblock2
 TTECCSfree_testing
+TestGasFlow1DFV_A_CmprsrTest
