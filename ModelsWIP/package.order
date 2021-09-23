@@ -7,7 +7,8 @@ PACK_decomposed
 TestGasFlow1DFV_A_HXblock
 TestGasFlow1DFV_A_HXblock_steadystate
 TestGasFlow1DFV_A_HXblock2
-TTECCSfree_testing
 TestGasFlow1DFV_A_CmprsrTest
 TestCompressor_noMaps
 TestCompressorInertia_test
+TestGasFlow1DFV_A_SplitTest
+PrimaryHX_tuning
