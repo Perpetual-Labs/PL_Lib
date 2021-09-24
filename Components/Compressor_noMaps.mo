@@ -10,7 +10,7 @@ model Compressor_noMaps "Gas compressor"
   parameter String fileName = "noName" "File where matrix is stored";
   parameter TableTypes Table = TableTypes.matrix "Selection of the way of definition of table matrix";
   
-  parameter Real eta_set = 0.7;
+  parameter Real eta_set = 0.95;
   parameter Real PR_set = 2.5;
   
   Modelica.Blocks.Tables.CombiTable2D Eta(tableOnFile = if Table == TableTypes.matrix then false else true, table = tableEta, tableName = if Table == TableTypes.matrix then "NoName" else "tabEta", fileName = if Table == TableTypes.matrix then "NoName" else fileName, smoothness = Modelica.Blocks.Types.Smoothness.ContinuousDerivative) annotation(
@@ -35,8 +35,8 @@ equation
 // eta = Eta(beta, N_T)
   Eta.u1 = beta;
   Eta.u2 = N_T;
-  eta = Eta.y;
-//  eta = eta_set;
+//  eta = Eta.y;
+  eta = eta_set;
   
 // PR = PressRatio(beta, N_T)
   PressRatio.u1 = beta;

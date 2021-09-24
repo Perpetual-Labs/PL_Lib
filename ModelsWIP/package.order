@@ -12,3 +12,4 @@ TestCompressor_noMaps
 TestCompressorInertia_test
 TestGasFlow1DFV_A_SplitTest
 PrimaryHX_tuning
+PrimaryHX_cmprsr
