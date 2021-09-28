@@ -120,7 +120,7 @@ equation
   connect(stateReader_gas1out.outlet, sensT_gas1out.inlet) annotation(
     Line(points = {{36, -50}, {84, -50}}));
   annotation(
-    Diagram(coordinateSystem(extent = {{-200, -200}, {200, 200}}), graphics = {Text(origin = {107, -19}, extent = {{-27, 9}, {27, -9}}, textString = "hoyt", textStyle = {TextStyle.Bold}), Text(origin = {101, 67}, extent = {{-27, 9}, {27, -9}}, textString = "coyld", textStyle = {TextStyle.Bold})}),
+    Diagram(coordinateSystem(extent = {{-200, -200}, {200, 200}})),
     experiment(StopTime = 80, Tolerance = 1e-06, StartTime = 0, Interval = 0.16),
     Documentation(info = "<html>
 <p>The model is designed to test the component <code>Gas.Flow1DFV</code> (fluid side of a heat exchanger, finite volumes). A uniform prescribed heat flux is applied to the lateral boundary. The working fluid is pure nitrogen.</p>
