@@ -1,7 +1,8 @@
 within PL_Lib.Components;
 
 model Turbine_noMaps "Gas Turbine"
-  extends ThermoPower.Gas.BaseClasses.TurbineBase;
+//  extends ThermoPower.Gas.BaseClasses.TurbineBase;
+  extends PL_Lib.Components.BaseClasses.TurbineBase;
   import ThermoPower.Choices.TurboMachinery.TableTypes;
   parameter Modelica.SIunits.AngularVelocity Ndesign "Design speed";
   parameter Real tablePhic[:, :] = fill(0, 0, 2) "Table for phic(N_T,PR)";
@@ -13,7 +14,8 @@ model Turbine_noMaps "Gas Turbine"
   Real phic "Flow number";
   
   parameter Real eta_set = 0.95;
-  parameter Real PR_set = 2.5;
+  parameter Real phic_set = 1e-5;
+//  parameter Real PR_set = 2.5;
   
   Modelica.Blocks.Tables.CombiTable2D Phic(tableOnFile = if Table == TableTypes.matrix then false else true, table = tablePhic, tableName = if Table == TableTypes.matrix then "NoName" else "tabPhic", fileName = if Table == TableTypes.matrix then "NoName" else fileName, smoothness = Modelica.Blocks.Types.Smoothness.ContinuousDerivative) annotation(
     Placement(transformation(extent = {{-10, 10}, {10, 30}}, rotation = 0)));
@@ -23,10 +25,12 @@ equation
   N_T_design = Ndesign / sqrt(Tdes_in) "Referred design velocity";
   N_T = 100 * omega / (sqrt(gas_in.T) * N_T_design) "Referred speed definition as percentage of design velocity";
   phic = w * sqrt(gas_in.T) / gas_in.p "Flow number definition";
+
 // phic = Phic(PR, N_T)
   Phic.u1 = PR;
   Phic.u2 = N_T;
-  phic = Phic.y;
+//  phic = Phic.y;
+  phic = phic_set;
   
 // eta = Eta(PR, N_T)
   Eta.u1 = PR;

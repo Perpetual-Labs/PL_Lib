@@ -5,7 +5,7 @@ partial model TurbineBase "Gas Turbine"
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation(
     choicesAllMatching = true);
   parameter Boolean explicitIsentropicEnthalpy = true "isentropicEnthalpy function used";
-  parameter SI.PerUnit eta_mech = 0.98 "mechanical efficiency";
+  parameter Modelica.SIunits.PerUnit eta_mech = 0.98 "mechanical efficiency";
   parameter Medium.Temperature Tdes_in "inlet design temperature";
   parameter Boolean allowFlowReversal = system.allowFlowReversal "= true to allow flow reversal, false restricts to design direction" annotation(
     Evaluate = true);
@@ -20,25 +20,29 @@ partial model TurbineBase "Gas Turbine"
     Dialog(tab = "Initialisation"));
   parameter Medium.MassFraction Xstart[Medium.nX] = Medium.reference_X "start gas composition" annotation(
     Dialog(tab = "Initialisation"));
+  
+//  parameter Modelica.SIunits.PerUnit PR_set = 0.5;
+  Modelica.SIunits.PerUnit PR "pressure ratio";
+  Modelica.SIunits.Angle phi "shaft rotation angle";
+  Modelica.SIunits.Torque tau "net torque acting on the turbine";
+  Modelica.SIunits.AngularVelocity omega "shaft angular velocity";
+  Modelica.SIunits.PerUnit eta "isoentropic efficiency";
+
   Medium.BaseProperties gas_in(p(start = pstart_in), T(start = Tstart_in), Xi(start = Xstart[1:Medium.nXi]));
-  Medium.BaseProperties gas_iso(p(start = pstart_out), T(start = Tstart_out), Xi(start = Xstart[1:Medium.nXi]));
-  SI.Angle phi "shaft rotation angle";
-  SI.Torque tau "net torque acting on the turbine";
-  SI.AngularVelocity omega "shaft angular velocity";
+  Medium.BaseProperties gas_iso(p(start = pstart_out), T(start = Tstart_out), Xi(start = Xstart[1:Medium.nXi]));  
   Medium.MassFlowRate w "Gas flow rate";
   Medium.SpecificEntropy s_in "Inlet specific entropy";
   Medium.SpecificEnthalpy hout_iso "Outlet isentropic enthalpy";
   Medium.SpecificEnthalpy hout "Outlet enthalpy";
   Medium.AbsolutePressure pout(start = pstart_out) "Outlet pressure";
-  SI.PerUnit PR "pressure ratio";
-  SI.PerUnit eta "isoentropic efficiency";
+  
   Modelica.Mechanics.Rotational.Interfaces.Flange_a shaft_a annotation(
     Placement(transformation(extent = {{-72, -12}, {-48, 12}}, rotation = 0)));
   Modelica.Mechanics.Rotational.Interfaces.Flange_b shaft_b annotation(
     Placement(transformation(extent = {{48, -12}, {72, 12}}, rotation = 0)));
-  FlangeA inlet(redeclare package Medium = Medium, m_flow(min = if allowFlowReversal then -Modelica.Constants.inf else 0)) annotation(
+  ThermoPower.Gas.FlangeA inlet(redeclare package Medium = Medium, m_flow(min = if allowFlowReversal then -Modelica.Constants.inf else 0)) annotation(
     Placement(transformation(extent = {{-100, 60}, {-60, 100}}, rotation = 0)));
-  FlangeB outlet(redeclare package Medium = Medium, m_flow(max = if allowFlowReversal then +Modelica.Constants.inf else 0)) annotation(
+  ThermoPower.Gas.FlangeB outlet(redeclare package Medium = Medium, m_flow(max = if allowFlowReversal then +Modelica.Constants.inf else 0)) annotation(
     Placement(transformation(extent = {{60, 60}, {100, 100}}, rotation = 0)));
 equation
   w = inlet.m_flow;
@@ -74,6 +78,7 @@ equation
     hout_iso = 0;
   end if;
   w * (hout - gas_in.h) * eta_mech = tau * omega "Energy balance";
+//  PR = PR_set;
   PR = gas_in.p / pout "Pressure ratio";
 // Mechanical boundary conditions
   shaft_a.phi = phi;

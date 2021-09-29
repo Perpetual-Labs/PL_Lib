@@ -7,13 +7,13 @@ model StateReader_gas "State reader for the visualization of the state in the si
   Modelica.SIunits.Pressure p "Pressure";
   Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
   Modelica.SIunits.MassFlowRate w "Mass flow rate";
-  Modelica.Blocks.Interfaces.RealOutput y1 annotation(
+  Modelica.Blocks.Interfaces.RealOutput T_out annotation(
     Placement(visible = true, transformation(origin = {-70, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 90), iconTransformation(origin = {-70, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  Modelica.Blocks.Interfaces.RealOutput y2 annotation(
+  Modelica.Blocks.Interfaces.RealOutput p_out annotation(
     Placement(visible = true, transformation(origin = {-30, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 90), iconTransformation(origin = {-30, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  Modelica.Blocks.Interfaces.RealOutput y3 annotation(
+  Modelica.Blocks.Interfaces.RealOutput mdot_out annotation(
     Placement(visible = true, transformation(origin = {30, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 90), iconTransformation(origin = {30, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
-  Modelica.Blocks.Interfaces.RealOutput y4 annotation(
+  Modelica.Blocks.Interfaces.RealOutput d_out annotation(
     Placement(visible = true, transformation(origin = {70, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 90), iconTransformation(origin = {70, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 90)));
 equation
 // Set gas properties
@@ -25,9 +25,9 @@ equation
   h = gas.h;
   w = inlet.m_flow;
   
-  y1 = T;
-  y2 = p;
-  y3 = w;
-  y4 = gas.d;
+  T_out = T;
+  p_out = p;
+  mdot_out = w;
+  d_out = gas.d;
   
 end StateReader_gas;
