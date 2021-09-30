@@ -1,4 +1,4 @@
-within PL_Lib.Components;
+within PL_Lib.Utilities;
 
 model HX_extFun
   Modelica.Blocks.Interfaces.RealInput BAin_T annotation(

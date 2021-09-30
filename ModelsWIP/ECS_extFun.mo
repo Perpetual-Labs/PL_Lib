@@ -106,7 +106,7 @@ model ECS_extFun
     Placement(visible = true, transformation(origin = {-90, 230}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-44, 108}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealOutput BAin1_T annotation(
     Placement(visible = true, transformation(origin = {-90, 250}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-38, 130}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.HX_extFun HX1_extFun annotation(
+  PL_Lib.Utilities.HX_extFun HX1_extFun annotation(
     Placement(visible = true, transformation(origin = {60, 180}, extent = {{-40, -40}, {40, 40}}, rotation = 0)));
 protected
   parameter Real tableEtaC[6, 4] = [0, 95, 100, 105; 1, 82.5e-2, 81e-2, 80.5e-2; 2, 84e-2, 82.9e-2, 82e-2; 3, 83.2e-2, 82.2e-2, 81.5e-2; 4, 82.5e-2, 81.2e-2, 79e-2; 5, 79.5e-2, 78e-2, 76.5e-2];
