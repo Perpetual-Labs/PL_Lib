@@ -124,8 +124,6 @@ protected
 initial equation
     inertia.w = 523.3;
 equation
-  connect(HEX1_BA.wall, metalTubeFV1.ext) annotation(
-    Line(points = {{-130, -35}, {-130, -13}}, color = {255, 127, 0}, thickness = 1));
   connect(stateReader_BAin1.outlet, HEX1_BA.infl) annotation(
     Line(points = {{-214, -40}, {-140, -40}}, color = {159, 159, 223}));
   connect(HEX1_BA.outfl, stateReader_BAout1.inlet) annotation(
@@ -134,10 +132,6 @@ equation
     Line(points = {{-120, 40}, {-106, 40}}, color = {159, 159, 223}));
   connect(stateReader_RAin1.outlet, HEX1_RA.infl) annotation(
     Line(points = {{-154, 40}, {-140, 40}}, color = {159, 159, 223}, thickness = 1));
-  connect(HEX1_RA.wall, heatExchangerTopologyFV1.side1) annotation(
-    Line(points = {{-130, 35}, {-130, 13}}, color = {255, 127, 0}, thickness = 1));
-  connect(heatExchangerTopologyFV1.side2, metalTubeFV1.int) annotation(
-    Line(points = {{-130, 6.9}, {-130, -6.2}}, color = {255, 127, 0}));
   connect(ramp_T_RAin.y, sourceP_RAin.in_T) annotation(
     Line(points = {{-289, 100}, {-276, 100}, {-276, 59}}, color = {0, 0, 127}));
   connect(ramp_P_RAin.y, sourceP_RAin.in_p0) annotation(
@@ -208,6 +202,12 @@ equation
     Line(points = {{230, -30}, {244, -30}}, color = {159, 159, 223}));
   connect(stateReader_BAout3.outlet, Mixer.in2) annotation(
     Line(points = {{126, -40}, {172, -40}, {172, -36}, {182, -36}}, color = {159, 159, 223}));
+  connect(HEX1_RA.wall, heatExchangerTopologyFV1.side1) annotation(
+    Line(points = {{-130, 36}, {-130, 14}}, color = {255, 127, 0}));
+  connect(heatExchangerTopologyFV1.side2, metalTubeFV1.int) annotation(
+    Line(points = {{-130, 6}, {-130, -6}}, color = {255, 127, 0}));
+  connect(metalTubeFV1.ext, HEX1_BA.wall) annotation(
+    Line(points = {{-130, -14}, {-130, -34}}, color = {255, 127, 0}));
   annotation(
     Diagram(coordinateSystem(extent = {{-300, -200}, {300, 200}}), graphics = {Text(origin = {-270, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-240, 80}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)", horizontalAlignment = TextAlignment.Left)}),
     experiment(StopTime = 3000, Tolerance = 1e-06, StartTime = 0, Interval = 6),
