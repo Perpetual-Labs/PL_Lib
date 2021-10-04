@@ -1,7 +1,6 @@
 within PL_Lib.Utilities;
 
 model HX_extFun
-  // INPUTS
   Modelica.Blocks.Interfaces.RealInput BAin_T annotation(
     Placement(visible = true, transformation(origin = {-100, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, 120}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealInput BAin_p annotation(
@@ -18,7 +17,7 @@ model HX_extFun
     Placement(visible = true, transformation(origin = {-100, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealInput RAin_d annotation(
     Placement(visible = true, transformation(origin = {-100, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-110, -120}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  // OUTPUTS
+
   Modelica.Blocks.Interfaces.RealOutput Thot_out annotation(
     Placement(visible = true, transformation(origin = {110, 80}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, 80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealOutput Tcold_out annotation(
@@ -30,7 +29,7 @@ model HX_extFun
   Real temperatures[2];
   Real pressures[2];
 equation
-//  (temperatures,pressures)= hx(tCold , tHot, mRateCold, mRateHot, pressureCold, pressureHot, densityCold,densityHot);
+//(temperatures, pressures) = hx(tCold , tHot, mRateCold, mRateHot, pressureCold, pressureHot, densityCold, densityHot);
   (temperatures, pressures) = hx(RAin_T, BAin_T, RAin_mdot, BAin_mdot, RAin_p, BAin_p, RAin_d, BAin_d);
   
   Thot_out = temperatures[1];

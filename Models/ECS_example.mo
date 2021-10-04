@@ -94,10 +94,6 @@ model ECS_example
     Placement(visible = true, transformation(origin = {220, -62}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Mechanics.Rotational.Components.Inertia inertia(J = 0.8) annotation(
     Placement(visible = true, transformation(origin = {128, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.SensT1 sensT1 annotation(
-    Placement(visible = true, transformation(origin = {-96, -2}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.SensP sensP annotation(
-    Placement(visible = true, transformation(origin = {-66, -2}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 protected
   parameter Real tableEtaC[6, 4] = [0, 95, 100, 105; 1, 82.5e-2, 81e-2, 80.5e-2; 2, 84e-2, 82.9e-2, 82e-2; 3, 83.2e-2, 82.2e-2, 81.5e-2; 4, 82.5e-2, 81.2e-2, 79e-2; 5, 79.5e-2, 78e-2, 76.5e-2];
   parameter Real tablePhicC[6, 4] = [0, 95, 100, 105; 1, 38.3e-3, 43e-3, 46.8e-3; 2, 39.3e-3, 43.8e-3, 47.9e-3; 3, 40.6e-3, 45.2e-3, 48.4e-3; 4, 41.6e-3, 46.1e-3, 48.9e-3; 5, 42.3e-3, 46.6e-3, 49.3e-3];
@@ -175,10 +171,6 @@ equation
     Line(points = {{76, -70}, {118, -70}}));
   connect(inertia.flange_b, Turbine.shaft_a) annotation(
     Line(points = {{138, -70}, {184, -70}}));
-  connect(stateReader_BAin1.outlet, sensT1.flange) annotation(
-    Line(points = {{-114, -40}, {-96, -40}, {-96, -6}}, color = {159, 159, 223}));
-  connect(stateReader_BAin1.outlet, sensP.flange) annotation(
-    Line(points = {{-114, -40}, {-66, -40}, {-66, -6}}, color = {159, 159, 223}));
   annotation(
     Diagram(coordinateSystem(extent = {{-300, -200}, {300, 200}}), graphics = {Text(origin = {-170, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-140, 80}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)", horizontalAlignment = TextAlignment.Left)}),
     experiment(StopTime = 3000, Tolerance = 1e-06, StartTime = 0, Interval = 6),
