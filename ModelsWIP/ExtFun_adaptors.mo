@@ -83,9 +83,9 @@ model ExtFun_adaptors "Test case for Gas.Flow1DFV"
   ThermoPower.Gas.SensP sensP3(redeclare package Medium = Medium) annotation(
     Placement(visible = true, transformation(origin = {-30, -36}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.PressDropLin pressDropLin2(redeclare package Medium = Medium, R = 1000) annotation(
-    Placement(visible = true, transformation(origin = {-140, -160}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {-130, -160}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SourceMassFlow sourceMassFlow1(redeclare package Medium = Medium, T = Tinhex, p0 = phex, use_in_T = true, w0 = whex) annotation(
-    Placement(visible = true, transformation(extent = {{-190, -170}, {-170, -150}}, rotation = 0)));
+    Placement(visible = true, transformation(extent = {{-170, -170}, {-150, -150}}, rotation = 0)));
   ThermoPower.Thermal.HeatSource1DFV heatSource1DFV1(Nw = Nnodes - 1) annotation(
     Placement(visible = true, transformation(extent = {{-20, -144}, {0, -124}}, rotation = 0)));
   ThermoPower.Gas.Flow1DFV flow1DFV1(redeclare package Medium = Medium, A = Ahex, Cfnom = Cfhex, Dhyd = Dihex, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Cfnom, L = Lhex, N = Nnodes, Tstartin = Tinhex, Tstartout = Touthex, dpnom = 1000, initOpt = ThermoPower.Choices.Init.Options.steadyState, omega = omegahex, pstart = phex, wnom = whex) annotation(
@@ -94,18 +94,22 @@ model ExtFun_adaptors "Test case for Gas.Flow1DFV"
     Placement(visible = true, transformation(extent = {{100, -170}, {120, -150}}, rotation = 0)));
   ThermoPower.Gas.SinkPressure sinkPressure3(redeclare package Medium = Medium, T = 300, p0 = 10000) annotation(
     Placement(visible = true, transformation(extent = {{160, -170}, {180, -150}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdaptor pressureToMassFlowAdaptor(redeclare package Medium = Medium) annotation(
-    Placement(visible = true, transformation(origin = {-60, -160}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT3(redeclare package Medium = Medium) annotation(
     Placement(visible = true, transformation(extent = {{130, -166}, {150, -146}}, rotation = 0)));
+//  ThermoPower.Gas.SinkMassFlow sinkMassFlow(redeclare package Medium = Medium, use_in_w0 = true) annotation(
+//    Placement(visible = true, transformation(origin = {78, -128}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+//  ThermoPower.Gas.SensT sensT4(redeclare package Medium = Medium) annotation(
+//    Placement(visible = true, transformation(origin = {28, -124}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+//  ThermoPower.Gas.SensP sensP4(redeclare package Medium = Medium) annotation(
+//    Placement(visible = true, transformation(origin = {58, -108}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   PL_Lib.Utilities.MassFlowToPressureAdaptor massFlowToPressureAdaptor(redeclare package Medium = Medium) annotation(
     Placement(visible = true, transformation(origin = {-100, -160}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  PL_Lib.Utilities.PressureToMassFlowAdaptor pressureToMassFlowAdaptor(redeclare package Medium = Medium) annotation(
+    Placement(visible = true, transformation(origin = {-60, -160}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   PL_Lib.Utilities.PressureToMassFlowAdaptor pressureToMassFlowAdaptor1(redeclare package Medium = Medium) annotation(
     Placement(visible = true, transformation(origin = {80, -160}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   PL_Lib.Utilities.MassFlowToPressureAdaptor massFlowToPressureAdaptor1(redeclare package Medium = Medium) annotation(
     Placement(visible = true, transformation(origin = {40, -160}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  ThermoPower.Gas.ThroughMassFlow throughMassFlow2(redeclare package Medium = Medium, use_in_w0 = true) annotation(
-    Placement(visible = true, transformation(origin = {18, -160}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation
   connect(SensT1.outlet, hex.infl) annotation(
     Line(points = {{-44, 0}, {-20, 0}}, color = {159, 159, 223}, thickness = 0.5));
@@ -186,52 +190,46 @@ equation
   connect(sensP3.p, sinkPressure1.in_p0) annotation(
     Line(points = {{-23, -30}, {-20, -30}, {-20, -20}, {-116, -20}, {-116, -74}}, color = {0, 0, 127}));
   connect(Step4.y, sourceMassFlow1.in_T) annotation(
-    Line(points = {{-238, 50}, {-230, 50}, {-230, -48}, {-250, -48}, {-250, -136}, {-180, -136}, {-180, -155}}, color = {0, 0, 127}));
+    Line(points = {{-238, 50}, {-230, 50}, {-230, -48}, {-250, -48}, {-250, -136}, {-160, -136}, {-160, -155}}, color = {0, 0, 127}));
   connect(Step1.y, heatSource1DFV1.power) annotation(
     Line(points = {{-18, 50}, {8, 50}, {8, -110}, {-10, -110}, {-10, -130}}, color = {0, 0, 127}));
-  connect(Step2.y, valveLin1.cmd) annotation(
-    Line(points = {{42, 50}, {184, 50}, {184, -110}, {110, -110}, {110, -153}}, color = {0, 0, 127}));
   connect(sourceMassFlow1.flange, pressDropLin2.inlet) annotation(
-    Line(points = {{-170, -160}, {-150, -160}}, color = {159, 159, 223}));
+    Line(points = {{-150, -160}, {-140, -160}}, color = {159, 159, 223}));
   connect(heatSource1DFV1.wall, flow1DFV1.wall) annotation(
     Line(points = {{-10, -137}, {-10, -155}}, color = {255, 127, 0}));
   connect(valveLin1.outlet, sensT3.inlet) annotation(
     Line(points = {{120, -160}, {134, -160}}, color = {159, 159, 223}));
   connect(sensT3.outlet, sinkPressure3.flange) annotation(
     Line(points = {{146, -160}, {160, -160}}, color = {159, 159, 223}));
-  connect(pressureToMassFlowAdaptor.p_back, massFlowToPressureAdaptor.p_back) annotation(
-    Line(points = {{-66, -164}, {-94, -164}}, color = {0, 0, 127}));
-  connect(massFlowToPressureAdaptor.m_dot, pressureToMassFlowAdaptor.m_dot) annotation(
-    Line(points = {{-94, -156}, {-66, -156}}, color = {0, 0, 127}));
-  connect(massFlowToPressureAdaptor.T, pressureToMassFlowAdaptor.T) annotation(
-    Line(points = {{-94, -150}, {-66, -150}}, color = {0, 0, 127}));
-  connect(massFlowToPressureAdaptor.p, pressureToMassFlowAdaptor.p) annotation(
-    Line(points = {{-94, -144}, {-66, -144}}, color = {0, 0, 127}));
   connect(sensT.T, sinkPressure1.in_T) annotation(
     Line(points = {{-132, -70}, {-126, -70}, {-126, -50}, {-110, -50}, {-110, -70}}, color = {0, 0, 127}));
-  connect(pressDropLin2.outlet, massFlowToPressureAdaptor.flange) annotation(
-    Line(points = {{-130, -160}, {-104, -160}}, color = {159, 159, 223}));
-  connect(pressureToMassFlowAdaptor.flange, flow1DFV1.infl) annotation(
-    Line(points = {{-56, -160}, {-20, -160}}, color = {159, 159, 223}));
   connect(sensT2.T, sinkPressure2.in_T) annotation(
     Line(points = {{68, -70}, {76, -70}, {76, -50}, {90, -50}, {90, -70}}, color = {0, 0, 127}));
-  connect(massFlowToPressureAdaptor1.p, pressureToMassFlowAdaptor1.p) annotation(
-    Line(points = {{46, -144}, {74, -144}}, color = {0, 0, 127}));
+  connect(pressDropLin2.outlet, massFlowToPressureAdaptor.flange) annotation(
+    Line(points = {{-120, -160}, {-104, -160}}, color = {159, 159, 223}));
+  connect(flow1DFV1.infl, pressureToMassFlowAdaptor.flange) annotation(
+    Line(points = {{-20, -160}, {-56, -160}}, color = {159, 159, 223}));
+  connect(massFlowToPressureAdaptor.T, pressureToMassFlowAdaptor.T) annotation(
+    Line(points = {{-94, -146}, {-66, -146}}, color = {0, 0, 127}));
+  connect(massFlowToPressureAdaptor.p, pressureToMassFlowAdaptor.p) annotation(
+    Line(points = {{-94, -152}, {-66, -152}}, color = {0, 0, 127}));
+  connect(pressureToMassFlowAdaptor.m_dot, massFlowToPressureAdaptor.m_dot) annotation(
+    Line(points = {{-66, -174}, {-94, -174}}, color = {0, 0, 127}));
+  connect(valveLin1.inlet, pressureToMassFlowAdaptor1.flange) annotation(
+    Line(points = {{100, -160}, {84, -160}}, color = {159, 159, 223}));
+  connect(Step2.y, valveLin1.cmd) annotation(
+    Line(points = {{42, 50}, {286, 50}, {286, -110}, {110, -110}, {110, -153}}, color = {0, 0, 127}));
+  connect(flow1DFV1.outfl, massFlowToPressureAdaptor1.flange) annotation(
+    Line(points = {{0, -160}, {36, -160}}, color = {159, 159, 223}));
   connect(massFlowToPressureAdaptor1.T, pressureToMassFlowAdaptor1.T) annotation(
-    Line(points = {{46, -150}, {74, -150}}, color = {0, 0, 127}));
-  connect(massFlowToPressureAdaptor1.m_dot, pressureToMassFlowAdaptor1.m_dot) annotation(
-    Line(points = {{46, -156}, {74, -156}}, color = {0, 0, 127}));
-  connect(pressureToMassFlowAdaptor1.p_back, massFlowToPressureAdaptor1.p_back) annotation(
-    Line(points = {{74, -164}, {46, -164}}, color = {0, 0, 127}));
-  connect(flow1DFV1.outfl, throughMassFlow2.inlet) annotation(
-    Line(points = {{0, -160}, {8, -160}}, color = {159, 159, 223}));
-  connect(throughMassFlow2.outlet, massFlowToPressureAdaptor1.flange) annotation(
-    Line(points = {{28, -160}, {36, -160}}, color = {159, 159, 223}));
-  connect(pressureToMassFlowAdaptor1.flange, valveLin1.inlet) annotation(
-    Line(points = {{84, -160}, {100, -160}}, color = {159, 159, 223}));
+    Line(points = {{46, -146}, {74, -146}}, color = {0, 0, 127}));
+  connect(massFlowToPressureAdaptor1.p, pressureToMassFlowAdaptor1.p) annotation(
+    Line(points = {{46, -152}, {74, -152}}, color = {0, 0, 127}));
+  connect(pressureToMassFlowAdaptor1.m_dot, massFlowToPressureAdaptor1.m_dot) annotation(
+    Line(points = {{74, -174}, {46, -174}}, color = {0, 0, 127}));
 protected
   annotation(
-    Diagram(coordinateSystem(extent = {{-200, -200}, {200, 200}}), graphics = {Rectangle(origin = {-10, -159.82}, lineColor = {0, 170, 0}, pattern = LinePattern.Dash, lineThickness = 0.5, extent = {{-70, 40.39}, {70, -40.39}})}),
+    Diagram(coordinateSystem(extent = {{-200, -200}, {200, 200}})),
     experiment(StopTime = 80, Tolerance = 1e-06, StartTime = 0, Interval = 0.16),
     Documentation(info = "<html>
 <p>The model is designed to test the component <code>Gas.Flow1DFV</code> (fluid side of a heat exchanger, finite volumes). A uniform prescribed heat flux is applied to the lateral boundary. The working fluid is pure nitrogen.</p>
