@@ -1,5 +1,5 @@
 HX_extFun
 hxSignal
 hx
-MassFlowToPressureAdaptor
-PressureToMassFlowAdaptor
+MassFlowToPressureAdapter
+PressureToMassFlowAdapter

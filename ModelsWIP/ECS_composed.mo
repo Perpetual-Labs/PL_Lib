@@ -1,8 +1,7 @@
 within PL_Lib.ModelsWIP;
-
 model ECS_composed
   extends Modelica.Icons.Example;
-  inner ThermoPower.System system annotation(
+  inner ThermoPower.System system annotation (
     Placement(visible = true, transformation(extent = {{-200, 180}, {-180, 200}}, rotation = 0)));
   replaceable package Medium = Modelica.Media.Air.DryAirNasa constrainedby Modelica.Media.Interfaces.PartialMedium;
   //  HX Geometry Parameters:
@@ -25,29 +24,29 @@ model ECS_composed
   parameter Modelica.SIunits.Temperature Thex_out_BA = 273.15 + 60;
 
 
-  PL_Lib.Components.StateReader_gas stateReader_BAin1(redeclare package Medium = Medium) annotation(
+  PL_Lib.Components.StateReader_gas stateReader_BAin1(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-140, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAout1(redeclare package Medium = Medium) annotation(
+  PL_Lib.Components.StateReader_gas stateReader_BAout1(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-10, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAout1(redeclare package Medium = Medium) annotation(
+  PL_Lib.Components.StateReader_gas stateReader_RAout1(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-10, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAin1(redeclare package Medium = Medium) annotation(
+  PL_Lib.Components.StateReader_gas stateReader_RAin1(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-90, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.SinkPressure sinkP_RAout1(redeclare package Medium = Medium, p0 = 101325, use_in_p0 = false) annotation(
+  ThermoPower.Gas.SinkPressure sinkP_RAout1(redeclare package Medium = Medium, p0 = 101325, use_in_p0 = false) annotation (
     Placement(visible = true, transformation(origin = {20, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.SourcePressure sourceP_RAin(redeclare package Medium = Medium, T = 273.15 + 20, p0 = 101325, use_in_T = false, use_in_p0 = false) annotation(
+  ThermoPower.Gas.SourcePressure sourceP_RAin(redeclare package Medium = Medium, T = 273.15 + 20, p0 = 101325, use_in_T = false, use_in_p0 = false) annotation (
     Placement(visible = true, transformation(origin = {-200, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.ThroughMassFlow throughMassFlow_RAin(redeclare package Medium = Medium, w0 = 0.5) annotation(
+  ThermoPower.Gas.ThroughMassFlow throughMassFlow_RAin(redeclare package Medium = Medium, w0 = 0.5) annotation (
     Placement(visible = true, transformation(origin = {-170, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.SourcePressure sourceP_BAin(redeclare package Medium = Medium, T = Thex_in_BA, p0 = phex_BA, use_in_T = false, use_in_p0 = false) annotation(
+  ThermoPower.Gas.SourcePressure sourceP_BAin(redeclare package Medium = Medium, T = Thex_in_BA, p0 = phex_BA, use_in_T = false, use_in_p0 = false) annotation (
     Placement(visible = true, transformation(origin = {-200, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.ThroughMassFlow throughMassFlow_BAin(redeclare package Medium = Medium, w0 = 0.25) annotation(
+  ThermoPower.Gas.ThroughMassFlow throughMassFlow_BAin(redeclare package Medium = Medium, w0 = 0.25) annotation (
     Placement(visible = true, transformation(origin = {-170, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.Compressor_noMaps Compressor(redeclare package Medium = Medium, Ndesign = 523.3, PR_set = 2.5, Table = ThermoPower.Choices.TurboMachinery.TableTypes.matrix, Tdes_in = 273.15 + 90, Tstart_in = 273.15 + 90, Tstart_out = 273.15 + 200, eta_set = 0.9, pstart_in = 2e5, pstart_out = 5e5, tableEta = tableEtaC, tablePR = tablePRC, tablePhic = tablePhicC) annotation(
+  PL_Lib.Components.Compressor_noMaps Compressor(redeclare package Medium = Medium, Ndesign = 523.3, PR_set = 2.5, Table = ThermoPower.Choices.TurboMachinery.TableTypes.matrix, Tdes_in = 273.15 + 90, Tstart_in = 273.15 + 90, Tstart_out = 273.15 + 200, eta_set = 0.9, pstart_in = 2e5, pstart_out = 5e5, tableEta = tableEtaC, tablePR = tablePRC, tablePhic = tablePhicC) annotation (
     Placement(visible = true, transformation(origin = {40, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.SinkPressure sinkP_RAout2(redeclare package Medium = Medium, use_in_p0 = false) annotation(
+  ThermoPower.Gas.SinkPressure sinkP_RAout2(redeclare package Medium = Medium, use_in_p0 = false) annotation (
     Placement(visible = true, transformation(extent = {{190, -10}, {210, 10}}, rotation = 0)));
-  ThermoPower.Gas.FlowSplit flowSplit(redeclare package Medium = Medium) annotation(
+  ThermoPower.Gas.FlowSplit flowSplit(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-140, 20}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 
 //  ThermoPower.Gas.Flow1DFV HEX1_BA(redeclare package Medium = Medium, A = Ahex, Cfnom = Cfhex, Dhyd = Dihex, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Cfnom, L = Lhex, N = Nnodes, Nt = Nt, Tstartbar = Thex_in_BA, dpnom = 1000, fixedMassFlowSimplified = true, initOpt = ThermoPower.Choices.Init.Options.steadyState, omega = omegahex, wnom = whex_BA) annotation(
@@ -66,27 +65,29 @@ model ECS_composed
   //    Placement(visible = true, transformation(origin = {-50, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   //ThermoPower.Thermal.HeatExchangerTopologyFV heatExchangerTopologyFV1(Nw = Nnodes - 1) annotation(
   //    Placement(visible = true, transformation(origin = {-90, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.ThroughMassFlow throughMassFlow(redeclare package Medium = Medium, w0 = 0.25) annotation(
+  ThermoPower.Gas.ThroughMassFlow throughMassFlow(redeclare package Medium = Medium, w0 = 0.25) annotation (
     Placement(visible = true, transformation(origin = {-90, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAin2(redeclare package Medium = Medium) annotation(
+  PL_Lib.Components.StateReader_gas stateReader_RAin2(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {70, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAout2(redeclare package Medium = Medium) annotation(
+  PL_Lib.Components.StateReader_gas stateReader_RAout2(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {170, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAin2(redeclare package Medium = Medium) annotation(
+  PL_Lib.Components.StateReader_gas stateReader_BAin2(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {70, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAout2(redeclare package Medium = Medium) annotation(
+  PL_Lib.Components.StateReader_gas stateReader_BAout2(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {150, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.Turbine_noMaps Turbine(redeclare package Medium = Medium, Ndesign = 523.3, Table = ThermoPower.Choices.TurboMachinery.TableTypes.matrix, Tdes_in = 1400, Tstart_in = 1270, Tstart_out = 883, pstart_in = 7.85e5, pstart_out = 1.52e5, tableEta = tableEtaT, tablePhic = tablePhicT) annotation(
+  PL_Lib.Components.Turbine_noMaps Turbine(redeclare package Medium = Medium, Ndesign = 523.3, Table = ThermoPower.Choices.TurboMachinery.TableTypes.matrix, Tdes_in = 1400, Tstart_in = 1270, Tstart_out = 883, pstart_in = 7.85e5, pstart_out = 1.52e5, tableEta = tableEtaT, tablePhic = tablePhicT) annotation (
     Placement(visible = true, transformation(origin = {180, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.SinkPressure sinkPressure(redeclare package Medium = Medium) annotation(
+  ThermoPower.Gas.SinkPressure sinkPressure(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(extent = {{230, -50}, {250, -30}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAout3(redeclare package Medium = Medium) annotation(
+  PL_Lib.Components.StateReader_gas stateReader_BAout3(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {210, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Mechanics.Rotational.Components.Inertia inertia(J = 0.8) annotation(
+  Modelica.Mechanics.Rotational.Components.Inertia inertia(J = 0.8) annotation (
     Placement(visible = true, transformation(origin = {110, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.HeatExchanger_CoFlow PHX(redeclare package GasMedium1 = Medium, redeclare package GasMedium2 = Medium, Thex_in_gas1 = 293.15, Thex_in_gas2 = 473.15, Thex_out_gas1 = 293.15, Thex_out_gas2 = 473.15, phex_gas2 = 200000, whex_gas1 = 0.25, whex_gas2 = 0.25) annotation(
+  PL_Lib.Components.HeatExchanger_CoFlow PHX(redeclare package GasMedium1 = Medium, redeclare
+      package                                                                                         GasMedium2 = Medium, Thex_in_gas1 = 293.15, Thex_in_gas2 = 473.15, Thex_out_gas1 = 293.15, Thex_out_gas2 = 473.15, phex_gas2 = 200000, whex_gas1 = 0.25, whex_gas2 = 0.25) annotation (
     Placement(visible = true, transformation(origin = {-50, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Components.HeatExchanger_CoFlow SHX(redeclare package GasMedium1 = Medium, redeclare package GasMedium2 = Medium, Thex_in_gas2 = 473.15, Thex_out_gas2 = 473.15, phex_gas1 = 99999.99999999999, phex_gas2 = 499999.9999999999, whex_gas1 = 0.25, whex_gas2 = 0.25) annotation(
+  PL_Lib.Components.HeatExchanger_CoFlow SHX(redeclare package GasMedium1 = Medium, redeclare
+      package                                                                                         GasMedium2 = Medium, Thex_in_gas2 = 473.15, Thex_out_gas2 = 473.15, phex_gas1 = 99999.99999999999, phex_gas2 = 499999.9999999999, whex_gas1 = 0.25, whex_gas2 = 0.25) annotation (
     Placement(visible = true, transformation(origin = {130, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
 
 protected
@@ -98,55 +99,55 @@ protected
 initial equation
   inertia.w = 523.3;
 equation
-  connect(throughMassFlow_BAin.outlet, stateReader_BAin1.inlet) annotation(
+  connect(throughMassFlow_BAin.outlet, stateReader_BAin1.inlet) annotation (
     Line(points = {{-160, 60}, {-146, 60}}, color = {159, 159, 223}));
-  connect(throughMassFlow_RAin.outlet, flowSplit.inlet) annotation(
+  connect(throughMassFlow_RAin.outlet, flowSplit.inlet) annotation (
     Line(points = {{-160, 20}, {-146, 20}}, color = {159, 159, 223}));
-  connect(flowSplit.outlet1, throughMassFlow.inlet) annotation(
+  connect(flowSplit.outlet1, throughMassFlow.inlet) annotation (
     Line(points = {{-134, 24}, {-110, 24}, {-110, 40}, {-100, 40}}, color = {159, 159, 223}));
-  connect(flowSplit.outlet2, stateReader_RAin1.inlet) annotation(
+  connect(flowSplit.outlet2, stateReader_RAin1.inlet) annotation (
     Line(points = {{-134, 16}, {-110, 16}, {-110, 0}, {-96, 0}}, color = {159, 159, 223}));
-  connect(sourceP_RAin.flange, throughMassFlow_RAin.inlet) annotation(
+  connect(sourceP_RAin.flange, throughMassFlow_RAin.inlet) annotation (
     Line(points = {{-190, 20}, {-180, 20}}, color = {159, 159, 223}));
-  connect(sourceP_BAin.flange, throughMassFlow_BAin.inlet) annotation(
+  connect(sourceP_BAin.flange, throughMassFlow_BAin.inlet) annotation (
     Line(points = {{-190, 60}, {-180, 60}}, color = {159, 159, 223}));
-  connect(stateReader_RAout1.outlet, sinkP_RAout1.flange) annotation(
+  connect(stateReader_RAout1.outlet, sinkP_RAout1.flange) annotation (
     Line(points = {{-4, 0}, {10, 0}}, color = {159, 159, 223}));
-  connect(stateReader_BAout1.outlet, Compressor.inlet) annotation(
+  connect(stateReader_BAout1.outlet, Compressor.inlet) annotation (
     Line(points = {{-4, -40}, {32, -40}, {32, -62}}, color = {159, 159, 223}));
-  connect(Compressor.outlet, stateReader_BAin2.inlet) annotation(
+  connect(Compressor.outlet, stateReader_BAin2.inlet) annotation (
     Line(points = {{48, -62}, {48, -40}, {64, -40}}, color = {159, 159, 223}));
-  connect(stateReader_RAout2.outlet, sinkP_RAout2.flange) annotation(
+  connect(stateReader_RAout2.outlet, sinkP_RAout2.flange) annotation (
     Line(points = {{176, 0}, {190, 0}}, color = {159, 159, 223}));
-  connect(throughMassFlow.outlet, stateReader_RAin2.inlet) annotation(
+  connect(throughMassFlow.outlet, stateReader_RAin2.inlet) annotation (
     Line(points = {{-80, 40}, {50, 40}, {50, 0}, {64, 0}}, color = {159, 159, 223}));
-  connect(stateReader_BAout2.outlet, Turbine.inlet) annotation(
+  connect(stateReader_BAout2.outlet, Turbine.inlet) annotation (
     Line(points = {{156, -40}, {164, -40}, {164, -62}, {172, -62}}, color = {159, 159, 223}));
-  connect(Turbine.outlet, stateReader_BAout3.inlet) annotation(
+  connect(Turbine.outlet, stateReader_BAout3.inlet) annotation (
     Line(points = {{188, -62}, {196, -62}, {196, -40}, {204, -40}}, color = {159, 159, 223}));
-  connect(stateReader_BAout3.outlet, sinkPressure.flange) annotation(
+  connect(stateReader_BAout3.outlet, sinkPressure.flange) annotation (
     Line(points = {{216, -40}, {230, -40}}, color = {159, 159, 223}));
-  connect(Compressor.shaft_b, inertia.flange_a) annotation(
+  connect(Compressor.shaft_b, inertia.flange_a) annotation (
     Line(points = {{46, -70}, {100, -70}}));
-  connect(inertia.flange_b, Turbine.shaft_a) annotation(
+  connect(inertia.flange_b, Turbine.shaft_a) annotation (
     Line(points = {{120, -70}, {174, -70}}));
-  connect(PHX.gas2_out, stateReader_BAout1.inlet) annotation(
+  connect(PHX.gas2_out, stateReader_BAout1.inlet) annotation (
     Line(points = {{-50, -20}, {-50, -40}, {-16, -40}}, color = {159, 159, 223}));
-  connect(stateReader_BAin1.outlet, PHX.gas2_in) annotation(
+  connect(stateReader_BAin1.outlet, PHX.gas2_in) annotation (
     Line(points = {{-134, 60}, {-50, 60}, {-50, 20}}, color = {159, 159, 223}));
-  connect(stateReader_RAin1.outlet, PHX.gas1_in) annotation(
+  connect(stateReader_RAin1.outlet, PHX.gas1_in) annotation (
     Line(points = {{-84, 0}, {-70, 0}}, color = {159, 159, 223}));
-  connect(PHX.gas1_out, stateReader_RAout1.inlet) annotation(
+  connect(PHX.gas1_out, stateReader_RAout1.inlet) annotation (
     Line(points = {{-30, 0}, {-16, 0}}, color = {159, 159, 223}));
-  connect(stateReader_RAin2.outlet, SHX.gas1_in) annotation(
+  connect(stateReader_RAin2.outlet, SHX.gas1_in) annotation (
     Line(points = {{76, 0}, {110, 0}}, color = {159, 159, 223}));
-  connect(SHX.gas1_out, stateReader_RAout2.inlet) annotation(
+  connect(SHX.gas1_out, stateReader_RAout2.inlet) annotation (
     Line(points = {{150, 0}, {164, 0}}, color = {159, 159, 223}));
-  connect(stateReader_BAin2.outlet, SHX.gas2_in) annotation(
+  connect(stateReader_BAin2.outlet, SHX.gas2_in) annotation (
     Line(points = {{76, -40}, {90, -40}, {90, 40}, {130, 40}, {130, 20}}, color = {159, 159, 223}));
-  connect(SHX.gas2_out, stateReader_BAout2.inlet) annotation(
+  connect(SHX.gas2_out, stateReader_BAout2.inlet) annotation (
     Line(points = {{130, -20}, {130, -40}, {144, -40}}, color = {159, 159, 223}));
-  annotation(
+  annotation (
     Diagram(coordinateSystem(extent = {{-200, -200}, {200, 200}}), graphics = {Text(origin = {-180, 80}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-180, 0}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)", horizontalAlignment = TextAlignment.Left)}),
     experiment(StopTime = 3000, Tolerance = 1e-06, StartTime = 0, Interval = 6),
     Documentation(info = "<html>
