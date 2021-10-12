@@ -1,24 +1,23 @@
 within PL_Lib.Components;
-
 model SensD "Pressure sensor for gas flows"
   extends ThermoPower.Icons.Gas.SensP;
-  replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation(
+  replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation (
     choicesAllMatching = true);
   Modelica.Blocks.Interfaces.RealOutput d(final quantity="Density",
                                           final unit="kg/m3",
                                           displayUnit="g/cm3",
-                                          min=0) "Density in port medium" annotation(
+                                          min=0) "Density in port medium" annotation (
     Placement(transformation(extent = {{60, 50}, {72, 70}}, rotation = 0), iconTransformation(extent = {{60, 50}, {80, 70}})));
-  ThermoPower.Gas.FlangeA flange(redeclare package Medium = Medium, m_flow(min = 0)) annotation(
+  ThermoPower.Gas.FlangeA flange(redeclare package Medium = Medium, m_flow(min = 0)) annotation (
     Placement(transformation(extent = {{-20, -60}, {20, -20}}, rotation = 0)));
 equation
   flange.m_flow = 0 "Mass balance";
 //  flange.p = p "Sensor output";
   d = Medium.density(Medium.setState_phX(flange.p, inStream(flange.h_outflow), inStream(flange.Xi_outflow)));
-  
+
   flange.h_outflow = 0;
   flange.Xi_outflow = zeros(Medium.nXi);
-  annotation(
+  annotation (
     Documentation(info = "<html>
 <p>This component can be connected to any A-type or B-type connector to measure the pressure of the fluid flowing through it.
 </html>", revisions = "<html>

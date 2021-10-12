@@ -1,5 +1,4 @@
 within PL_Lib.Components;
-
 model Turbine_noMaps "Gas Turbine"
 //  extends ThermoPower.Gas.BaseClasses.TurbineBase;
   extends PL_Lib.Components.BaseClasses.TurbineBase;
@@ -12,14 +11,14 @@ model Turbine_noMaps "Gas Turbine"
   Real N_T "Referred speed";
   Real N_T_design "Referred design speed";
   Real phic "Flow number";
-  
+
   parameter Real eta_set = 0.95;
   parameter Real phic_set = 1e-5;
 //  parameter Real PR_set = 2.5;
-  
-  Modelica.Blocks.Tables.CombiTable2D Phic(tableOnFile = if Table == TableTypes.matrix then false else true, table = tablePhic, tableName = if Table == TableTypes.matrix then "NoName" else "tabPhic", fileName = if Table == TableTypes.matrix then "NoName" else fileName, smoothness = Modelica.Blocks.Types.Smoothness.ContinuousDerivative) annotation(
+
+  Modelica.Blocks.Tables.CombiTable2D Phic(tableOnFile = if Table == TableTypes.matrix then false else true, table = tablePhic, tableName = if Table == TableTypes.matrix then "NoName" else "tabPhic", fileName = if Table == TableTypes.matrix then "NoName" else fileName, smoothness = Modelica.Blocks.Types.Smoothness.ContinuousDerivative) annotation (
     Placement(transformation(extent = {{-10, 10}, {10, 30}}, rotation = 0)));
-  Modelica.Blocks.Tables.CombiTable2D Eta(tableOnFile = if Table == TableTypes.matrix then false else true, table = tableEta, tableName = if Table == TableTypes.matrix then "NoName" else "tabEta", fileName = if Table == TableTypes.matrix then "NoName" else fileName, smoothness = Modelica.Blocks.Types.Smoothness.ContinuousDerivative) annotation(
+  Modelica.Blocks.Tables.CombiTable2D Eta(tableOnFile = if Table == TableTypes.matrix then false else true, table = tableEta, tableName = if Table == TableTypes.matrix then "NoName" else "tabEta", fileName = if Table == TableTypes.matrix then "NoName" else fileName, smoothness = Modelica.Blocks.Types.Smoothness.ContinuousDerivative) annotation (
     Placement(transformation(extent = {{-10, 50}, {10, 70}}, rotation = 0)));
 equation
   N_T_design = Ndesign / sqrt(Tdes_in) "Referred design velocity";
@@ -31,14 +30,14 @@ equation
   Phic.u2 = N_T;
 //  phic = Phic.y;
   phic = phic_set;
-  
+
 // eta = Eta(PR, N_T)
   Eta.u1 = PR;
   Eta.u2 = N_T;
 //  eta = Eta.y;
   eta = eta_set;
-  
-  annotation(
+
+  annotation (
     Documentation(info = "<html>
 This model adds the performance characteristics to the Turbine_Base model, by means of 2D interpolation tables.
 <p>The performance characteristics are described by two characteristic equations: the first relates the flow number <tt>phic</tt>, the pressure ratio <tt>PR</tt> and the referred speed <tt>N_T</tt>; the second relates the efficiency <tt>eta</tt>, the flow number <tt>phic</tt>, and the referred speed <tt>N_T</tt> [1]. </p>

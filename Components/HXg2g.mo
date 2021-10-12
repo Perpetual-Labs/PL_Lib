@@ -1,5 +1,4 @@
 within PL_Lib.Components;
-
 model HXg2g
   constant Real pi = Modelica.Constants.pi;
   replaceable package GasMedium1 = Modelica.Media.Air.DryAirNasa constrainedby Modelica.Media.Interfaces.PartialMedium;
@@ -37,21 +36,21 @@ model HXg2g
   //  Modelica.SIunits.Mass Mhex "Mass in the heat exchanger";
   //  Modelica.SIunits.Mass Mbal "Mass resulting from the mass balance";
   //  Modelica.SIunits.Mass Merr(min = -1e9) "Mass balance error";
-  ThermoPower.Gas.Flow1DFV HXgas1(redeclare package Medium = GasMedium1, A = Ahex, Cfnom = Cfhex, Dhyd = Dihex, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Cfnom, L = Lhex, N = Nnodes, Tstartin = Tinhex, Tstartout = Touthex, dpnom = 1000, initOpt = ThermoPower.Choices.Init.Options.steadyState, omega = omegahex, pstart = phex, wnom = whex) annotation(
+  ThermoPower.Gas.Flow1DFV HXgas1(redeclare package Medium = GasMedium1, A = Ahex, Cfnom = Cfhex, Dhyd = Dihex, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Cfnom, L = Lhex, N = Nnodes, Tstartin = Tinhex, Tstartout = Touthex, dpnom = 1000, initOpt = ThermoPower.Choices.Init.Options.steadyState, omega = omegahex, pstart = phex, wnom = whex) annotation (
     Placement(visible = true, transformation(origin = {0, 60}, extent = {{-20, 20}, {20, -20}}, rotation = 0)));
-  ThermoPower.Gas.FlangeA gasIn1(redeclare package Medium = GasMedium1) annotation(
+  ThermoPower.Gas.FlangeA gasIn1(redeclare package Medium = GasMedium1) annotation (
     Placement(visible = true, transformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.FlangeB gasOut1(redeclare package Medium = GasMedium1) annotation(
+  ThermoPower.Gas.FlangeB gasOut1(redeclare package Medium = GasMedium1) annotation (
     Placement(visible = true, transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Thermal.CounterCurrentFV counterCurrentFV(Nw = Nnodes - 1) annotation(
+  ThermoPower.Thermal.CounterCurrentFV counterCurrentFV(Nw = Nnodes - 1) annotation (
     Placement(visible = true, transformation(origin = {0, 20}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  ThermoPower.Thermal.MetalTubeFV TubeWalls(L = Lhex, Nw = Nnodes - 1, Tstartbar(displayUnit = "K"), lambda = 20, rext = 0.012 / 2, rhomcm = 7800 * 650, rint = 0.01 / 2) annotation(
+  ThermoPower.Thermal.MetalTubeFV TubeWalls(L = Lhex, Nw = Nnodes - 1, Tstartbar(displayUnit = "K"), lambda = 20, rext = 0.012 / 2, rhomcm = 7800 * 650, rint = 0.01 / 2) annotation (
     Placement(visible = true, transformation(origin = {0, -20}, extent = {{-20, 20}, {20, -20}}, rotation = 0)));
-  ThermoPower.Gas.FlangeA gasIn2(redeclare package Medium = GasMedium2) annotation(
+  ThermoPower.Gas.FlangeA gasIn2(redeclare package Medium = GasMedium2) annotation (
     Placement(visible = true, transformation(origin = {0, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.FlangeB gasOut2(redeclare package Medium = GasMedium2) annotation(
+  ThermoPower.Gas.FlangeB gasOut2(redeclare package Medium = GasMedium2) annotation (
     Placement(visible = true, transformation(origin = {0, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.Flow1DFV HXgas2(redeclare package Medium = GasMedium2, A = Ahex, Cfnom = Cfhex, Dhyd = Dihex, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Cfnom, L = Lhex, N = Nnodes, Tstartin = Tinhex, Tstartout = Touthex, dpnom = 1000, initOpt = ThermoPower.Choices.Init.Options.steadyState, omega = omegahex, pstart = phex, wnom = whex) annotation(
+  ThermoPower.Gas.Flow1DFV HXgas2(redeclare package Medium = GasMedium2, A = Ahex, Cfnom = Cfhex, Dhyd = Dihex, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Cfnom, L = Lhex, N = Nnodes, Tstartin = Tinhex, Tstartout = Touthex, dpnom = 1000, initOpt = ThermoPower.Choices.Init.Options.steadyState, omega = omegahex, pstart = phex, wnom = whex) annotation (
     Placement(visible = true, transformation(origin = {0, -60}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   //initial equation
   //  Mbal = Mhex;
@@ -59,20 +58,20 @@ equation
 //  Mhex = hex.M;
 //  der(Mbal) = hex.infl.m_flow + hex.outfl.m_flow;
 //  Merr = Mhex - Mbal;
-  connect(HXgas1.wall, counterCurrentFV.side1) annotation(
+  connect(HXgas1.wall, counterCurrentFV.side1) annotation (
     Line(points = {{0, 50}, {0, 26}}, color = {255, 127, 0}));
-  connect(gasIn1, HXgas1.infl) annotation(
+  connect(gasIn1, HXgas1.infl) annotation (
     Line(points = {{-100, 0}, {-60, 0}, {-60, 60}, {-20, 60}}, color = {159, 159, 223}, thickness = 0.75));
-  connect(HXgas1.outfl, gasOut1) annotation(
+  connect(HXgas1.outfl, gasOut1) annotation (
     Line(points = {{20, 60}, {60, 60}, {60, 0}, {100, 0}}, color = {159, 159, 223}, thickness = 0.75));
-  connect(gasOut2, HXgas2.outfl) annotation(
+  connect(gasOut2, HXgas2.outfl) annotation (
     Line(points = {{0, -100}, {0, -80}, {40, -80}, {40, -60}, {20, -60}}, color = {159, 159, 223}, thickness = 0.75));
-  connect(HXgas2.infl, gasIn2) annotation(
+  connect(HXgas2.infl, gasIn2) annotation (
     Line(points = {{-20, -60}, {-40, -60}, {-40, 80}, {0, 80}, {0, 100}}, color = {159, 159, 223}, thickness = 0.75));
-  connect(counterCurrentFV.side2, TubeWalls.ext) annotation(
+  connect(counterCurrentFV.side2, TubeWalls.ext) annotation (
     Line(points = {{0, 14}, {0, -14}}, color = {255, 127, 0}));
-  connect(HXgas2.wall, TubeWalls.int) annotation(
+  connect(HXgas2.wall, TubeWalls.int) annotation (
     Line(points = {{0, -50}, {0, -26}}, color = {255, 127, 0}));
-  annotation(
+  annotation (
     Icon(graphics = {Rectangle(lineColor = {89, 89, 89}, fillColor = {236, 236, 236}, fillPattern = FillPattern.Solid, lineThickness = 0.5, extent = {{-100, 100}, {100, -100}}, radius = 30), Line(points = {{0, -80}, {0, -40}, {40, -20}, {-40, 20}, {0, 40}, {0, 80}}, color = {85, 0, 255}, thickness = 0.5), Text(origin = {0, 211}, lineColor = {85, 170, 255}, extent = {{-100, -230}, {100, -290}}, textString = "%name")}));
 end HXg2g;

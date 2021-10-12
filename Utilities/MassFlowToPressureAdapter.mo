@@ -20,7 +20,7 @@ model MassFlowToPressureAdapter
     Placement(visible = true, transformation(origin = {110, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {30, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealOutput T(final quantity = "Temperature", final unit = "K", displayUnit = "degC", min = 0) "Temperature in port medium" annotation (
     Placement(visible = true, transformation(origin = {110, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {30, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Blocks.Interfaces.RealOutput d(displayUnit = "g/cm3", min = 0, quantity = "Density", unit = "kg/m3") annotation (
+  Modelica.Blocks.Interfaces.RealOutput d(displayUnit = "g/cm3", min = 0, final quantity = "Density", final unit = "kg/m3") annotation (
     Placement(visible = true, transformation(origin = {110, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(extent = {{20, 0}, {40, 20}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealInput m_dot(final quantity = "MassFlowRate", final unit = "kg/s", displayUnit = "kg/s", min = 0) "Mass flow rate in port medium" annotation (
     Placement(visible = true, transformation(origin = {110, 20}, extent = {{10, -10}, {-10, 10}}, rotation = 0), iconTransformation(origin = {30, -70}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
@@ -44,5 +44,5 @@ equation
   annotation (
     Icon(graphics={  Rectangle(lineColor = {159, 159, 223}, fillColor = {255, 255, 255},
             fillPattern =                                                                              FillPattern.Solid,
-            lineThickness =                                                                                                               0.5, extent = {{-20, 100}, {20, -100}}, radius = 10), Text(origin = {0, 70}, extent = {{-20, 10}, {20, -10}}, textString = "T"), Text(origin = {0, -70}, extent = {{-20, 10}, {20, -10}}, textString = "m_dot"), Text(origin = {0, 40}, extent = {{-20, 10}, {20, -10}}, textString = "p"), Text(origin = {0, 10}, extent = {{-20, 10}, {20, -10}}, textString = "d")}));
+            lineThickness =                                                                                                               0.5, extent = {{-20, 100}, {20, -100}}, radius = 10), Text(origin = {0, 70}, extent = {{-20, 10}, {20, -10}}, textString = "T"), Text(origin = {0, -70}, extent = {{-20, 10}, {20, -10}}, textString = "w"), Text(origin = {0, 40}, extent = {{-20, 10}, {20, -10}}, textString = "p"), Text(origin = {0, 10}, extent = {{-20, 10}, {20, -10}}, textString = "d")}));
 end MassFlowToPressureAdapter;

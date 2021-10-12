@@ -1,24 +1,23 @@
 within PL_Lib.Components.BaseClasses;
-
 partial model CompressorBase "Gas compressor"
   extends ThermoPower.Icons.Gas.Compressor;
-  replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation(
+  replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation (
     choicesAllMatching = true);
   parameter Boolean explicitIsentropicEnthalpy = true "isentropicEnthalpy function used";
   parameter Modelica.SIunits.PerUnit eta_mech = 0.98 "mechanical efficiency";
-  parameter Medium.AbsolutePressure pstart_in "inlet start pressure" annotation(
+  parameter Medium.AbsolutePressure pstart_in "inlet start pressure" annotation (
     Dialog(tab = "Initialisation"));
-  parameter Medium.AbsolutePressure pstart_out "outlet start pressure" annotation(
+  parameter Medium.AbsolutePressure pstart_out "outlet start pressure" annotation (
     Dialog(tab = "Initialisation"));
   parameter Medium.Temperature Tdes_in "inlet design temperature";
-  parameter Boolean allowFlowReversal = system.allowFlowReversal "= true to allow flow reversal, false restricts to design direction" annotation(
+  parameter Boolean allowFlowReversal = system.allowFlowReversal "= true to allow flow reversal, false restricts to design direction" annotation (
     Evaluate = true);
   outer ThermoPower.System system "System wide properties";
-  parameter Medium.Temperature Tstart_in = Tdes_in "inlet start temperature" annotation(
+  parameter Medium.Temperature Tstart_in = Tdes_in "inlet start temperature" annotation (
     Dialog(tab = "Initialisation"));
-  parameter Medium.Temperature Tstart_out "outlet start temperature" annotation(
+  parameter Medium.Temperature Tstart_out "outlet start temperature" annotation (
     Dialog(tab = "Initialisation"));
-  parameter Medium.MassFraction Xstart[Medium.nX] = Medium.reference_X "start gas composition" annotation(
+  parameter Medium.MassFraction Xstart[Medium.nX] = Medium.reference_X "start gas composition" annotation (
     Dialog(tab = "Initialisation"));
   Medium.BaseProperties gas_in(p(start = pstart_in), T(start = Tstart_in), Xi(start = Xstart[1:Medium.nXi]));
   Medium.BaseProperties gas_iso(p(start = pstart_out), T(start = Tstart_out), Xi(start = Xstart[1:Medium.nXi]));
@@ -32,13 +31,13 @@ partial model CompressorBase "Gas compressor"
   Modelica.SIunits.Torque tau "net torque acting on the compressor";
   Modelica.SIunits.PerUnit eta "isentropic efficiency";
   Modelica.SIunits.PerUnit PR "pressure ratio";
-  ThermoPower.Gas.FlangeA inlet(redeclare package Medium = Medium, m_flow(min = if allowFlowReversal then -Modelica.Constants.inf else 0)) annotation(
+  ThermoPower.Gas.FlangeA inlet(redeclare package Medium = Medium, m_flow(min = if allowFlowReversal then -Modelica.Constants.inf else 0)) annotation (
     Placement(transformation(extent = {{-100, 60}, {-60, 100}}, rotation = 0)));
-  ThermoPower.Gas.FlangeB outlet(redeclare package Medium = Medium, m_flow(max = if allowFlowReversal then +Modelica.Constants.inf else 0)) annotation(
+  ThermoPower.Gas.FlangeB outlet(redeclare package Medium = Medium, m_flow(max = if allowFlowReversal then +Modelica.Constants.inf else 0)) annotation (
     Placement(transformation(extent = {{60, 60}, {100, 100}}, rotation = 0)));
-  Modelica.Mechanics.Rotational.Interfaces.Flange_a shaft_a annotation(
+  Modelica.Mechanics.Rotational.Interfaces.Flange_a shaft_a annotation (
     Placement(transformation(extent = {{-72, -12}, {-48, 12}}, rotation = 0)));
-  Modelica.Mechanics.Rotational.Interfaces.Flange_b shaft_b annotation(
+  Modelica.Mechanics.Rotational.Interfaces.Flange_b shaft_b annotation (
     Placement(transformation(extent = {{48, -12}, {72, 12}}, rotation = 0)));
 equation
   w = inlet.m_flow;
@@ -80,7 +79,7 @@ equation
   shaft_b.phi = phi;
   shaft_a.tau + shaft_b.tau = tau;
   der(phi) = omega;
-  annotation(
+  annotation (
     Documentation(info = "<html>
 <p>This is the base model for a compressor, including the interface and all equations except the actual computation of the performance characteristics. Reverse flow conditions are not supported.</p>
 <p>This model does not include any shaft inertia by itself; if that is needed, connect a Modelica.Mechanics.Rotational.Inertia model to one of the shaft connectors.</p>

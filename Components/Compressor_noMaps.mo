@@ -1,5 +1,4 @@
 within PL_Lib.Components;
-
 model Compressor_noMaps "Gas compressor"
   extends ThermoPower.Gas.BaseClasses.CompressorBase;
   import ThermoPower.Choices.TurboMachinery.TableTypes;
@@ -9,15 +8,15 @@ model Compressor_noMaps "Gas compressor"
   parameter Real tablePR[:, :] = fill(0, 0, 2) "Table for eta(N_T,beta)";
   parameter String fileName = "noName" "File where matrix is stored";
   parameter TableTypes Table = TableTypes.matrix "Selection of the way of definition of table matrix";
-  
+
   parameter Real eta_set = 0.95;
   parameter Real PR_set = 2.5;
-  
-  Modelica.Blocks.Tables.CombiTable2D Eta(tableOnFile = if Table == TableTypes.matrix then false else true, table = tableEta, tableName = if Table == TableTypes.matrix then "NoName" else "tabEta", fileName = if Table == TableTypes.matrix then "NoName" else fileName, smoothness = Modelica.Blocks.Types.Smoothness.ContinuousDerivative) annotation(
+
+  Modelica.Blocks.Tables.CombiTable2D Eta(tableOnFile = if Table == TableTypes.matrix then false else true, table = tableEta, tableName = if Table == TableTypes.matrix then "NoName" else "tabEta", fileName = if Table == TableTypes.matrix then "NoName" else fileName, smoothness = Modelica.Blocks.Types.Smoothness.ContinuousDerivative) annotation (
     Placement(transformation(extent = {{-12, 60}, {8, 80}}, rotation = 0)));
-  Modelica.Blocks.Tables.CombiTable2D PressRatio(tableOnFile = if Table == TableTypes.matrix then false else true, table = tablePR, tableName = if Table == TableTypes.matrix then "NoName" else "tabPR", fileName = if Table == TableTypes.matrix then "NoName" else fileName, smoothness = Modelica.Blocks.Types.Smoothness.ContinuousDerivative) annotation(
+  Modelica.Blocks.Tables.CombiTable2D PressRatio(tableOnFile = if Table == TableTypes.matrix then false else true, table = tablePR, tableName = if Table == TableTypes.matrix then "NoName" else "tabPR", fileName = if Table == TableTypes.matrix then "NoName" else fileName, smoothness = Modelica.Blocks.Types.Smoothness.ContinuousDerivative) annotation (
     Placement(transformation(extent = {{-12, 0}, {8, 20}}, rotation = 0)));
-  Modelica.Blocks.Tables.CombiTable2D Phic(tableOnFile = if Table == TableTypes.matrix then false else true, table = tablePhic, tableName = if Table == TableTypes.matrix then "NoName" else "tabPhic", fileName = if Table == TableTypes.matrix then "NoName" else fileName, smoothness = Modelica.Blocks.Types.Smoothness.ContinuousDerivative) annotation(
+  Modelica.Blocks.Tables.CombiTable2D Phic(tableOnFile = if Table == TableTypes.matrix then false else true, table = tablePhic, tableName = if Table == TableTypes.matrix then "NoName" else "tabPhic", fileName = if Table == TableTypes.matrix then "NoName" else fileName, smoothness = Modelica.Blocks.Types.Smoothness.ContinuousDerivative) annotation (
     Placement(transformation(extent = {{-12, 30}, {8, 50}}, rotation = 0)));
   Real N_T "Referred speed ";
   Real N_T_design "Referred design velocity";
@@ -31,20 +30,20 @@ equation
   Phic.u1 = beta;
   Phic.u2 = N_T;
   phic = Phic.y;
-  
+
 // eta = Eta(beta, N_T)
   Eta.u1 = beta;
   Eta.u2 = N_T;
 //  eta = Eta.y;
   eta = eta_set;
-  
+
 // PR = PressRatio(beta, N_T)
   PressRatio.u1 = beta;
   PressRatio.u2 = N_T;
 //  PR = PressRatio.y;
   PR = PR_set;
-  
-  annotation(
+
+  annotation (
     Documentation(info = "<html>
 This model adds the performance characteristics to the Compressor_Base model, by means of 2D interpolation tables.</p>
 <p>The perfomance characteristics are specified by two characteristic equations: the first relates the flow number <tt>phic</tt>, the pressure ratio <tt>PR</tt> and the referred speed <tt>N_T</tt>; the second relates the efficiency <tt>eta</tt>, the flow number <tt>phic</tt>, and the referred speed <tt>N_T</tt> [1]. To avoid singularities, the two characteristic equations are expressed in parametric form by adding a further variable <tt>beta</tt> (method of beta lines [2]).

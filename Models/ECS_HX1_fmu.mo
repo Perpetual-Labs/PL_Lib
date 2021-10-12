@@ -1,5 +1,5 @@
 within PL_Lib.Models;
-model ECS_HX1_adapters
+model ECS_HX1_fmu
   extends Modelica.Icons.Example;
   inner ThermoPower.System system annotation (
     Placement(visible = true, transformation(extent = {{240, 140}, {260, 160}}, rotation = 0)));
@@ -31,14 +31,6 @@ model ECS_HX1_adapters
   //  Modelica.SIunits.Mass Mhex "Mass in the heat exchanger";
   //  Modelica.SIunits.Mass Mbal "Mass resulting from the mass balance";
   //  Modelica.SIunits.Mass Merr(min = -1e9) "Mass balance error";
-  ThermoPower.Gas.Flow1DFV HEX1_BA(redeclare package Medium = Medium, A = Ahex, Cfnom = Cfhex, Dhyd = Dihex, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Cfnom, L = Lhex, N = Nnodes, Nt = Nt, Tstartbar = Thex_in_BA, dpnom = 1000, fixedMassFlowSimplified = true, initOpt = ThermoPower.Choices.Init.Options.steadyState, omega = omegahex, wnom = whex_BA) annotation (
-    Placement(visible = true, transformation(extent = {{-40, -50}, {-20, -30}}, rotation = 0)));
-  ThermoPower.Gas.Flow1DFV HEX1_RA(redeclare package Medium = Medium, A = Ahex, Cfnom = Cfhex, Dhyd = Dihex, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Cfnom, L = Lhex, N = Nnodes, Nt = Nt, Tstartbar = Thex_in_RA, dpnom = 1000, fixedMassFlowSimplified = true, initOpt = ThermoPower.Choices.Init.Options.steadyState, omega = omegahex, wnom = whex_RA) annotation (
-    Placement(visible = true, transformation(origin = {-30, 40}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
-  ThermoPower.Thermal.MetalTubeFV metalTubeFV1(L = Lhex, Nt = Nt, Nw = Nnodes - 1, Tstart1 = Thex_in_BA, TstartN = Thex_in_BA, Tstartbar(displayUnit = "K") = Thex_in_BA, lambda = 20, rext = 0.012 / 2, rhomcm = 7800 * 650, rint = 0.01 / 2) annotation (
-    Placement(visible = true, transformation(origin = {-30, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Thermal.HeatExchangerTopologyFV heatExchangerTopologyFV1(Nw = Nnodes - 1) annotation (
-    Placement(visible = true, transformation(origin = {-30, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_T_RAin(duration = 600, height = -45, offset = Thex_in_RA, startTime = 1000) annotation (
     Placement(visible = true, transformation(origin = {-224, 120}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_P_RAin(duration = 600, height = -74825, offset = 101325, startTime = 1000) annotation (
@@ -88,27 +80,17 @@ model ECS_HX1_adapters
   PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor1(redeclare
       package                                                                             Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-100, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor2(redeclare
-      package                                                                             Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {0, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor3(redeclare
       package                                                                             Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-100, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor4(redeclare
-      package                                                                             Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {0, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor1(redeclare
-      package                                                                             Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-60, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor2(redeclare
       package                                                                             Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {40, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor3(redeclare
-      package                                                                             Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-60, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor4(redeclare
       package                                                                             Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {40, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  PL_Lib_Components_HX_FMUblock_me_FMU pL_Lib_Components_HX_FMUblock_me_FMU annotation (
+    Placement(visible = true, transformation(origin = {-25, 1}, extent = {{-31, -31}, {31, 31}}, rotation = 0)));
 protected
   parameter Real tableEtaC[6, 4] = [0, 95, 100, 105; 1, 82.5e-2, 81e-2, 80.5e-2; 2, 84e-2, 82.9e-2, 82e-2; 3, 83.2e-2, 82.2e-2, 81.5e-2; 4, 82.5e-2, 81.2e-2, 79e-2; 5, 79.5e-2, 78e-2, 76.5e-2];
   parameter Real tablePhicC[6, 4] = [0, 95, 100, 105; 1, 38.3e-3, 43e-3, 46.8e-3; 2, 39.3e-3, 43.8e-3, 47.9e-3; 3, 40.6e-3, 45.2e-3, 48.4e-3; 4, 41.6e-3, 46.1e-3, 48.9e-3; 5, 42.3e-3, 46.6e-3, 49.3e-3];
@@ -118,12 +100,6 @@ protected
 initial equation
   inertia.w = 523.3;
 equation
-  connect(HEX1_BA.wall, metalTubeFV1.ext) annotation (
-    Line(points = {{-30, -35}, {-30, -13.1}}, color = {255, 127, 0}, thickness = 1));
-  connect(HEX1_RA.wall, heatExchangerTopologyFV1.side1) annotation (
-    Line(points = {{-30, 35}, {-30, 13}}, color = {255, 127, 0}, thickness = 1));
-  connect(heatExchangerTopologyFV1.side2, metalTubeFV1.int) annotation (
-    Line(points = {{-30, 6.9}, {-30, -7}}, color = {255, 127, 0}));
   connect(ramp_T_RAin.y, sourceP_RAin.in_T) annotation (
     Line(points = {{-213, 120}, {-200, 120}, {-200, 59}}, color = {0, 0, 127}));
   connect(ramp_P_RAin.y, sourceP_RAin.in_p0) annotation (
@@ -172,46 +148,40 @@ equation
     Line(points = {{138, -70}, {184, -70}}));
   connect(flowSplit.outlet2, massFlowToPressureAdaptor1.flange) annotation (
     Line(points = {{-134, 46}, {-120, 46}, {-120, 40}, {-104, 40}}, color = {159, 159, 223}));
-  connect(massFlowToPressureAdaptor1.T, pressureToMassFlowAdaptor1.T) annotation (
-    Line(points = {{-94, 54}, {-66, 54}}, color = {0, 0, 127}));
-  connect(massFlowToPressureAdaptor1.p, pressureToMassFlowAdaptor1.p) annotation (
-    Line(points = {{-94, 48}, {-66, 48}}, color = {0, 0, 127}));
-  connect(pressureToMassFlowAdaptor1.m_dot, massFlowToPressureAdaptor1.m_dot) annotation (
-    Line(points = {{-66, 26}, {-94, 26}}, color = {0, 0, 127}));
-  connect(pressureToMassFlowAdaptor1.flange, HEX1_RA.infl) annotation (
-    Line(points = {{-56, 40}, {-40, 40}}, color = {159, 159, 223}));
-  connect(HEX1_RA.outfl, massFlowToPressureAdaptor2.flange) annotation (
-    Line(points = {{-20, 40}, {-4, 40}}, color = {159, 159, 223}));
-  connect(massFlowToPressureAdaptor2.T, pressureToMassFlowAdaptor2.T) annotation (
-    Line(points = {{6, 54}, {34, 54}}, color = {0, 0, 127}));
-  connect(massFlowToPressureAdaptor2.p, pressureToMassFlowAdaptor2.p) annotation (
-    Line(points = {{6, 48}, {34, 48}}, color = {0, 0, 127}));
-  connect(pressureToMassFlowAdaptor2.m_dot, massFlowToPressureAdaptor2.m_dot) annotation (
-    Line(points = {{34, 26}, {6, 26}}, color = {0, 0, 127}));
   connect(pressureToMassFlowAdaptor2.flange, sinkP_RAout1.flange) annotation (
     Line(points = {{44, 40}, {56, 40}}, color = {159, 159, 223}));
   connect(throughMassFlow_BAin.outlet, massFlowToPressureAdaptor3.flange) annotation (
     Line(points = {{-120, -40}, {-104, -40}}, color = {159, 159, 223}));
-  connect(massFlowToPressureAdaptor3.T, pressureToMassFlowAdaptor3.T) annotation (
-    Line(points = {{-94, -26}, {-66, -26}}, color = {0, 0, 127}));
-  connect(massFlowToPressureAdaptor3.p, pressureToMassFlowAdaptor3.p) annotation (
-    Line(points = {{-94, -32}, {-66, -32}}, color = {0, 0, 127}));
-  connect(pressureToMassFlowAdaptor3.m_dot, massFlowToPressureAdaptor3.m_dot) annotation (
-    Line(points = {{-66, -54}, {-94, -54}}, color = {0, 0, 127}));
-  connect(HEX1_BA.outfl, massFlowToPressureAdaptor4.flange) annotation (
-    Line(points = {{-20, -40}, {-4, -40}}, color = {159, 159, 223}));
-  connect(massFlowToPressureAdaptor4.T, pressureToMassFlowAdaptor4.T) annotation (
-    Line(points = {{6, -26}, {34, -26}}, color = {0, 0, 127}));
-  connect(massFlowToPressureAdaptor4.p, pressureToMassFlowAdaptor4.p) annotation (
-    Line(points = {{6, -32}, {34, -32}}, color = {0, 0, 127}));
-  connect(pressureToMassFlowAdaptor4.m_dot, massFlowToPressureAdaptor4.m_dot) annotation (
-    Line(points = {{34, -54}, {6, -54}}, color = {0, 0, 127}));
   connect(pressureToMassFlowAdaptor4.flange, Compressor.inlet) annotation (
     Line(points = {{44, -40}, {62, -40}, {62, -62}}, color = {159, 159, 223}));
-  connect(pressureToMassFlowAdaptor3.flange, HEX1_BA.infl) annotation (
-    Line(points = {{-56, -40}, {-40, -40}}, color = {159, 159, 223}));
+  connect(massFlowToPressureAdaptor1.T, pL_Lib_Components_HX_FMUblock_me_FMU.T1) annotation (
+    Line(points = {{-94, 54}, {-72, 54}, {-72, 22}, {-59, 22}, {-59, 23}}, color = {0, 0, 127}));
+  connect(massFlowToPressureAdaptor3.T, pL_Lib_Components_HX_FMUblock_me_FMU.T2) annotation (
+    Line(points = {{-94, -26}, {-82, -26}, {-82, 14}, {-60, 14}}, color = {0, 0, 127}));
+  connect(massFlowToPressureAdaptor1.p, pL_Lib_Components_HX_FMUblock_me_FMU.p1) annotation (
+    Line(points = {{-94, 48}, {-78, 48}, {-78, -8}, {-60, -8}}, color = {0, 0, 127}));
+  connect(massFlowToPressureAdaptor3.p, pL_Lib_Components_HX_FMUblock_me_FMU.p2) annotation (
+    Line(points = {{-94, -32}, {-76, -32}, {-76, -16}, {-60, -16}}, color = {0, 0, 127}));
+  connect(pL_Lib_Components_HX_FMUblock_me_FMU.T3, pressureToMassFlowAdaptor2.T) annotation (
+    Line(points = {{10, 22}, {18, 22}, {18, 54}, {34, 54}}, color = {0, 0, 127}));
+  connect(pL_Lib_Components_HX_FMUblock_me_FMU.T4, pressureToMassFlowAdaptor4.T) annotation (
+    Line(points = {{10, 14}, {22, 14}, {22, -26}, {34, -26}}, color = {0, 0, 127}));
+  connect(pL_Lib_Components_HX_FMUblock_me_FMU.m_dot3, massFlowToPressureAdaptor1.m_dot) annotation (
+    Line(points = {{10, -8}, {20, -8}, {20, -42}, {-86, -42}, {-86, 26}, {-94, 26}}, color = {0, 0, 127}));
+  connect(pL_Lib_Components_HX_FMUblock_me_FMU.m_dot4, massFlowToPressureAdaptor3.m_dot) annotation (
+    Line(points = {{10, -16}, {16, -16}, {16, -54}, {-94, -54}}, color = {0, 0, 127}));
+  connect(pL_Lib_Components_HX_FMUblock_me_FMU.p3, pressureToMassFlowAdaptor2.p) annotation (
+    Line(points = {{10, -24}, {26, -24}, {26, 48}, {34, 48}}, color = {0, 0, 127}));
+  connect(pL_Lib_Components_HX_FMUblock_me_FMU.p4, pressureToMassFlowAdaptor4.p) annotation (
+    Line(points = {{10, -32}, {34, -32}}, color = {0, 0, 127}));
+  connect(pressureToMassFlowAdaptor2.m_dot, pL_Lib_Components_HX_FMUblock_me_FMU.m_dot1) annotation (
+    Line(points = {{34, 26}, {12, 26}, {12, 42}, {-68, 42}, {-68, 8}, {-60, 8}}, color = {0, 0, 127}));
+  connect(pressureToMassFlowAdaptor4.m_dot, pL_Lib_Components_HX_FMUblock_me_FMU.m_dot2) annotation (
+    Line(points = {{34, -54}, {26, -54}, {26, -46}, {-72, -46}, {-72, 0}, {-60, 0}}, color = {0, 0, 127}));
   annotation (
-    Diagram(coordinateSystem(extent = {{-240, -140}, {260, 160}}), graphics = {Text(origin = {-150, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-164, 100}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)", horizontalAlignment = TextAlignment.Left)}),
+    Diagram(coordinateSystem(extent = {{-240, -140}, {260, 160}}), graphics={  Text(origin = {-150, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)",
+            horizontalAlignment =                                                                                                                                                                                              TextAlignment.Left), Text(origin = {-164, 100}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)",
+            horizontalAlignment =                                                                                                                                                                                                        TextAlignment.Left)}),
     experiment(StopTime = 3000, Tolerance = 1e-06, StartTime = 0, Interval = 6),
     Documentation(info = "<html>
 <p>The model is designed to test the component <code>Gas.Flow1DFV</code> (fluid side of a heat exchanger, finite volumes). A uniform prescribed heat flux is applied to the lateral boundary. The working fluid is pure nitrogen.</p>
@@ -226,4 +196,4 @@ equation
 <p>Algorithm Tolerance = 1e-6 </p>
 </html>"),
     __Dymola_experimentSetupOutput);
-end ECS_HX1_adapters;
+end ECS_HX1_fmu;

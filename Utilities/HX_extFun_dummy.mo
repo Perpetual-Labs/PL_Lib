@@ -1,5 +1,5 @@
 within PL_Lib.Utilities;
-model HX_extFun
+model HX_extFun_dummy
   Modelica.Blocks.Interfaces.RealInput T_hot_in(final quantity = "Temperature", final unit = "K", displayUnit = "degC", min = 0) annotation (Placement(
       visible=true,
       transformation(
@@ -125,9 +125,9 @@ model HX_extFun
   Real temperatures[2];
   Real pressures[2];
 equation
-  (temperatures, pressures) = hx(T_cold_in, T_hot_in, w_cold_in, w_hot_in, p_cold_in, p_hot_in, d_cold_in, d_hot_in);
+  (temperatures, pressures) = hxDummy(T_cold_in, T_hot_in, w_cold_in, w_hot_in, p_cold_in, p_hot_in, d_cold_in, d_hot_in);
 
-  T_cold_out  = temperatures[1]; 
+  T_cold_out  = temperatures[1];  
   T_hot_out	  = temperatures[2];
   p_cold_out  = pressures[1];
   p_hot_out	  = pressures[2];
@@ -137,4 +137,4 @@ equation
             fillPattern =                                                                             FillPattern.Solid,
             lineThickness =                                                                                                              0.5, extent = {{-100, 140}, {100, -140}}), Text(extent = {{-80, 40}, {80, -40}}, textString = "Ext. Code"), Text(origin = {-70, -30}, extent = {{-30, 10}, {30, -10}}, textString = "T_hot_in"), Text(origin = {-70, -60}, extent = {{-30, 10}, {30, -10}}, textString = "p_hot_in"), Text(origin = {-70, -90}, extent = {{-30, 10}, {30, -10}}, textString = "w_hot_in"), Text(origin = {-70, -120}, extent = {{-30, 10}, {30, -10}}, textString = "d_hot_in"), Text(origin = {-70, 30}, extent = {{-30, 10}, {30, -10}}, textString = "d_cold_in"), Text(origin = {-70, 60}, extent = {{-30, 10}, {30, -10}}, textString = "w_cold_in"), Text(origin = {-70, 90}, extent = {{-30, 10}, {30, -10}}, textString = "p_cold_in"), Text(origin = {-70, 120}, extent = {{-30, 10}, {30, -10}}, textString = "T_cold_in"), Text(origin = {70, -50}, extent = {{-30, 10}, {30, -10}}, textString = "T_hot_out"), Text(origin = {70, 90}, extent = {{-30, 10}, {30, -10}}, textString = "T_cold_out"), Text(origin = {70, 50}, extent = {{-30, 10}, {30, -10}}, textString = "p_cold_out"), Text(origin = {70, -90}, extent = {{-30, 10}, {30, -10}}, textString = "p_hot_out")}, coordinateSystem(extent = {{-100, -140}, {100, 140}})),
     Diagram);
-end HX_extFun;
+end HX_extFun_dummy;

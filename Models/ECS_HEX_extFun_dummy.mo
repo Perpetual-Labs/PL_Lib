@@ -1,5 +1,5 @@
 within PL_Lib.Models;
-model ECS_HEX1_extFun
+model ECS_HEX_extFun_dummy
   extends Modelica.Icons.Example;
   inner ThermoPower.System system annotation (
     Placement(visible = true, transformation(extent = {{280, 140}, {300, 160}}, rotation = 0)));
@@ -49,7 +49,7 @@ model ECS_HEX1_extFun
   PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor1(redeclare
       package Medium =                                                                             Medium, T0 = 293.15) annotation (
     Placement(visible = true, transformation(origin = {-80, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  Utilities.HX_extFun              PHX_extFun(T_cold_out(displayUnit = "K"), T_hot_out(displayUnit = "K"), p_cold_out(displayUnit = "Pa"), p_hot_out(displayUnit = "Pa"))  annotation (
+  PL_Lib.Utilities.HX_extFun_dummy PHX_extFun(T_cold_out(displayUnit = "K"), T_hot_out(displayUnit = "K"), p_cold_out(displayUnit = "Pa"), p_hot_out(displayUnit = "Pa"))  annotation (
     Placement(visible = true, transformation(origin = {-130, -2}, extent = {{-20, -28}, {20, 28}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT_PHX_hot_in(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(extent = {{-230, -46}, {-210, -26}}, rotation = 0)));
@@ -243,4 +243,4 @@ equation
 <p>Algorithm Tolerance = 1e-6 </p>
 </html>"),
     __Dymola_experimentSetupOutput);
-end ECS_HEX1_extFun;
+end ECS_HEX_extFun_dummy;

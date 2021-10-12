@@ -1,5 +1,5 @@
 within PL_Lib.Utilities;
-function hx
+function hxDummy
   input Real tCold;
   input Real tHot;
   input Real mRateCold;
@@ -12,7 +12,7 @@ function hx
   output Real temperatures[2];
   output Real pressures[2];
 
-  external "C" hx(tCold, tHot, mRateCold, mRateHot, densityCold, densityHot, pressureCold, pressureHot, temperatures, pressures) annotation (
+  external "C" hxDummy(tCold, tHot, mRateCold, mRateHot, densityCold, densityHot, pressureCold, pressureHot, temperatures, pressures) annotation (
       IncludeDirectory = "modelica://PL_Lib/Utilities",
-      Include = "#include \"hx.c\"");
-end hx;
+      Include = "#include \"hxDummy.c\"");
+end hxDummy;
