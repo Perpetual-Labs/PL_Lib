@@ -32,20 +32,16 @@ model HeatExchanger "Base class for heat exchanger gas - gas"
   ThermoPower.Thermal.CounterCurrentFV CounterCurrent1(Nw = Nr) annotation (
     Placement(transformation(extent = {{-20, -8}, {20, 32}}, rotation = 0)));
 
-  ThermoPower.Gas.Flow1DFV GasSide(redeclare package Medium = GasMedium1, redeclare
-      model                                                                               HeatTransfer =
-        ThermoPower.Thermal.HeatTransferFV.FlowDependentHeatTransferCoefficient
-        (                                                                                                                                                                        gamma_nom = gamma_nom, alpha = 0.6), A = Sb, Dhyd = St / Lb, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Kfnom, Kfnom = 0.1, L = Lb, N = Nr + 1, QuasiStatic = StaticGasBalances, Tstartin = 670, Tstartout = 370, dpnom = 5000, omega = St / Lb, wnom = 10) annotation (
+  ThermoPower.Gas.Flow1DFV GasSide(redeclare package Medium = GasMedium1, redeclare model HeatTransfer =
+        ThermoPower.Thermal.HeatTransferFV.FlowDependentHeatTransferCoefficient (                                                                                                gamma_nom = gamma_nom, alpha = 0.6), A = Sb, Dhyd = St / Lb, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Kfnom, Kfnom = 0.1, L = Lb, N = Nr + 1, QuasiStatic = StaticGasBalances, Tstartin = 670, Tstartout = 370, dpnom = 5000, omega = St / Lb, wnom = 10) annotation (
     Placement(transformation(extent = {{-20, 60}, {20, 20}}, rotation = 0)));
 
-  ThermoPower.Gas.Flow1DFV GasSide2(redeclare package Medium = GasMedium2, redeclare
-      model                                                                                HeatTransfer =
-        ThermoPower.Thermal.HeatTransferFV.FlowDependentHeatTransferCoefficient
-        (                                                                                                                                                                         gamma_nom = gamma_nom, alpha = 0.6), A = Sb, Dhyd = St / Lb, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Kfnom, Kfnom = 0.1, L = Lb, N = Nr + 1, QuasiStatic = StaticGasBalances, Tstartin = 670, Tstartout = 370, dpnom = 5000, omega = St / Lb, wnom = 10) annotation (
+  ThermoPower.Gas.Flow1DFV GasSide2(redeclare package Medium = GasMedium2, redeclare model HeatTransfer =
+        ThermoPower.Thermal.HeatTransferFV.FlowDependentHeatTransferCoefficient (                                                                                                 gamma_nom = gamma_nom, alpha = 0.6), A = Sb, Dhyd = St / Lb, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Kfnom, Kfnom = 0.1, L = Lb, N = Nr + 1, QuasiStatic = StaticGasBalances, Tstartin = 670, Tstartout = 370, dpnom = 5000, omega = St / Lb, wnom = 10) annotation (
     Placement(visible = true, transformation(origin = {0, -50}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
 equation
   connect(CounterCurrent1.side2, TubeWalls.ext) annotation (
-    Line(points = {{0, 5.8}, {0, -14}}, color = {255, 127, 0}));
+    Line(points={{0,5.8},{0,-13.8}},    color = {255, 127, 0}));
   connect(GasSide.infl, gasIn) annotation (
     Line(points = {{-20, 40}, {-60, 40}, {-60, 0}, {-100, 0}}, color = {159, 159, 223}, thickness = 0.5));
   connect(GasSide.outfl, gasOut) annotation (
@@ -60,7 +56,8 @@ equation
     Line(points = {{0, -26}, {0, -40}}, color = {255, 127, 0}));
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio = false, extent = {{-100, -100}, {100, 100}}), graphics),
-    Icon(graphics = {Rectangle(lineColor = {0, 0, 255}, fillColor = {230, 230, 230}, fillPattern = FillPattern.Solid, extent = {{-100, 100}, {100, -100}}), Line(points = {{0, -80}, {0, -40}, {40, -20}, {-40, 20}, {0, 40}, {0, 80}}, color = {0, 0, 255}, thickness = 0.5), Text(origin = {0, 211},lineColor = {85, 170, 255}, extent = {{-100, -230}, {100, -290}}, textString = "%name"), Text(origin = {100, 40}, extent = {{-20, 20}, {20, -20}}, textString = "g1o"), Text(origin = {-100, 40}, extent = {{-20, 20}, {20, -20}}, textString = "g1i"), Text(origin = {-40, 120}, extent = {{-20, 20}, {20, -20}}, textString = "g2i"), Text(origin = {40, -100}, extent = {{-20, 20}, {20, -20}}, textString = "g2o")}),
+    Icon(graphics={  Rectangle(lineColor = {0, 0, 255}, fillColor = {230, 230, 230},
+            fillPattern =                                                                          FillPattern.Solid, extent = {{-100, 100}, {100, -100}}), Line(points = {{0, -80}, {0, -40}, {40, -20}, {-40, 20}, {0, 40}, {0, 80}}, color = {0, 0, 255}, thickness = 0.5), Text(origin = {0, 211},lineColor = {85, 170, 255}, extent = {{-100, -230}, {100, -290}}, textString = "%name"), Text(origin = {100, 40}, extent = {{-20, 20}, {20, -20}}, textString = "g1o"), Text(origin = {-100, 40}, extent = {{-20, 20}, {20, -20}}, textString = "g1i"), Text(origin = {-40, 120}, extent = {{-20, 20}, {20, -20}}, textString = "g2i"), Text(origin = {40, -100}, extent = {{-20, 20}, {20, -20}}, textString = "g2o")}),
     Documentation(revisions = "<html>
 <ul>
 <li><i>12 Dec 2008</i>

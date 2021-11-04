@@ -1,7 +1,7 @@
 within PL_Lib.Components;
 model Turbine_noMaps "Gas Turbine"
 //  extends ThermoPower.Gas.BaseClasses.TurbineBase;
-  extends PL_Lib.Components.BaseClasses.TurbineBase;
+  extends PL_Lib.Interfaces.TurbineBase;
   import ThermoPower.Choices.TurboMachinery.TableTypes;
   parameter Modelica.SIunits.AngularVelocity Ndesign "Design speed";
   parameter Real tablePhic[:, :] = fill(0, 0, 2) "Table for phic(N_T,PR)";

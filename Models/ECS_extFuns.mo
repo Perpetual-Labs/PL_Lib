@@ -41,33 +41,25 @@ model ECS_extFuns
     Placement(visible = true, transformation(origin = {-280, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.FlowSplit flowSplit(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-200, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor1(redeclare
-      package                                                                             Medium = Medium) annotation (
+  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor1(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-160, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor2(redeclare
-      package                                                                             Medium = Medium) annotation (
+  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor2(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-160, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor1(redeclare
-      package                                                                             Medium = Medium) annotation (
+  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor1(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-60, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor2(redeclare
-      package                                                                             Medium = Medium) annotation (
+  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor2(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-60, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   PL_Lib.Utilities.HX_extFun PHX_extFun annotation (
     Placement(visible = true, transformation(origin = {-110, -2}, extent = {{-20, -28}, {20, 28}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdapter4(redeclare
-      package                                                                             Medium = Medium) annotation (
+  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdapter4(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {150, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   PL_Lib.Utilities.HX_extFun SHX_extFun annotation (
     Placement(visible = true, transformation(origin = {100, -2}, extent = {{-20, -28}, {20, 28}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdapter4(redeclare
-      package                                                                             Medium = Medium) annotation (
+  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdapter4(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {50, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdapter3(redeclare
-      package                                                                             Medium = Medium) annotation (
+  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdapter3(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {150, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdapter3(redeclare
-      package                                                                             Medium = Medium) annotation (
+  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdapter3(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {50, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT1(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(extent = {{-202, -46}, {-182, -26}}, rotation = 0)));

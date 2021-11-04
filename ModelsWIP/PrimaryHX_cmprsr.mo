@@ -41,17 +41,13 @@ model PrimaryHX_cmprsr
     Placement(visible = true, transformation(origin = {-30, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.Flow1DFV HEX1_RA(redeclare package Medium = Medium, A = Ahex, Cfnom = Cfhex, Dhyd = Dihex, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Cfnom, L = Lhex, N = Nnodes, Nt = Nt, Tstartbar = Thex_in_RA, dpnom = 1000, initOpt = ThermoPower.Choices.Init.Options.steadyState, omega = omegahex, pstart = phex_RA, wnom = whex_RA) annotation (
     Placement(visible = true, transformation(origin = {-30, 40}, extent = {{-10, 10}, {10, -10}}, rotation = 0)));
-  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_BAin1(redeclare
-      package                                                                                 Medium = Medium) annotation (
+  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_BAin1(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-60, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_BAout1(redeclare
-      package                                                                                  Medium = Medium) annotation (
+  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_BAout1(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {0, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_RAout(redeclare
-      package                                                                                 Medium = Medium) annotation (
+  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_RAout(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {0, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_RAin(redeclare
-      package                                                                                Medium = Medium) annotation (
+  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_RAin(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-60, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_T_RAin(duration = 600, height = -45, offset = Thex_in_RA, startTime = 300) annotation (
     Placement(visible = true, transformation(origin = {-174, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -87,14 +83,11 @@ model PrimaryHX_cmprsr
     Placement(visible = true, transformation(extent = {{232, 30}, {252, 50}}, rotation = 0)));
   ThermoPower.Gas.Flow1DFV HEX2_BA(redeclare package Medium = Medium, A = Ahex, Cfnom = Cfhex, Dhyd = Dihex, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Cfnom, L = Lhex, N = Nnodes, Nt = Nt, Tstartbar = Thex_in_RA, dpnom = 1000, initOpt = ThermoPower.Choices.Init.Options.steadyStateNoP, omega = omegahex, pstart = phex_BA, wnom = whex_BA) annotation (
     Placement(visible = true, transformation(extent = {{130, -50}, {150, -30}}, rotation = 0)));
-  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_RAin2(redeclare
-      package                                                                                 Medium = Medium) annotation (
+  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_RAin2(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {110, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_RAout2(redeclare
-      package                                                                                  Medium = Medium) annotation (
+  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_RAout2(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {170, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_BAout2(redeclare
-      package                                                                                  Medium = Medium) annotation (
+  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_BAout2(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {170, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SinkPressure sinkPressure(redeclare package Medium = Medium, p0 = 101325 * 5, use_in_p0 = false) annotation (
     Placement(visible = true, transformation(origin = {130, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

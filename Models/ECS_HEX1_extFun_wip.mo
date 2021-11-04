@@ -56,17 +56,17 @@ model ECS_HEX1_extFun_wip
     Placement(visible = true, transformation(extent = {{180, -110}, {200, -90}}, rotation = 0)));
   Modelica.Mechanics.Rotational.Components.Inertia inertia(J = 0.8) annotation (
     Placement(visible = true, transformation(origin = {70, -130}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor1(redeclare
-      package Medium =                                                                             Medium) annotation (
+  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor1(redeclare package
+              Medium =                                                                             Medium) annotation (
     Placement(visible = true, transformation(origin = {-100, 70}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor2(redeclare
-      package Medium =                                                                             Medium) annotation (
+  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor2(redeclare package
+              Medium =                                                                             Medium) annotation (
     Placement(visible = true, transformation(origin = {-100, -10}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor1(redeclare
-      package Medium =                                                                             Medium) annotation (
+  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor1(redeclare package
+              Medium =                                                                             Medium) annotation (
     Placement(visible = true, transformation(origin = {40, 70}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor2(redeclare
-      package Medium =                                                                             Medium) annotation (
+  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor2(redeclare package
+              Medium =                                                                             Medium) annotation (
     Placement(visible = true, transformation(origin = {40, -10}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   PL_Lib.Utilities.HX_extFun hX_extFun annotation (
     Placement(visible = true, transformation(origin = {-20, 30}, extent = {{-20, -28}, {20, 28}}, rotation = 0)));

@@ -1,4 +1,4 @@
-within PL_Lib.Components.BaseClasses;
+within PL_Lib.Interfaces;
 partial model TurbineBase "Gas Turbine"
   extends ThermoPower.Icons.Gas.Turbine;
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation (
@@ -109,6 +109,6 @@ equation
        First release.</li>
 </ul>
 </html>"),
-    Icon(graphics = {Text(extent = {{-128, -60}, {128, -100}}, lineColor = {0, 0, 255}, textString = "%name")}),
+    Icon(graphics={  Text(extent = {{-128, -60}, {128, -100}}, lineColor = {0, 0, 255}, textString = "%name")}),
     Diagram(graphics));
 end TurbineBase;

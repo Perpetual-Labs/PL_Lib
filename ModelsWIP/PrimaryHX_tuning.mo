@@ -109,73 +109,73 @@ protected
 initial equation
     inertia.w = 523.3;
 equation
-  connect(HEX1_BA.wall, metalTubeFV1.ext) annotation(
+  connect(HEX1_BA.wall, metalTubeFV1.ext) annotation (
     Line(points = {{-30, -35}, {-30, -13}}, color = {255, 127, 0}, thickness = 1));
-  connect(stateReader_BAin1.outlet, HEX1_BA.infl) annotation(
+  connect(stateReader_BAin1.outlet, HEX1_BA.infl) annotation (
     Line(points = {{-114, -40}, {-40, -40}}, color = {159, 159, 223}));
-  connect(HEX1_BA.outfl, stateReader_BAout1.inlet) annotation(
+  connect(HEX1_BA.outfl, stateReader_BAout1.inlet) annotation (
     Line(points = {{-20, -40}, {-6, -40}}, color = {159, 159, 223}));
-  connect(HEX1_RA.outfl, stateReader_RAout1.inlet) annotation(
+  connect(HEX1_RA.outfl, stateReader_RAout1.inlet) annotation (
     Line(points = {{-20, 40}, {-6, 40}}, color = {159, 159, 223}));
-  connect(stateReader_RAin1.outlet, HEX1_RA.infl) annotation(
+  connect(stateReader_RAin1.outlet, HEX1_RA.infl) annotation (
     Line(points = {{-54, 40}, {-40, 40}}, color = {159, 159, 223}, thickness = 1));
-  connect(HEX1_RA.wall, heatExchangerTopologyFV1.side1) annotation(
+  connect(HEX1_RA.wall, heatExchangerTopologyFV1.side1) annotation (
     Line(points = {{-30, 35}, {-30, 13}}, color = {255, 127, 0}, thickness = 1));
-  connect(heatExchangerTopologyFV1.side2, metalTubeFV1.int) annotation(
+  connect(heatExchangerTopologyFV1.side2, metalTubeFV1.int) annotation (
     Line(points = {{-30, 7}, {-30, -6.1}}, color = {255, 127, 0}));
-  connect(ramp_T_RAin.y, sourceP_RAin.in_T) annotation(
+  connect(ramp_T_RAin.y, sourceP_RAin.in_T) annotation (
     Line(points = {{-189, 100}, {-176, 100}, {-176, 59}}, color = {0, 0, 127}));
-  connect(ramp_P_RAin.y, sourceP_RAin.in_p0) annotation(
+  connect(ramp_P_RAin.y, sourceP_RAin.in_p0) annotation (
     Line(points = {{-189, 70}, {-182, 70}, {-182, 56}}, color = {0, 0, 127}));
-  connect(ramp_P_RAin.y, sinkP_RAout1.in_p0) annotation(
+  connect(ramp_P_RAin.y, sinkP_RAout1.in_p0) annotation (
     Line(points = {{-189, 70}, {24, 70}, {24, 46}}, color = {0, 0, 127}));
-  connect(throughMassFlow_BAin.outlet, stateReader_BAin1.inlet) annotation(
+  connect(throughMassFlow_BAin.outlet, stateReader_BAin1.inlet) annotation (
     Line(points = {{-140, -40}, {-126, -40}}, color = {159, 159, 223}));
-  connect(HEX2_BA.wall, metalTubeFV2.ext) annotation(
+  connect(HEX2_BA.wall, metalTubeFV2.ext) annotation (
     Line(points = {{130, -35}, {130, -14}}, color = {255, 127, 0}));
-  connect(throughMassFlow_RAin.outlet, flowSplit.inlet) annotation(
+  connect(throughMassFlow_RAin.outlet, flowSplit.inlet) annotation (
     Line(points = {{-110, 50}, {-96, 50}}, color = {159, 159, 223}));
-  connect(heatExchangerTopologyFV.side2, metalTubeFV2.int) annotation(
+  connect(heatExchangerTopologyFV.side2, metalTubeFV2.int) annotation (
     Line(points = {{130, 6.9}, {130, -6.1}}, color = {255, 127, 0}));
-  connect(heatExchangerTopologyFV.side1, HEX2_RA.wall) annotation(
+  connect(heatExchangerTopologyFV.side1, HEX2_RA.wall) annotation (
     Line(points = {{130, 13}, {130, 35}}, color = {255, 127, 0}));
-  connect(flowSplit.outlet1, throughMassFlow.inlet) annotation(
+  connect(flowSplit.outlet1, throughMassFlow.inlet) annotation (
     Line(points = {{-84, 54}, {-80, 54}, {-80, 60}, {50, 60}}, color = {159, 159, 223}));
-  connect(flowSplit.outlet2, stateReader_RAin1.inlet) annotation(
+  connect(flowSplit.outlet2, stateReader_RAin1.inlet) annotation (
     Line(points = {{-84, 46}, {-80, 46}, {-80, 40}, {-66, 40}}, color = {159, 159, 223}));
-  connect(ramp_P_RAin.y, sinkP_RAout2.in_p0) annotation(
+  connect(ramp_P_RAin.y, sinkP_RAout2.in_p0) annotation (
     Line(points = {{-188, 70}, {184, 70}, {184, 46}}, color = {0, 0, 127}));
-  connect(stateReader_RAin2.outlet, HEX2_RA.infl) annotation(
+  connect(stateReader_RAin2.outlet, HEX2_RA.infl) annotation (
     Line(points = {{106, 40}, {120, 40}}, color = {159, 159, 223}));
-  connect(stateReader_BAin2.outlet, HEX2_BA.infl) annotation(
+  connect(stateReader_BAin2.outlet, HEX2_BA.infl) annotation (
     Line(points = {{106, -40}, {120, -40}}, color = {159, 159, 223}));
-  connect(HEX2_RA.outfl, stateReader_RAout2.inlet) annotation(
+  connect(HEX2_RA.outfl, stateReader_RAout2.inlet) annotation (
     Line(points = {{140, 40}, {154, 40}}, color = {159, 159, 223}));
-  connect(sourceP_RAin.flange, throughMassFlow_RAin.inlet) annotation(
+  connect(sourceP_RAin.flange, throughMassFlow_RAin.inlet) annotation (
     Line(points = {{-166, 50}, {-130, 50}}, color = {159, 159, 223}));
-  connect(sourceP_BAin.flange, throughMassFlow_BAin.inlet) annotation(
+  connect(sourceP_BAin.flange, throughMassFlow_BAin.inlet) annotation (
     Line(points = {{-170, -40}, {-160, -40}}, color = {159, 159, 223}));
-  connect(stateReader_RAout1.outlet, sinkP_RAout1.flange) annotation(
+  connect(stateReader_RAout1.outlet, sinkP_RAout1.flange) annotation (
     Line(points = {{6, 40}, {20, 40}}, color = {159, 159, 223}));
-  connect(stateReader_BAout1.outlet, Compressor.inlet) annotation(
+  connect(stateReader_BAout1.outlet, Compressor.inlet) annotation (
     Line(points = {{6, -40}, {62, -40}, {62, -62}}, color = {159, 159, 223}));
-  connect(Compressor.outlet, stateReader_BAin2.inlet) annotation(
+  connect(Compressor.outlet, stateReader_BAin2.inlet) annotation (
     Line(points = {{78, -62}, {78, -40}, {94, -40}}, color = {159, 159, 223}));
-  connect(HEX2_BA.outfl, stateReader_BAout2.inlet) annotation(
+  connect(HEX2_BA.outfl, stateReader_BAout2.inlet) annotation (
     Line(points = {{140, -40}, {154, -40}}, color = {159, 159, 223}));
-  connect(stateReader_RAout2.outlet, sinkP_RAout2.flange) annotation(
+  connect(stateReader_RAout2.outlet, sinkP_RAout2.flange) annotation (
     Line(points = {{166, 40}, {180, 40}}, color = {159, 159, 223}));
-  connect(throughMassFlow.outlet, stateReader_RAin2.inlet) annotation(
+  connect(throughMassFlow.outlet, stateReader_RAin2.inlet) annotation (
     Line(points = {{70, 60}, {80, 60}, {80, 40}, {94, 40}}, color = {159, 159, 223}));
-  connect(stateReader_BAout2.outlet, Turbine.inlet) annotation(
+  connect(stateReader_BAout2.outlet, Turbine.inlet) annotation (
     Line(points = {{166, -40}, {174, -40}, {174, -62}, {182, -62}}, color = {159, 159, 223}));
-  connect(Turbine.outlet, stateReader_BAout3.inlet) annotation(
+  connect(Turbine.outlet, stateReader_BAout3.inlet) annotation (
     Line(points = {{198, -62}, {214, -62}}, color = {159, 159, 223}));
-  connect(stateReader_BAout3.outlet, sinkPressure.flange) annotation(
+  connect(stateReader_BAout3.outlet, sinkPressure.flange) annotation (
     Line(points = {{226, -62}, {240, -62}}, color = {159, 159, 223}));
-  connect(Compressor.shaft_b, inertia.flange_a) annotation(
+  connect(Compressor.shaft_b, inertia.flange_a) annotation (
     Line(points = {{76, -70}, {118, -70}}));
-  connect(inertia.flange_b, Turbine.shaft_a) annotation(
+  connect(inertia.flange_b, Turbine.shaft_a) annotation (
     Line(points = {{138, -70}, {184, -70}}));
   annotation (
     Diagram(coordinateSystem(extent = {{-200, -200}, {200, 200}}), graphics = {Text(origin = {-170, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-140, 80}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)", horizontalAlignment = TextAlignment.Left)}),

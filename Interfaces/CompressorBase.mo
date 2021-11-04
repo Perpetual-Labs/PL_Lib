@@ -1,4 +1,4 @@
-within PL_Lib.Components.BaseClasses;
+within PL_Lib.Interfaces;
 partial model CompressorBase "Gas compressor"
   extends ThermoPower.Icons.Gas.Compressor;
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation (
@@ -106,5 +106,5 @@ equation
 </html>
     "),
     Diagram(graphics),
-    Icon(graphics = {Text(extent = {{-128, -60}, {128, -100}}, lineColor = {0, 0, 255}, textString = "%name")}));
+    Icon(graphics={  Text(extent = {{-128, -60}, {128, -100}}, lineColor = {0, 0, 255}, textString = "%name")}));
 end CompressorBase;

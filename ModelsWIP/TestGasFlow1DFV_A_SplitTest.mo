@@ -52,17 +52,13 @@ model TestGasFlow1DFV_A_SplitTest "Test case for Gas.Flow1DFV"
     Placement(visible = true, transformation(extent = {{-160, 40}, {-140, 60}}, rotation = 0)));
   Modelica.Blocks.Sources.Step step_mdot_gas2in(height = 0.4, offset = 0.1, startTime = 40) annotation (
     Placement(visible = true, transformation(extent = {{-180, 90}, {-160, 110}}, rotation = 0)));
-  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas1in(redeclare
-      package                                                                                  Medium = Medium) annotation (
+  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas1in(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-60, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas1out(redeclare
-      package                                                                                   Medium = Medium) annotation (
+  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas1out(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {0, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas2out(redeclare
-      package                                                                                   Medium = Medium) annotation (
+  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas2out(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {0, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas2in(redeclare
-      package                                                                                  Medium = Medium) annotation (
+  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas2in(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-60, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_T_gas2in(duration = 600, height = -45, offset = 273.15 + 20, startTime = 200) annotation (
     Placement(visible = true, transformation(origin = {-170, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

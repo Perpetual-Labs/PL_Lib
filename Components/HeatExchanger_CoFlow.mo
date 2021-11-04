@@ -37,13 +37,13 @@ model HeatExchanger_CoFlow
   parameter Modelica.SIunits.Temperature Thex_out_gas2 = 300 "initial outlet temperature" annotation(Dialog(tab = "Operating Conditions", group = "Gas 2"));
 
   ThermoPower.Gas.FlangeA gas1_in(redeclare package Medium = GasMedium1) annotation (
-    Placement(visible = true, transformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {-100, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.FlangeB gas1_out(redeclare package Medium = GasMedium1) annotation (
-    Placement(visible = true, transformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {100, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.FlangeA gas2_in(redeclare package Medium = GasMedium2) annotation (
-    Placement(visible = true, transformation(origin = {0, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {-100, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-100, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.FlangeB gas2_out(redeclare package Medium = GasMedium2) annotation (
-    Placement(visible = true, transformation(origin = {0, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {0, -100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {100, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {100, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Thermal.HeatExchangerTopologyFV heatExchangerTopologyFV(Nw = Nnodes - 1) annotation (
     Placement(visible = true, transformation(origin = {0, 20}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   ThermoPower.Thermal.MetalTubeFV TubeWalls1(L = Lhex, Nw = Nnodes - 1, Tstart1 = Thex_in_gas1, TstartN = Thex_out_gas1, Tstartbar(displayUnit = "K"), lambda = 20, rext = Dext / 2, rhomcm = rhom * cm, rint = Dint / 2) annotation (
@@ -58,17 +58,19 @@ equation
   connect(HX_gas1.wall, heatExchangerTopologyFV.side1) annotation (
     Line(points = {{0, 50}, {0, 26}}, color = {255, 127, 0}));
   connect(heatExchangerTopologyFV.side2, TubeWalls1.int) annotation (
-    Line(points = {{0, 13.8}, {0, -14.2}}, color = {255, 127, 0}));
+    Line(points={{0,13.8},{0,-14}},        color = {255, 127, 0}));
   connect(TubeWalls1.ext, HX_gas2.wall) annotation (
-    Line(points = {{0, -26.2}, {0, -50.2}}, color = {255, 127, 0}));
+    Line(points={{0,-26.2},{0,-50}},        color = {255, 127, 0}));
   connect(gas1_in, HX_gas1.infl) annotation (
-    Line(points = {{-100, 0}, {-80, 0}, {-80, 60}, {-20, 60}}, color = {159, 159, 223}));
+    Line(points = {{-100, 60}, {-20, 60}}, color = {159, 159, 223}));
   connect(HX_gas1.outfl, gas1_out) annotation (
-    Line(points = {{20, 60}, {80, 60}, {80, 0}, {100, 0}}, color = {159, 159, 223}));
+    Line(points = {{20, 60}, {100, 60}}, color = {159, 159, 223}));
   connect(gas2_out, HX_gas2.outfl) annotation (
-    Line(points = {{0, -100}, {0, -80}, {40, -80}, {40, -60}, {20, -60}}, color = {159, 159, 223}));
+    Line(points = {{100, -60}, {20, -60}}, color = {159, 159, 223}));
   connect(HX_gas2.infl, gas2_in) annotation (
-    Line(points = {{-20, -60}, {-40, -60}, {-40, 80}, {0, 80}, {0, 100}}, color = {159, 159, 223}));
+    Line(points = {{-20, -60}, {-100, -60}}, color = {159, 159, 223}));
   annotation (
-    Icon(graphics = {Rectangle(lineColor = {89, 89, 89}, fillColor = {236, 236, 236}, fillPattern = FillPattern.Solid, lineThickness = 0.5, extent = {{-100, 100}, {100, -100}}, radius = 30), Line(points = {{0, -80}, {0, -40}, {40, -20}, {-40, 20}, {0, 40}, {0, 80}}, color = {85, 0, 255}, thickness = 0.5), Text(origin = {0, 211}, lineColor = {85, 170, 255}, extent = {{-100, -230}, {100, -290}}, textString = "%name")}));
+    Icon(graphics={  Rectangle(lineColor = {89, 89, 89}, fillColor = {236, 236, 236},
+            fillPattern =                                                                           FillPattern.Solid,
+            lineThickness =                                                                                                            0.5, extent = {{-100, 100}, {100, -100}}, radius = 30), Line(points = {{0, -80}, {0, -40}, {40, -20}, {-40, 20}, {0, 40}, {0, 80}}, color = {85, 0, 255}, thickness = 0.5), Text(origin = {0, 211}, lineColor = {85, 170, 255}, extent = {{-100, -230}, {100, -290}}, textString = "%name")}));
 end HeatExchanger_CoFlow;

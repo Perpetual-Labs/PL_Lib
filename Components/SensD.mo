@@ -30,6 +30,6 @@ equation
        First release.</li>
 </ul>
 </html>"),
-    Icon(graphics = {Text(extent = {{-42, 92}, {44, 36}}, textString = "d")}),
+    Icon(graphics={  Text(extent = {{-42, 92}, {44, 36}}, textString = "d")}),
     Diagram(graphics));
 end SensD;

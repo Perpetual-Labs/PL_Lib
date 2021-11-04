@@ -3,8 +3,7 @@ model ECS_HEX1_extFun
   extends Modelica.Icons.Example;
   inner ThermoPower.System system annotation (
     Placement(visible = true, transformation(extent = {{280, 140}, {300, 160}}, rotation = 0)));
-  replaceable package Medium = Modelica.Media.Air.DryAirNasa constrainedby
-    Modelica.Media.Interfaces.PartialMedium;
+  replaceable package Medium = Modelica.Media.Air.DryAirNasa constrainedby Modelica.Media.Interfaces.PartialMedium;
   //  HX Geometry Parameters:
   parameter Integer Nnodes = 10 "number of Nodes";
   parameter Integer Nt = 20 "Number of tubes in parallel";
@@ -21,7 +20,7 @@ model ECS_HEX1_extFun
   parameter Modelica.SIunits.Pressure phex_BA = 101325 * 2 "initial pressure";
   parameter Modelica.SIunits.Temperature Thex_in_RA = 273.15 + 20 "initial inlet temperature";
   parameter Modelica.SIunits.Temperature Thex_out_RA = 273.15 + 162 "initial outlet temperature";
-  parameter Modelica.SIunits.Temperature Thex_in_BA = 273.15 + 200;
+  parameter Modelica.SIunits.Temperature Thex_in_BA = 273.15 + 300;
   parameter Modelica.SIunits.Temperature Thex_out_BA = 273.15 + 60;
   //  parameter Temperature deltaT=10 "height of temperature step";
   //  parameter Modelica.SIunits.EnergyFlowRate W = 500 "height of power step";
@@ -40,16 +39,13 @@ model ECS_HEX1_extFun
     Placement(visible = true, transformation(origin = {-280, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SourcePressure sourceP_BAin(redeclare package Medium = Medium, T = Thex_in_BA, p0 = phex_BA, use_in_T = false, use_in_p0 = false) annotation (
     Placement(visible = true, transformation(origin = {-280, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor1(redeclare
-      package Medium =                                                                             Medium) annotation (
+  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor1(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-180, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor2(redeclare
-      package Medium =                                                                             Medium) annotation (
+  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor2(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-180, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor1(redeclare
-      package Medium =                                                                             Medium, T0 = 293.15) annotation (
+  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor1(redeclare package Medium = Medium, T0 = 293.15) annotation (
     Placement(visible = true, transformation(origin = {-80, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  Utilities.HX_extFun              PHX_extFun(T_cold_out(displayUnit = "K"), T_hot_out(displayUnit = "K"), p_cold_out(displayUnit = "Pa"), p_hot_out(displayUnit = "Pa"))  annotation (
+  Utilities.HX_extFun PHX_extFun(T_cold_out(displayUnit = "K"), T_hot_out(displayUnit = "K"), p_cold_out(displayUnit = "Pa"), p_hot_out(displayUnit = "Pa")) annotation (
     Placement(visible = true, transformation(origin = {-130, -2}, extent = {{-20, -28}, {20, 28}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT_PHX_hot_in(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(extent = {{-230, -46}, {-210, -26}}, rotation = 0)));
@@ -95,8 +91,7 @@ model ECS_HEX1_extFun
     Placement(visible = true, transformation(extent = {{110, -50}, {130, -30}}, rotation = 0)));
   ThermoPower.Thermal.HeatExchangerTopologyFV heatExchangerTopologyFV(Nw = Nnodes - 1) annotation (
     Placement(visible = true, transformation(origin = {120, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor2(redeclare
-      package Medium =                                                                             Medium, T0 = 473.15, p0 = 200000) annotation (
+  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor2(redeclare package Medium = Medium, T0 = 473.15, p0 = 200000) annotation (
     Placement(visible = true, transformation(origin = {-80, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT_PHX_cold_in(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(extent = {{-230, 44}, {-210, 64}}, rotation = 0)));
@@ -111,7 +106,7 @@ model ECS_HEX1_extFun
   ThermoPower.Gas.ThroughMassFlow throughMassFlow1(redeclare package Medium = Medium, w0 = 0.25) annotation (
     Placement(visible = true, transformation(origin = {0, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.ThroughMassFlow throughMassFlow2(redeclare package Medium = Medium, w0 = 0.25) annotation (
-    Placement(visible = true, transformation(origin = {90, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {78, 54}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 protected
   parameter Real tableEtaC[6, 4] = [0, 95, 100, 105; 1, 82.5e-2, 81e-2, 80.5e-2; 2, 84e-2, 82.9e-2, 82e-2; 3, 83.2e-2, 82.2e-2, 81.5e-2; 4, 82.5e-2, 81.2e-2, 79e-2; 5, 79.5e-2, 78e-2, 76.5e-2];
   parameter Real tablePhicC[6, 4] = [0, 95, 100, 105; 1, 38.3e-3, 43e-3, 46.8e-3; 2, 39.3e-3, 43.8e-3, 47.9e-3; 3, 40.6e-3, 45.2e-3, 48.4e-3; 4, 41.6e-3, 46.1e-3, 48.9e-3; 5, 42.3e-3, 46.6e-3, 49.3e-3];
@@ -121,6 +116,7 @@ protected
 initial equation
   inertia.w = 523.3;
 equation
+  Modelica.Utilities.Streams.print(String(time));
   connect(ramp_T_RAin.y, sourceP_RAin.in_T) annotation (
     Line(points = {{-289, 110}, {-280, 110}, {-280, 59}}, color = {0, 0, 127}));
   connect(ramp_P_RAin.y, sourceP_RAin.in_p0) annotation (
@@ -129,10 +125,6 @@ equation
     Line(points = {{-174, 54}, {-156, 54}, {-156, 22}, {-152, 22}}, color = {0, 0, 127}));
   connect(massFlowToPressureAdaptor1.p, PHX_extFun.p_cold_in) annotation (
     Line(points = {{-174, 48}, {-158, 48}, {-158, 16}, {-152, 16}}, color = {0, 0, 127}));
-  connect(massFlowToPressureAdaptor1.d, PHX_extFun.d_cold_in) annotation (
-    Line(points = {{-174, 42}, {-162, 42}, {-162, 4}, {-152, 4}}, color = {0, 0, 127}));
-  connect(massFlowToPressureAdaptor2.d, PHX_extFun.d_hot_in) annotation (
-    Line(points = {{-174, -38}, {-156, -38}, {-156, -26}, {-152, -26}}, color = {0, 0, 127}));
   connect(massFlowToPressureAdaptor2.p, PHX_extFun.p_hot_in) annotation (
     Line(points = {{-174, -32}, {-160, -32}, {-160, -14}, {-152, -14}}, color = {0, 0, 127}));
   connect(massFlowToPressureAdaptor2.T, PHX_extFun.T_hot_in) annotation (
@@ -160,11 +152,11 @@ equation
   connect(HEX2_RA.outfl, pressDropLin4.inlet) annotation (
     Line(points = {{130, 40}, {140, 40}}, color = {159, 159, 223}));
   connect(HEX2_RA.wall, heatExchangerTopologyFV.side1) annotation (
-    Line(points={{120,35},{120,13}},      color = {255, 127, 0}));
+    Line(points = {{120, 35}, {120, 13}}, color = {255, 127, 0}));
   connect(heatExchangerTopologyFV.side2, metalTubeFV2.int) annotation (
-    Line(points={{120,6.9},{120,-7}},        color = {255, 127, 0}));
+    Line(points = {{120, 6.9}, {120, -7}}, color = {255, 127, 0}));
   connect(metalTubeFV2.ext, HEX2_BA.wall) annotation (
-    Line(points={{120,-13.1},{120,-35}},        color = {255, 127, 0}));
+    Line(points = {{120, -13.1}, {120, -35}}, color = {255, 127, 0}));
   connect(HEX2_BA.outfl, pressDropLin7.inlet) annotation (
     Line(points = {{130, -40}, {140, -40}}, color = {159, 159, 223}));
   connect(pressureToMassFlowAdaptor2.flange, pressDropLin5.inlet) annotation (
@@ -210,25 +202,25 @@ equation
   connect(sensT_SHX_hot_out.outlet, Turbine.inlet) annotation (
     Line(points = {{186, -40}, {194, -40}, {194, -64}}, color = {159, 159, 223}));
   connect(ramp_P_RAin.y, sinkPressure.in_p0) annotation (
-    Line(points={{-289,80},{203.55,80},{203.55,45.95}},
-                                                      color = {0, 0, 127}));
+    Line(points = {{-289, 80}, {203.55, 80}, {203.55, 45.95}}, color = {0, 0, 127}));
   connect(sensT_PHX_cold_out.outlet, throughMassFlow1.inlet) annotation (
     Line(points = {{-24, 40}, {-10, 40}}, color = {159, 159, 223}));
-  connect(throughMassFlow2.outlet, HEX2_RA.infl) annotation (
-    Line(points = {{100, 40}, {110, 40}}, color = {159, 159, 223}));
   connect(sensT_SHX_cold_out.outlet, sinkPressure.flange) annotation (
     Line(points = {{186, 40}, {200, 40}}, color = {159, 159, 223}));
   connect(sensT_PHX_cold_in.outlet, throughMassFlow2.inlet) annotation (
-    Line(points = {{-214, 50}, {-200, 50}, {-200, 66}, {70, 66}, {70, 40}, {80, 40}}, color = {159, 159, 223}));
+    Line(points = {{-214, 50}, {-200, 50}, {-200, 66}, {68, 66}, {68, 54}}, color = {159, 159, 223}));
   connect(throughMassFlow1.outlet, sinkPressure1.flange) annotation (
     Line(points = {{10, 40}, {30, 40}}, color = {159, 159, 223}));
   connect(ramp_P_RAin.y, sinkPressure1.in_p0) annotation (
-    Line(points={{-289,80},{33.55,80},{33.55,45.95}},
-                                                    color = {0, 0, 127}));
+    Line(points = {{-289, 80}, {33.55, 80}, {33.55, 45.95}}, color = {0, 0, 127}));
+  connect(throughMassFlow2.outlet, HEX2_RA.infl) annotation (
+    Line(points = {{88, 54}, {98, 54}, {98, 40}, {110, 40}}, color = {159, 159, 223}));
+  connect(massFlowToPressureAdaptor1.d, PHX_extFun.d_cold_in) annotation (
+    Line(points = {{-174, 42}, {-162, 42}, {-162, 4}, {-152, 4}}, color = {0, 0, 127}));
+  connect(massFlowToPressureAdaptor2.d, PHX_extFun.d_hot_in) annotation (
+    Line(points = {{-174, -38}, {-156, -38}, {-156, -26}, {-152, -26}}, color = {0, 0, 127}));
   annotation (
-    Diagram(coordinateSystem(extent = {{-300, -140}, {300, 160}}), graphics={  Text(origin = {-240, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)",
-            horizontalAlignment =                                                                                                                                                                                              TextAlignment.Left), Text(origin = {-240, 70}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)",
-            horizontalAlignment =                                                                                                                                                                                                        TextAlignment.Left)}),
+    Diagram(coordinateSystem(extent = {{-340, -140}, {340, 160}}), graphics = {Text(origin = {-240, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-240, 70}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)", horizontalAlignment = TextAlignment.Left)}),
     experiment(StopTime = 3000, Tolerance = 1e-06, StartTime = 0, Interval = 6),
     Documentation(info = "<html>
 <p>The model is designed to test the component <code>Gas.Flow1DFV</code> (fluid side of a heat exchanger, finite volumes). A uniform prescribed heat flux is applied to the lateral boundary. The working fluid is pure nitrogen.</p>

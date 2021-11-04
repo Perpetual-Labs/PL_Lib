@@ -1,10 +1,11 @@
 #include<stdio.h>
 #include<string.h>
 
-double hxDummy(double tCold,double tHot,double mRateCold, double mRateHot,double densityCold,double densityHot, double pressureCold, double pressureHot, double tempOut[2], double pressOut[2])
+double hxDummy(double tCold,double tHot,double mRateCold, double mRateHot,double densityCold,double densityHot, double pressureCold, double pressureHot, double tempOut[2], double pressOut[2], double timeMdlc)
 {
 double tColdF,tHotF;
 double pColdF, pHotF;
+double timeF;
 // char tColdS[50],tHotS[50],mRateColdS[50],mRateHotS[50],densityColdS[50],densityHotS[50];
 
 
@@ -39,7 +40,8 @@ double pColdF, pHotF;
 tColdF = tCold + 60;
 tHotF = tHot - 120;
 pColdF = pressureCold * 0.999;
-pHotF = pressureHot * 0.999;
+pHotF = timeMdlc+100000;
+timeF = timeMdlc;
 
 tempOut[0] = tColdF;
 tempOut[1] = tHotF;

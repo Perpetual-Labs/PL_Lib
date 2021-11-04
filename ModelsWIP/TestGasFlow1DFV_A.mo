@@ -58,17 +58,13 @@ model TestGasFlow1DFV_A "Test case for Gas.Flow1DFV"
     Placement(visible = true, transformation(extent = {{30, 60}, {50, 80}}, rotation = 0)));
   Modelica.Blocks.Sources.Step step_mdot_gas2in(height = 0.4, offset = 0.1, startTime = 40) annotation (
     Placement(visible = true, transformation(extent = {{-150, 60}, {-130, 80}}, rotation = 0)));
-  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas1in(redeclare
-      package                                                                                  Medium = Medium) annotation (
+  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas1in(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-30, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas1out(redeclare
-      package                                                                                   Medium = Medium) annotation (
+  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas1out(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {30, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas2out(redeclare
-      package                                                                                   Medium = Medium) annotation (
+  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas2out(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {30, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas2in(redeclare
-      package                                                                                  Medium = Medium) annotation (
+  ThermoPower.PowerPlants.HRSG.Components.StateReader_gas stateReader_gas2in(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-30, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Step step_valve_gas2in annotation (
     Placement(visible = true, transformation(origin = {-80, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

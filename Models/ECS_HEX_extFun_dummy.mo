@@ -40,14 +40,14 @@ model ECS_HEX_extFun_dummy
     Placement(visible = true, transformation(origin = {-280, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SourcePressure sourceP_BAin(redeclare package Medium = Medium, T = Thex_in_BA, p0 = phex_BA, use_in_T = false, use_in_p0 = false) annotation (
     Placement(visible = true, transformation(origin = {-280, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor1(redeclare
-      package Medium =                                                                             Medium) annotation (
+  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor1(redeclare package
+              Medium =                                                                             Medium) annotation (
     Placement(visible = true, transformation(origin = {-180, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor2(redeclare
-      package Medium =                                                                             Medium) annotation (
+  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor2(redeclare package
+              Medium =                                                                             Medium) annotation (
     Placement(visible = true, transformation(origin = {-180, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor1(redeclare
-      package Medium =                                                                             Medium, T0 = 293.15) annotation (
+  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor1(redeclare package
+              Medium =                                                                             Medium, T0 = 293.15) annotation (
     Placement(visible = true, transformation(origin = {-80, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   PL_Lib.Utilities.HX_extFun_dummy PHX_extFun(T_cold_out(displayUnit = "K"), T_hot_out(displayUnit = "K"), p_cold_out(displayUnit = "Pa"), p_hot_out(displayUnit = "Pa"))  annotation (
     Placement(visible = true, transformation(origin = {-130, -2}, extent = {{-20, -28}, {20, 28}}, rotation = 0)));
@@ -95,8 +95,8 @@ model ECS_HEX_extFun_dummy
     Placement(visible = true, transformation(extent = {{110, -50}, {130, -30}}, rotation = 0)));
   ThermoPower.Thermal.HeatExchangerTopologyFV heatExchangerTopologyFV(Nw = Nnodes - 1) annotation (
     Placement(visible = true, transformation(origin = {120, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor2(redeclare
-      package Medium =                                                                             Medium, T0 = 473.15, p0 = 200000) annotation (
+  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor2(redeclare package
+              Medium =                                                                             Medium, T0 = 473.15, p0 = 200000) annotation (
     Placement(visible = true, transformation(origin = {-80, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT_PHX_cold_in(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(extent = {{-230, 44}, {-210, 64}}, rotation = 0)));
