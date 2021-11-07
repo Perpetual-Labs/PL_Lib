@@ -32,8 +32,10 @@ model ECS_1to5_composed_retry
   //  Modelica.SIunits.Mass Mhex "Mass in the heat exchanger";
   //  Modelica.SIunits.Mass Mbal "Mass resulting from the mass balance";
   //  Modelica.SIunits.Mass Merr(min = -1e9) "Mass balance error";
-  PL_Lib.Components.StateReader_gas stateReader_BAout1(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-20, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAout1(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={-20,-40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
   Modelica.Blocks.Sources.Ramp ramp_T_RAin(duration = 600, height = -45, offset = Thex_in_RA, startTime = 300) annotation (
     Placement(visible = true, transformation(origin = {-254, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_P_RAin(duration = 600, height = -74825, offset = 101325, startTime = 300) annotation (
@@ -56,26 +58,80 @@ model ECS_1to5_composed_retry
     Placement(visible = true, transformation(origin = {-170, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.ThroughMassFlow throughMassFlow(redeclare package Medium = Medium, w0 = 0.25) annotation (
     Placement(visible = true, transformation(origin = {-140, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAin2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAout2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {160, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAin2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {40, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAout2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {160, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_RAin2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={40,40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_RAout2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={160,40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAin2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={40,-40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAout2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={160,-40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
   PL_Lib.Components.Turbine_noMaps Turbine(redeclare package Medium = Medium, Ndesign = 523.3, Table = ThermoPower.Choices.TurboMachinery.TableTypes.matrix, Tdes_in = 1400, Tstart_in = 1270, Tstart_out = 883, pstart_in = 7.85e5, pstart_out = 1.52e5, tableEta = tableEtaT, tablePhic = tablePhicT) annotation (
     Placement(visible = true, transformation(origin = {190, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SinkPressure sinkPressure(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(extent = {{240, -50}, {260, -30}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAout3(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {220, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAout3(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={220,-40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
   Modelica.Mechanics.Rotational.Components.Inertia inertia(J = 10) annotation (
     Placement(visible = true, transformation(origin = {118, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.HX PHX(redeclare package Medium = Medium, Cfhex = Cfhex, HX_coldSide(A = Ahex, Dhyd = Dihex, L = Lhex, Tstartbar = Thex_in_RA, omega = omegahex, wnom = whex_RA), HX_hotSide(A = Ahex, Dhyd = Dihex, L = Lhex, Tstartbar = Thex_in_BA, omega = omegahex, wnom = whex_BA), Nnodes = Nnodes, Nt = Nt, metalTubeFV1(L = Lhex, Tstart1 = Thex_in_BA, TstartN = Thex_in_BA, Tstartbar(displayUnit = "K") = Thex_in_BA)) annotation (
-    Placement(visible = true, transformation(extent = {{-100, -20}, {-60, 20}}, rotation = 0)));
-  PL_Lib.Components.HX SHX(redeclare package Medium = Medium, Cfhex = Cfhex, HX_coldSide(A = Ahex, Dhyd = Dihex, L = Lhex, Tstartbar = Thex_in_RA, omega = omegahex, wnom = whex_RA), HX_hotSide(A = Ahex, Dhyd = Dihex, L = Lhex, Tstartbar = Thex_in_BA, omega = omegahex, wnom = whex_BA), Nnodes = Nnodes, Nt = Nt, metalTubeFV1(L = Lhex, Tstart1 = Thex_in_BA, TstartN = Thex_in_BA, Tstartbar(displayUnit = "K") = Thex_in_BA)) annotation (
-    Placement(visible = true, transformation(extent = {{80, -20}, {120, 20}}, rotation = 0)));
+  PL_Lib.Components.Obsolete.HX PHX(
+    redeclare package Medium = Medium,
+    Cfhex=Cfhex,
+    HX_coldSide(
+      A=Ahex,
+      Dhyd=Dihex,
+      L=Lhex,
+      Tstartbar=Thex_in_RA,
+      omega=omegahex,
+      wnom=whex_RA),
+    HX_hotSide(
+      A=Ahex,
+      Dhyd=Dihex,
+      L=Lhex,
+      Tstartbar=Thex_in_BA,
+      omega=omegahex,
+      wnom=whex_BA),
+    Nnodes=Nnodes,
+    Nt=Nt,
+    metalTubeFV1(
+      L=Lhex,
+      Tstart1=Thex_in_BA,
+      TstartN=Thex_in_BA,
+      Tstartbar(displayUnit="K") = Thex_in_BA)) annotation (Placement(visible=true, transformation(extent={{-100,-20},{-60,20}}, rotation=0)));
+  PL_Lib.Components.Obsolete.HX SHX(
+    redeclare package Medium = Medium,
+    Cfhex=Cfhex,
+    HX_coldSide(
+      A=Ahex,
+      Dhyd=Dihex,
+      L=Lhex,
+      Tstartbar=Thex_in_RA,
+      omega=omegahex,
+      wnom=whex_RA),
+    HX_hotSide(
+      A=Ahex,
+      Dhyd=Dihex,
+      L=Lhex,
+      Tstartbar=Thex_in_BA,
+      omega=omegahex,
+      wnom=whex_BA),
+    Nnodes=Nnodes,
+    Nt=Nt,
+    metalTubeFV1(
+      L=Lhex,
+      Tstart1=Thex_in_BA,
+      TstartN=Thex_in_BA,
+      Tstartbar(displayUnit="K") = Thex_in_BA)) annotation (Placement(visible=true, transformation(extent={{80,-20},{120,20}}, rotation=0)));
   ThermoPower.Gas.SensT sensT1(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin={-130,14},     extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT2(redeclare package Medium = Medium) annotation (

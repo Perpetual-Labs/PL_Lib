@@ -69,38 +69,64 @@ model ECS_HX1_adapters
     Placement(visible = true, transformation(origin = {130, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.ThroughMassFlow throughMassFlow(redeclare package Medium = Medium, w0 = 0.25) annotation (
     Placement(visible = true, transformation(origin = {-30, 80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAin2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {100, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAout2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {160, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAin2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {100, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAout2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {160, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_RAin2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={100,40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_RAout2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={160,40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAin2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={100,-40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAout2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={160,-40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
   PL_Lib.Components.Turbine_noMaps Turbine(redeclare package Medium = Medium, Ndesign = 523.3, Table = ThermoPower.Choices.TurboMachinery.TableTypes.matrix, Tdes_in = 1400, Tstart_in = 1270, Tstart_out = 883, pstart_in = 7.85e5, pstart_out = 1.52e5, tableEta = tableEtaT, tablePhic = tablePhicT) annotation (
     Placement(visible = true, transformation(origin = {190, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SinkPressure sinkPressure(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(extent = {{240, -72}, {260, -52}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAout3(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {220, -62}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAout3(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={220,-62},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
   Modelica.Mechanics.Rotational.Components.Inertia inertia(J = 0.8) annotation (
     Placement(visible = true, transformation(origin = {128, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor1(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-100, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {0, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor3(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-100, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor4(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {0, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor1(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-60, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {40, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor3(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-60, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor4(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {40, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  PL_Lib.Interfaces.MassFlowToPressureAdapter massFlowToPressureAdaptor1(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={-100,40},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
+  PL_Lib.Interfaces.MassFlowToPressureAdapter massFlowToPressureAdaptor2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={0,40},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
+  PL_Lib.Interfaces.MassFlowToPressureAdapter massFlowToPressureAdaptor3(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={-100,-40},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
+  PL_Lib.Interfaces.MassFlowToPressureAdapter massFlowToPressureAdaptor4(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={0,-40},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
+  PL_Lib.Interfaces.PressureToMassFlowAdapter pressureToMassFlowAdaptor1(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={-60,40},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
+  PL_Lib.Interfaces.PressureToMassFlowAdapter pressureToMassFlowAdaptor2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={40,40},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
+  PL_Lib.Interfaces.PressureToMassFlowAdapter pressureToMassFlowAdaptor3(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={-60,-40},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
+  PL_Lib.Interfaces.PressureToMassFlowAdapter pressureToMassFlowAdaptor4(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={40,-40},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
 protected
   parameter Real tableEtaC[6, 4] = [0, 95, 100, 105; 1, 82.5e-2, 81e-2, 80.5e-2; 2, 84e-2, 82.9e-2, 82e-2; 3, 83.2e-2, 82.2e-2, 81.5e-2; 4, 82.5e-2, 81.2e-2, 79e-2; 5, 79.5e-2, 78e-2, 76.5e-2];
   parameter Real tablePhicC[6, 4] = [0, 95, 100, 105; 1, 38.3e-3, 43e-3, 46.8e-3; 2, 39.3e-3, 43.8e-3, 47.9e-3; 3, 40.6e-3, 45.2e-3, 48.4e-3; 4, 41.6e-3, 46.1e-3, 48.9e-3; 5, 42.3e-3, 46.6e-3, 49.3e-3];

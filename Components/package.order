@@ -1,11 +1,8 @@
-HeatExchanger
-HeatExchanger_CoFlow
-HXg2g
-StateReader_gas
-SensD
+HX_1DCoFlow
+HX_extFun
+HX_extFun_dummy
 Compressor_noMaps
 Turbine_noMaps
-BaseClasses
+SensD
 ShellAndTubeFV
-HX
-BasicCoFlowHX
+Obsolete

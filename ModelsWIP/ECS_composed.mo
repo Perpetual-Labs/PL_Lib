@@ -59,10 +59,31 @@ model ECS_composed
     Placement(visible = true, transformation(extent = {{150, -60}, {170, -40}}, rotation = 0)));
   Modelica.Mechanics.Rotational.Components.Inertia inertia(J = 10) annotation (
     Placement(visible = true, transformation(origin = {60, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.HeatExchanger_CoFlow PHX(redeclare package GasMedium1 = Medium, redeclare package GasMedium2 = Medium, Thex_in_gas1 = 293.15, Thex_in_gas2 = 473.15, Thex_out_gas1 = 293.15, Thex_out_gas2 = 473.15, phex_gas2 = 200000, whex_gas1 = 0.25, whex_gas2 = 0.25) annotation (
-    Placement(visible = true, transformation(origin = {-60, -20}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Components.HeatExchanger_CoFlow SHX(redeclare package GasMedium1 = Medium, redeclare package GasMedium2 = Medium, Thex_in_gas2 = 473.15, Thex_out_gas2 = 473.15, phex_gas1 = 99999.99999999999, phex_gas2 = 499999.9999999999, whex_gas1 = 0.25, whex_gas2 = 0.25) annotation (
-    Placement(visible = true, transformation(origin = {60, -20}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  PL_Lib.Components.Obsolete.HeatExchanger_CoFlow PHX(
+    redeclare package GasMedium1 = Medium,
+    redeclare package GasMedium2 = Medium,
+    Thex_in_gas1=293.15,
+    Thex_in_gas2=473.15,
+    Thex_out_gas1=293.15,
+    Thex_out_gas2=473.15,
+    phex_gas2=200000,
+    whex_gas1=0.25,
+    whex_gas2=0.25) annotation (Placement(visible=true, transformation(
+        origin={-60,-20},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.HeatExchanger_CoFlow SHX(
+    redeclare package GasMedium1 = Medium,
+    redeclare package GasMedium2 = Medium,
+    Thex_in_gas2=473.15,
+    Thex_out_gas2=473.15,
+    phex_gas1=99999.99999999999,
+    phex_gas2=499999.9999999999,
+    whex_gas1=0.25,
+    whex_gas2=0.25) annotation (Placement(visible=true, transformation(
+        origin={60,-20},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
 protected
   parameter Real tableEtaC[6, 4] = [0, 95, 100, 105; 1, 82.5e-2, 81e-2, 80.5e-2; 2, 84e-2, 82.9e-2, 82e-2; 3, 83.2e-2, 82.2e-2, 81.5e-2; 4, 82.5e-2, 81.2e-2, 79e-2; 5, 79.5e-2, 78e-2, 76.5e-2];
   parameter Real tablePhicC[6, 4] = [0, 95, 100, 105; 1, 38.3e-3, 43e-3, 46.8e-3; 2, 39.3e-3, 43.8e-3, 47.9e-3; 3, 40.6e-3, 45.2e-3, 48.4e-3; 4, 41.6e-3, 46.1e-3, 48.9e-3; 5, 42.3e-3, 46.6e-3, 49.3e-3];

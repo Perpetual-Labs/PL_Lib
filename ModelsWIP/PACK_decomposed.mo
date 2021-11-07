@@ -30,8 +30,22 @@ model PACK_decomposed "Simple plant model with HRB"
   //  Inertia1.w = 523.3;
   ThermoPower.Gas.SourcePressure sourcePressure_BA(redeclare package Medium = GasMedium, T = 273.15 + 200, p0(displayUnit = "bar") = 200000) annotation (
     Placement(visible = true, transformation(origin = {-170, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.HeatExchanger PHX(redeclare package GasMedium1 = GasMedium, redeclare package GasMedium2 = GasMedium, Dext = 0.012, Dint = 0.01, Lb = 2, Lt = 3, Nr = 10, Nt = 250, Sb = 8, StaticGasBalances = false, cm = 650, rhom(displayUnit = "kg/m3") = 7800) annotation (
-    Placement(visible = true, transformation(origin = {-100, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  PL_Lib.Components.Obsolete.HeatExchanger PHX(
+    redeclare package GasMedium1 = GasMedium,
+    redeclare package GasMedium2 = GasMedium,
+    Dext=0.012,
+    Dint=0.01,
+    Lb=2,
+    Lt=3,
+    Nr=10,
+    Nt=250,
+    Sb=8,
+    StaticGasBalances=false,
+    cm=650,
+    rhom(displayUnit="kg/m3") = 7800) annotation (Placement(visible=true, transformation(
+        origin={-100,0},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
   ThermoPower.Gas.SourcePressure sourcePressure_RA(redeclare package Medium = GasMedium, p0(displayUnit = "Pa")) annotation (
     Placement(visible = true, transformation(origin = {-170, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT_RA_PHXin(redeclare package Medium = GasMedium) annotation (
@@ -40,10 +54,22 @@ model PACK_decomposed "Simple plant model with HRB"
     Placement(visible = true, transformation(origin = {-60, -36}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.PressDropLin pipe_RA_PHXout(redeclare package Medium = GasMedium, R = 100) annotation (
     Placement(visible = true, transformation(origin = {-32, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.HeatExchanger MHX(redeclare package GasMedium1 = GasMedium, Dext = 0.012, Dint = 0.01, Lb = 2, Lt = 3, Nr = 10, Nt = 250, Sb = 8, StaticGasBalances = false, cm = 650, rhom = 7800, redeclare package
-                                                                                                                                                                                                        GasMedium2 = GasMedium)
-                                                                                                                                                                                                        annotation (
-    Placement(visible = true, transformation(origin = {80, 0}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  PL_Lib.Components.Obsolete.HeatExchanger MHX(
+    redeclare package GasMedium1 = GasMedium,
+    Dext=0.012,
+    Dint=0.01,
+    Lb=2,
+    Lt=3,
+    Nr=10,
+    Nt=250,
+    Sb=8,
+    StaticGasBalances=false,
+    cm=650,
+    rhom=7800,
+    redeclare package GasMedium2 = GasMedium) annotation (Placement(visible=true, transformation(
+        origin={80,0},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
   ThermoPower.Gas.SensT sensT_RA_MHXout(redeclare package Medium = GasMedium) annotation (
     Placement(visible = true, transformation(origin = {120, -36}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT_RA_MHXin(redeclare package Medium = GasMedium) annotation (

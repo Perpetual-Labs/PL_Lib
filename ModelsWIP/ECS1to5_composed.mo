@@ -71,10 +71,54 @@ model ECS1to5_composed
     Placement(visible = true, transformation(origin = {-250, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Step step(height = 0, offset = 0, startTime = 1000) annotation (
     Placement(visible = true, transformation(origin = {220, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Components.HX PHX(redeclare package Medium = Medium, Nnodes = Nnodes, Nt = Nt, Cfhex = Cfhex, HX_hotSide(A = Ahex, Dhyd = Dihex, L = Lhex, Tstartbar = Thex_in_BA, omega = omegahex, wnom = whex_BA), HX_coldSide(A = Ahex, Dhyd = Dihex, L = Lhex, Tstartbar = Thex_in_RA, omega = omegahex, wnom = whex_RA), metalTubeFV1(L = Lhex, Tstart1 = Thex_in_BA, TstartN = Thex_in_BA, Tstartbar(displayUnit = "K") = Thex_in_BA)) annotation (
-    Placement(transformation(rotation = 0, extent = {{-220, -20}, {-180, 20}})));
-  Components.HX SHX(redeclare package Medium = Medium, Nnodes = Nnodes, Nt = Nt, Cfhex = Cfhex, HX_hotSide(A = Ahex, Dhyd = Dihex, L = Lhex, Tstartbar = Thex_in_BA, omega = omegahex, wnom = whex_BA), HX_coldSide(A = Ahex, Dhyd = Dihex, L = Lhex, Tstartbar = Thex_in_RA, omega = omegahex, wnom = whex_RA), metalTubeFV1(L = Lhex, Tstart1 = Thex_in_BA, TstartN = Thex_in_BA, Tstartbar(displayUnit = "K") = Thex_in_BA)) annotation (
-    Placement(transformation(rotation = 0, extent = {{40, -20}, {80, 20}})));
+  Components.Obsolete.HX PHX(
+    redeclare package Medium = Medium,
+    Nnodes=Nnodes,
+    Nt=Nt,
+    Cfhex=Cfhex,
+    HX_hotSide(
+      A=Ahex,
+      Dhyd=Dihex,
+      L=Lhex,
+      Tstartbar=Thex_in_BA,
+      omega=omegahex,
+      wnom=whex_BA),
+    HX_coldSide(
+      A=Ahex,
+      Dhyd=Dihex,
+      L=Lhex,
+      Tstartbar=Thex_in_RA,
+      omega=omegahex,
+      wnom=whex_RA),
+    metalTubeFV1(
+      L=Lhex,
+      Tstart1=Thex_in_BA,
+      TstartN=Thex_in_BA,
+      Tstartbar(displayUnit="K") = Thex_in_BA)) annotation (Placement(transformation(rotation=0, extent={{-220,-20},{-180,20}})));
+  Components.Obsolete.HX SHX(
+    redeclare package Medium = Medium,
+    Nnodes=Nnodes,
+    Nt=Nt,
+    Cfhex=Cfhex,
+    HX_hotSide(
+      A=Ahex,
+      Dhyd=Dihex,
+      L=Lhex,
+      Tstartbar=Thex_in_BA,
+      omega=omegahex,
+      wnom=whex_BA),
+    HX_coldSide(
+      A=Ahex,
+      Dhyd=Dihex,
+      L=Lhex,
+      Tstartbar=Thex_in_RA,
+      omega=omegahex,
+      wnom=whex_RA),
+    metalTubeFV1(
+      L=Lhex,
+      Tstart1=Thex_in_BA,
+      TstartN=Thex_in_BA,
+      Tstartbar(displayUnit="K") = Thex_in_BA)) annotation (Placement(transformation(rotation=0, extent={{40,-20},{80,20}})));
   ThermoPower.Gas.SensT sensT1(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {-280, -36}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT2(redeclare package Medium = Medium) annotation (

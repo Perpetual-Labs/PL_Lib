@@ -1,4 +1,4 @@
-within PL_Lib.Components;
+within PL_Lib.Components.Obsolete;
 model StateReader_gas "State reader for the visualization of the state in the simulation (gas)"
   extends ThermoPower.PowerPlants.HRSG.Components.BaseReader_gas;
   Medium.BaseProperties gas;

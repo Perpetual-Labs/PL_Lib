@@ -39,12 +39,18 @@ model ECS_HEX1_extFun
     Placement(visible = true, transformation(origin = {-280, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SourcePressure sourceP_BAin(redeclare package Medium = Medium, T = Thex_in_BA, p0 = phex_BA, use_in_T = false, use_in_p0 = false) annotation (
     Placement(visible = true, transformation(origin = {-280, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor1(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-180, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdaptor2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-180, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor1(redeclare package Medium = Medium, T0 = 293.15) annotation (
-    Placement(visible = true, transformation(origin = {-80, 40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  PL_Lib.Interfaces.MassFlowToPressureAdapter massFlowToPressureAdaptor1(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={-180,40},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
+  PL_Lib.Interfaces.MassFlowToPressureAdapter massFlowToPressureAdaptor2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={-180,-40},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
+  PL_Lib.Interfaces.PressureToMassFlowAdapter pressureToMassFlowAdaptor1(redeclare package Medium = Medium, T0=293.15) annotation (Placement(visible=true, transformation(
+        origin={-80,40},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
   Utilities.HX_extFun PHX_extFun(T_cold_out(displayUnit = "K"), T_hot_out(displayUnit = "K"), p_cold_out(displayUnit = "Pa"), p_hot_out(displayUnit = "Pa")) annotation (
     Placement(visible = true, transformation(origin = {-130, -2}, extent = {{-20, -28}, {20, 28}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT_PHX_hot_in(redeclare package Medium = Medium) annotation (
@@ -91,8 +97,13 @@ model ECS_HEX1_extFun
     Placement(visible = true, transformation(extent = {{110, -50}, {130, -30}}, rotation = 0)));
   ThermoPower.Thermal.HeatExchangerTopologyFV heatExchangerTopologyFV(Nw = Nnodes - 1) annotation (
     Placement(visible = true, transformation(origin = {120, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdaptor2(redeclare package Medium = Medium, T0 = 473.15, p0 = 200000) annotation (
-    Placement(visible = true, transformation(origin = {-80, -40}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  PL_Lib.Interfaces.PressureToMassFlowAdapter pressureToMassFlowAdaptor2(
+    redeclare package Medium = Medium,
+    T0=473.15,
+    p0=200000) annotation (Placement(visible=true, transformation(
+        origin={-80,-40},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
   ThermoPower.Gas.SensT sensT_PHX_cold_in(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(extent = {{-230, 44}, {-210, 64}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT_PHX_cold_out(redeclare package Medium = Medium) annotation (
@@ -220,7 +231,8 @@ equation
   connect(massFlowToPressureAdaptor2.d, PHX_extFun.d_hot_in) annotation (
     Line(points = {{-174, -38}, {-156, -38}, {-156, -26}, {-152, -26}}, color = {0, 0, 127}));
   annotation (
-    Diagram(coordinateSystem(extent = {{-340, -140}, {340, 160}}), graphics = {Text(origin = {-240, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-240, 70}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)", horizontalAlignment = TextAlignment.Left)}),
+    Diagram(coordinateSystem(extent = {{-340, -140}, {340, 160}}), graphics={  Text(origin = {-240, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-240, 70}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)",
+            horizontalAlignment =                                                                                                                                                                                                        TextAlignment.Left)}),
     experiment(StopTime = 3000, Tolerance = 1e-06, StartTime = 0, Interval = 6),
     Documentation(info = "<html>
 <p>The model is designed to test the component <code>Gas.Flow1DFV</code> (fluid side of a heat exchanger, finite volumes). A uniform prescribed heat flux is applied to the lateral boundary. The working fluid is pure nitrogen.</p>

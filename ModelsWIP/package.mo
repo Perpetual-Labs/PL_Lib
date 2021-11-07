@@ -1,4 +1,4 @@
 within PL_Lib;
 package ModelsWIP
-  extends Modelica.Icons.Package;
+  extends Modelica.Icons.ExamplesPackage;
 end ModelsWIP;

@@ -39,14 +39,22 @@ model ECS_example
     Placement(visible = true, transformation(origin = {-50, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Thermal.HeatExchangerTopologyFV heatExchangerTopologyFV1(Nw = Nnodes - 1) annotation (
     Placement(visible = true, transformation(origin = {-50, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAin1(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-80, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAout1(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-20, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAout1(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-20, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAin1(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-80, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAin1(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={-80,-40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAout1(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={-20,-40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_RAout1(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={-20,40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_RAin1(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={-80,40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
   Modelica.Blocks.Sources.Ramp ramp_T_RAin(duration = 600, height = -45, offset = Thex_in_RA, startTime = 300) annotation (
     Placement(visible = true, transformation(origin = {-194, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_P_RAin(duration = 600, height = -74825, offset = 101325, startTime = 300) annotation (
@@ -77,20 +85,30 @@ model ECS_example
     Placement(visible = true, transformation(origin = {70, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.ThroughMassFlow throughMassFlow(redeclare package Medium = Medium, w0 = 0.25) annotation (
     Placement(visible = true, transformation(origin = {-80, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAin2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {40, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAout2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {100, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAin2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {40, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAout2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {100, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_RAin2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={40,40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_RAout2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={100,40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAin2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={40,-40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAout2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={100,-40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
   PL_Lib.Components.Turbine_noMaps Turbine(redeclare package Medium = Medium, Ndesign = 523.3, Table = ThermoPower.Choices.TurboMachinery.TableTypes.matrix, Tdes_in = 1400, Tstart_in = 1270, Tstart_out = 883, pstart_in = 7.85e5, pstart_out = 1.52e5, tableEta = tableEtaT, tablePhic = tablePhicT) annotation (
     Placement(visible = true, transformation(origin = {130, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SinkPressure sinkPressure(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(extent = {{180, -72}, {200, -52}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAout3(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {160, -62}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAout3(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={160,-62},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
   Modelica.Mechanics.Rotational.Components.Inertia inertia(J = 0.8) annotation (
     Placement(visible = true, transformation(origin = {68, -70}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 protected
@@ -103,7 +121,7 @@ initial equation
   inertia.w = 523.3;
 equation
   connect(HEX1_BA.wall, metalTubeFV1.ext) annotation (
-    Line(points = {{-50, -35}, {-50, -13}}, color = {255, 127, 0}, thickness = 1));
+    Line(points={{-50,-35},{-50,-13.1}},    color = {255, 127, 0}, thickness = 1));
   connect(stateReader_BAin1.outlet, HEX1_BA.infl) annotation (
     Line(points = {{-74, -40}, {-60, -40}}, color = {159, 159, 223}));
   connect(HEX1_BA.outfl, stateReader_BAout1.inlet) annotation (
@@ -115,21 +133,22 @@ equation
   connect(HEX1_RA.wall, heatExchangerTopologyFV1.side1) annotation (
     Line(points = {{-50, 35}, {-50, 13}}, color = {255, 127, 0}, thickness = 1));
   connect(heatExchangerTopologyFV1.side2, metalTubeFV1.int) annotation (
-    Line(points = {{-50, 6.9}, {-50, -6.2}}, color = {255, 127, 0}));
+    Line(points={{-50,6.9},{-50,-7}},        color = {255, 127, 0}));
   connect(ramp_T_RAin.y, sourceP_RAin.in_T) annotation (
     Line(points = {{-183, 100}, {-170, 100}, {-170, 59}}, color = {0, 0, 127}));
   connect(ramp_P_RAin.y, sourceP_RAin.in_p0) annotation (
-    Line(points = {{-183, 70}, {-176, 70}, {-176, 56}}, color = {0, 0, 127}));
+    Line(points={{-183,70},{-176,70},{-176,56.4}},      color = {0, 0, 127}));
   connect(ramp_P_RAin.y, sinkP_RAout1.in_p0) annotation (
-    Line(points = {{-183, 70}, {4, 70}, {4, 46}}, color = {0, 0, 127}));
+    Line(points={{-183,70},{3.55,70},{3.55,45.95}},
+                                                  color = {0, 0, 127}));
   connect(throughMassFlow_BAin.outlet, stateReader_BAin1.inlet) annotation (
     Line(points = {{-100, -40}, {-86, -40}}, color = {159, 159, 223}));
   connect(HEX2_BA.wall, metalTubeFV2.ext) annotation (
-    Line(points = {{70, -35}, {70, -14}}, color = {255, 127, 0}));
+    Line(points={{70,-35},{70,-13.1}},    color = {255, 127, 0}));
   connect(throughMassFlow_RAin.outlet, flowSplit.inlet) annotation (
     Line(points = {{-130, 50}, {-116, 50}}, color = {159, 159, 223}));
   connect(heatExchangerTopologyFV.side2, metalTubeFV2.int) annotation (
-    Line(points = {{70, 6.9}, {70, -6.1}}, color = {255, 127, 0}));
+    Line(points={{70,6.9},{70,-7}},        color = {255, 127, 0}));
   connect(heatExchangerTopologyFV.side1, HEX2_RA.wall) annotation (
     Line(points = {{70, 13}, {70, 35}}, color = {255, 127, 0}));
   connect(flowSplit.outlet1, throughMassFlow.inlet) annotation (
@@ -137,7 +156,8 @@ equation
   connect(flowSplit.outlet2, stateReader_RAin1.inlet) annotation (
     Line(points = {{-104, 46}, {-100, 46}, {-100, 40}, {-86, 40}}, color = {159, 159, 223}));
   connect(ramp_P_RAin.y, sinkP_RAout2.in_p0) annotation (
-    Line(points = {{-183, 70}, {124, 70}, {124, 46}}, color = {0, 0, 127}));
+    Line(points={{-183,70},{123.55,70},{123.55,45.95}},
+                                                      color = {0, 0, 127}));
   connect(stateReader_RAin2.outlet, HEX2_RA.infl) annotation (
     Line(points = {{46, 40}, {60, 40}}, color = {159, 159, 223}));
   connect(stateReader_BAin2.outlet, HEX2_BA.infl) annotation (
@@ -171,7 +191,8 @@ equation
   connect(throughMassFlow.outlet, stateReader_RAin2.inlet) annotation (
     Line(points = {{-70, 60}, {26, 60}, {26, 40}, {34, 40}}, color = {159, 159, 223}));
   annotation (
-    Diagram(coordinateSystem(extent = {{-200, -140}, {200, 160}}), graphics = {Text(origin = {-130, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-134, 80}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)", horizontalAlignment = TextAlignment.Left)}),
+    Diagram(coordinateSystem(extent = {{-200, -140}, {200, 160}}), graphics={  Text(origin = {-130, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-134, 80}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)",
+            horizontalAlignment =                                                                                                                                                                                                        TextAlignment.Left)}),
     experiment(StopTime = 3000, Tolerance = 1e-06, StartTime = 0, Interval = 6),
     Documentation(info = "<html>
 <p>The model is designed to test the component <code>Gas.Flow1DFV</code> (fluid side of a heat exchanger, finite volumes). A uniform prescribed heat flux is applied to the lateral boundary. The working fluid is pure nitrogen.</p>

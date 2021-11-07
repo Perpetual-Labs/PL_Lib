@@ -22,8 +22,10 @@ model PHX_extFun "Test case for Gas.Flow1DFV"
     Placement(visible = true, transformation(origin = {-140, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT1(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(extent = {{-120, 24}, {-100, 44}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdapter1(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-80, 30}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  PL_Lib.Interfaces.MassFlowToPressureAdapter massFlowToPressureAdapter1(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={-80,30},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
   PL_Lib.Utilities.HX_extFun ExtFun annotation (
     Placement(visible = true, transformation(origin = {-8, -10}, extent = {{-20, -28}, {20, 28}}, rotation = 0)));
   ThermoPower.Gas.SourcePressure sourcePressure2(redeclare package Medium = Medium, T = 273.15 + 200, p0 = 200000) annotation (
@@ -32,8 +34,10 @@ model PHX_extFun "Test case for Gas.Flow1DFV"
     Placement(visible = true, transformation(origin = {-140, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SensT sensT3(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(extent = {{-120, -56}, {-100, -36}}, rotation = 0)));
-  PL_Lib.Utilities.MassFlowToPressureAdapter massFlowToPressureAdapter2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-80, -50}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  PL_Lib.Interfaces.MassFlowToPressureAdapter massFlowToPressureAdapter2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={-80,-50},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
   ThermoPower.Gas.SourcePressure sourcePressure1(redeclare package Medium = Medium, T = 273.15 + 20, use_in_T = true) annotation (
     Placement(visible = true, transformation(origin = {-170, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.PressDropLin pressDropLin4(redeclare package Medium = Medium,R = 1000) annotation (
@@ -58,8 +62,10 @@ model PHX_extFun "Test case for Gas.Flow1DFV"
     Placement(visible = true, transformation(origin = {76, -68}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SinkPressure sinkPressure1(redeclare package Medium = Medium) annotation (
     Placement(visible = true, transformation(origin = {242, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Utilities.PressureToMassFlowAdapter pressureToMassFlowAdapter(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {54, -50}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
+  PL_Lib.Interfaces.PressureToMassFlowAdapter pressureToMassFlowAdapter(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={54,-50},
+        extent={{-20,-20},{20,20}},
+        rotation=0)));
   Modelica.Blocks.Continuous.FirstOrder firstOrder(T = 0.1, initType = Modelica.Blocks.Types.Init.SteadyState, y_start = 300)  annotation (
     Placement(visible = true, transformation(origin = {40, 12}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Continuous.FirstOrder firstOrder1(T = 0.1, initType = Modelica.Blocks.Types.Init.SteadyState, y_start = 101325) annotation (

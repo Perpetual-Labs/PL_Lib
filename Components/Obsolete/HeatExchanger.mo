@@ -1,4 +1,4 @@
-within PL_Lib.Components;
+within PL_Lib.Components.Obsolete;
 model HeatExchanger "Base class for heat exchanger gas - gas"
   constant Real pi = Modelica.Constants.pi;
   replaceable package GasMedium1 = Modelica.Media.Air.DryAirNasa constrainedby Modelica.Media.Interfaces.PartialMedium;

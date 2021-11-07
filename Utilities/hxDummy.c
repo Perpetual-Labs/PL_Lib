@@ -37,10 +37,10 @@ double timeF;
 
 // file = fopen(outFile,"r");
 // fscanf(file, "%lf %lf %lf %lf ",&tColdF,&tHotF,&pColdF,&pHotF);
-tColdF = tCold + 60;
-tHotF = tHot - 120;
-pColdF = pressureCold * 0.999;
-pHotF = timeMdlc+100000;
+tColdF = tCold + 57;
+tHotF = tHot - 57;
+pColdF = pressureCold * 0.99;
+pHotF = pressureHot * 0.99;
 timeF = timeMdlc;
 
 tempOut[0] = tColdF;

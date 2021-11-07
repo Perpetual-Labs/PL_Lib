@@ -1,4 +1,4 @@
-within PL_Lib.Components;
+within PL_Lib.Components.Obsolete;
 model HX
   ThermoPower.Gas.Flow1DFV HX_hotSide(
     redeclare package Medium = Medium,

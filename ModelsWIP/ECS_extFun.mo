@@ -40,14 +40,22 @@ model ECS_extFun
     Placement(visible = true, transformation(origin = {-30, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Thermal.HeatExchangerTopologyFV heatExchangerTopologyFV1(Nw = Nnodes - 1) annotation (
     Placement(visible = true, transformation(origin = {-30, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAin1(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-120, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAout1(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {0, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAout1(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {0, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAin1(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {-60, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAin1(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={-120,-40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAout1(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={0,-40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_RAout1(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={0,40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_RAin1(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={-60,40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
   Modelica.Blocks.Sources.Ramp ramp_T_RAin(duration = 600, height = -45, offset = Thex_in_RA, startTime = 300) annotation (
     Placement(visible = true, transformation(origin = {-200, 100}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Sources.Ramp ramp_P_RAin(duration = 600, height = -74825, offset = 101325, startTime = 300) annotation (
@@ -82,14 +90,22 @@ model ECS_extFun
     Placement(visible = true, transformation(origin = {130, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.ThroughMassFlow throughMassFlow(redeclare package Medium = Medium, w0 = 0.25) annotation (
     Placement(visible = true, transformation(origin = {60, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAin2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {100, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_RAout2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {160, 40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAin2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {100, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  PL_Lib.Components.StateReader_gas stateReader_BAout2(redeclare package Medium = Medium) annotation (
-    Placement(visible = true, transformation(origin = {160, -40}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_RAin2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={100,40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_RAout2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={160,40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAin2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={100,-40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  PL_Lib.Components.Obsolete.StateReader_gas stateReader_BAout2(redeclare package Medium = Medium) annotation (Placement(visible=true, transformation(
+        origin={160,-40},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
   Modelica.Blocks.Interfaces.RealOutput RAin1_T annotation (
     Placement(visible = true, transformation(origin = {-30, 174}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-48, 120}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealOutput RAin1_p annotation (
