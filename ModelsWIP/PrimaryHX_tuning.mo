@@ -128,7 +128,7 @@ initial equation
     inertia.w = 523.3;
 equation
   connect(HEX1_BA.wall, metalTubeFV1.ext) annotation (
-    Line(points = {{-30, -35}, {-30, -13}}, color = {255, 127, 0}, thickness = 1));
+    Line(points={{-30,-35},{-30,-13.1}},    color = {255, 127, 0}, thickness = 1));
   connect(stateReader_BAin1.outlet, HEX1_BA.infl) annotation (
     Line(points = {{-114, -40}, {-40, -40}}, color = {159, 159, 223}));
   connect(HEX1_BA.outfl, stateReader_BAout1.inlet) annotation (
@@ -140,21 +140,22 @@ equation
   connect(HEX1_RA.wall, heatExchangerTopologyFV1.side1) annotation (
     Line(points = {{-30, 35}, {-30, 13}}, color = {255, 127, 0}, thickness = 1));
   connect(heatExchangerTopologyFV1.side2, metalTubeFV1.int) annotation (
-    Line(points = {{-30, 7}, {-30, -6.1}}, color = {255, 127, 0}));
+    Line(points={{-30,6.9},{-30,-7}},      color = {255, 127, 0}));
   connect(ramp_T_RAin.y, sourceP_RAin.in_T) annotation (
     Line(points = {{-189, 100}, {-176, 100}, {-176, 59}}, color = {0, 0, 127}));
   connect(ramp_P_RAin.y, sourceP_RAin.in_p0) annotation (
-    Line(points = {{-189, 70}, {-182, 70}, {-182, 56}}, color = {0, 0, 127}));
+    Line(points={{-189,70},{-182,70},{-182,56.4}},      color = {0, 0, 127}));
   connect(ramp_P_RAin.y, sinkP_RAout1.in_p0) annotation (
-    Line(points = {{-189, 70}, {24, 70}, {24, 46}}, color = {0, 0, 127}));
+    Line(points={{-189,70},{23.55,70},{23.55,45.95}},
+                                                    color = {0, 0, 127}));
   connect(throughMassFlow_BAin.outlet, stateReader_BAin1.inlet) annotation (
     Line(points = {{-140, -40}, {-126, -40}}, color = {159, 159, 223}));
   connect(HEX2_BA.wall, metalTubeFV2.ext) annotation (
-    Line(points = {{130, -35}, {130, -14}}, color = {255, 127, 0}));
+    Line(points={{130,-35},{130,-13.1}},    color = {255, 127, 0}));
   connect(throughMassFlow_RAin.outlet, flowSplit.inlet) annotation (
     Line(points = {{-110, 50}, {-96, 50}}, color = {159, 159, 223}));
   connect(heatExchangerTopologyFV.side2, metalTubeFV2.int) annotation (
-    Line(points = {{130, 6.9}, {130, -6.1}}, color = {255, 127, 0}));
+    Line(points={{130,6.9},{130,-7}},        color = {255, 127, 0}));
   connect(heatExchangerTopologyFV.side1, HEX2_RA.wall) annotation (
     Line(points = {{130, 13}, {130, 35}}, color = {255, 127, 0}));
   connect(flowSplit.outlet1, throughMassFlow.inlet) annotation (
@@ -162,7 +163,8 @@ equation
   connect(flowSplit.outlet2, stateReader_RAin1.inlet) annotation (
     Line(points = {{-84, 46}, {-80, 46}, {-80, 40}, {-66, 40}}, color = {159, 159, 223}));
   connect(ramp_P_RAin.y, sinkP_RAout2.in_p0) annotation (
-    Line(points = {{-188, 70}, {184, 70}, {184, 46}}, color = {0, 0, 127}));
+    Line(points={{-189,70},{183.55,70},{183.55,45.95}},
+                                                      color = {0, 0, 127}));
   connect(stateReader_RAin2.outlet, HEX2_RA.infl) annotation (
     Line(points = {{106, 40}, {120, 40}}, color = {159, 159, 223}));
   connect(stateReader_BAin2.outlet, HEX2_BA.infl) annotation (
@@ -196,7 +198,8 @@ equation
   connect(inertia.flange_b, Turbine.shaft_a) annotation (
     Line(points = {{138, -70}, {184, -70}}));
   annotation (
-    Diagram(coordinateSystem(extent = {{-200, -200}, {200, 200}}), graphics = {Text(origin = {-170, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-140, 80}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)", horizontalAlignment = TextAlignment.Left)}),
+    Diagram(coordinateSystem(extent = {{-200, -200}, {200, 200}}), graphics={  Text(origin = {-170, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-140, 80}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)",
+            horizontalAlignment =                                                                                                                                                                                                        TextAlignment.Left)}),
     experiment(StopTime = 3000, Tolerance = 1e-06, StartTime = 0, Interval = 6),
     Documentation(info = "<html>
 <p>The model is designed to test the component <code>Gas.Flow1DFV</code> (fluid side of a heat exchanger, finite volumes). A uniform prescribed heat flux is applied to the lateral boundary. The working fluid is pure nitrogen.</p>

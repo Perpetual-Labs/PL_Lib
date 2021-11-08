@@ -44,17 +44,17 @@ equation
   connect(Tcabin_set.y, feedback.u1) annotation (
     Line(points = {{81, 60}, {92, 60}}, color = {0, 0, 127}));
   connect(feedback.y, PIDcontrol.u) annotation (
-    Line(points = {{109, 60}, {117, 60}}, color = {0, 0, 127}));
+    Line(points={{109,60},{118,60}},      color = {0, 0, 127}));
   connect(Valve1.outlet, sensT.inlet) annotation (
     Line(points = {{60, 0}, {74, 0}}, color = {159, 159, 223}));
   connect(sensT.outlet, SinkP1.flange) annotation (
     Line(points = {{86, 0}, {106, 0}}, color = {159, 159, 223}));
   connect(sensT.T, feedback.u2) annotation (
-    Line(points = {{88, 10}, {100, 10}, {100, 52}}, color = {0, 0, 127}));
+    Line(points={{87,10},{100,10},{100,52}},        color = {0, 0, 127}));
   connect(PIDcontrol.y, SourceW1.in_w0) annotation (
-    Line(points = {{142, 60}, {150, 60}, {150, 80}, {-70, 80}, {-70, 34}}, color = {0, 0, 127}));
+    Line(points={{141,60},{150,60},{150,80},{-70,80},{-70,33}},            color = {0, 0, 127}));
   connect(ramp_T_RAin.y, SourceW2.in_T) annotation (
-    Line(points = {{-78, -10}, {-66, -10}, {-66, -24}}, color = {0, 0, 127}));
+    Line(points={{-79,-10},{-66,-10},{-66,-25}},        color = {0, 0, 127}));
   annotation (
     Diagram(graphics),
     experiment(StopTime = 2000, StartTime = 0, Tolerance = 1e-06, Interval = 0.4),

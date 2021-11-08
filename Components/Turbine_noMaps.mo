@@ -3,7 +3,7 @@ model Turbine_noMaps
   //  extends ThermoPower.Gas.BaseClasses.TurbineBase;
   extends PL_Lib.Interfaces.TurbineBase;
   import ThermoPower.Choices.TurboMachinery.TableTypes;
-  parameter Modelica.SIunits.AngularVelocity Ndesign "Design speed";
+  parameter Modelica.SIunits.AngularVelocity Ndesign=523.3 "Design speed";
 
   //   parameter Real tablePhic[:,:]=fill(0,0,2) "Table for phic(N_T,PR)";
   //   parameter Real tableEta[:,:]=fill(0,0,2) "Table for eta(N_T,PR)";

@@ -1,6 +1,6 @@
 within PL_Lib.Interfaces;
 model PressureToMassFlowAdapter
-  extends PL_Lib.Icons.AdapterIcon;
+  extends PL_Lib.Icons.Adapter_icon;
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
   outer ThermoPower.System system "System wide properties";
   parameter Boolean allowFlowReversal=system.allowFlowReversal "= true to allow flow reversal, false restricts to design direction" annotation (Evaluate=true);

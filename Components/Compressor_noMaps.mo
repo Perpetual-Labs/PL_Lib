@@ -3,7 +3,7 @@ model Compressor_noMaps
   // extends ThermoPower.Gas.BaseClasses.CompressorBase;
   extends PL_Lib.Interfaces.CompressorBase;
   import ThermoPower.Choices.TurboMachinery.TableTypes;
-  parameter Modelica.SIunits.AngularVelocity Ndesign "Design velocity";
+  parameter Modelica.SIunits.AngularVelocity Ndesign=523.3 "Design velocity";
 
 //   parameter Real tablePhic[:,:]=fill(0,0,2) "Table for phic(N_T,beta)";
 //   parameter Real tableEta[:,:]=fill(0,0,2) "Table for eta(N_T,beta)";

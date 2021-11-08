@@ -224,13 +224,13 @@ equation
   connect(step.y, valve3.cmd) annotation (
     Line(points = {{101, 10}, {116, 10}, {116, -10}, {100, -10}, {100, -23}}, color = {0, 0, 127}));
   connect(Step3.y, sourcePressure.in_T) annotation (
-    Line(points = {{-178, 170}, {-146, 170}, {-146, -10}, {-160, -10}, {-160, -21}}, color = {0, 0, 127}));
+    Line(points={{-179,170},{-146,170},{-146,-10},{-160,-10},{-160,-21}},            color = {0, 0, 127}));
   connect(pressureToMassFlowAdapter4.m_dot, ExtFun.w_hot_in) annotation (
     Line(points = {{64, -124}, {40, -124}, {40, -106}, {-30, -106}, {-30, -88}, {-22, -88}}, color = {0, 0, 127}));
   connect(pressureToMassFlowAdapter4.m_dot, massFlowToPressureAdapter4.m_dot) annotation (
     Line(points = {{64, -124}, {-64, -124}}, color = {0, 0, 127}));
   annotation (
-    Diagram(coordinateSystem(extent = {{-200, -200}, {200, 200}}), graphics = {Rectangle(origin = {-0.02, 54.75}, lineColor = {0, 170, 0}, fillColor = {234, 255, 230}, fillPattern = FillPattern.Solid, lineThickness = 0.5, extent = {{-49.98, 35.2}, {49.98, -35.2}})}),
+    Diagram(coordinateSystem(extent = {{-200, -200}, {200, 200}}), graphics={  Rectangle(origin = {-0.02, 54.75}, lineColor = {0, 170, 0}, fillColor = {234, 255, 230}, fillPattern = FillPattern.Solid, lineThickness = 0.5, extent = {{-49.98, 35.2}, {49.98, -35.2}})}),
     experiment(StopTime = 80, Tolerance = 1e-06, StartTime = 0, Interval = 0.16),
     Documentation(info = "<html>
 <p>The model is designed to test the component <code>Gas.Flow1DFV</code> (fluid side of a heat exchanger, finite volumes). A uniform prescribed heat flux is applied to the lateral boundary. The working fluid is pure nitrogen.</p>

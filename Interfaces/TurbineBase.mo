@@ -1,5 +1,5 @@
 within PL_Lib.Interfaces;
-partial model TurbineBase "Gas Turbine"
+partial model TurbineBase
   extends ThermoPower.Icons.Gas.Turbine;
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation (
     choicesAllMatching = true);

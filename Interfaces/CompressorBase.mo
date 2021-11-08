@@ -1,5 +1,5 @@
 within PL_Lib.Interfaces;
-partial model CompressorBase "Gas compressor"
+partial model CompressorBase
   extends ThermoPower.Icons.Gas.Compressor;
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation (
     choicesAllMatching = true);

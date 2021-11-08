@@ -1,5 +1,5 @@
 within PL_Lib.Icons;
-model TemplateIcon
+model Template_icon
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={Rectangle(
           extent={{-100,100},{100,-100}},
           lineColor={0,0,0},
@@ -13,4 +13,4 @@ model TemplateIcon
           lineThickness=1,
           fillColor={215,215,215},
           fillPattern=FillPattern.Forward)}), Diagram(coordinateSystem(preserveAspectRatio=false)));
-end TemplateIcon;
+end Template_icon;

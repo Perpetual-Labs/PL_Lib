@@ -153,9 +153,11 @@ equation
   connect(ramp_P_RAin.y, sourceP_RAin.in_p0) annotation (
     Line(points = {{-349, 70}, {-342, 70}, {-342, 56.4}}, color = {0, 0, 127}));
   connect(ramp_P_RAin.y, sinkP_RAout1.in_p0) annotation (
-    Line(points = {{-349, 70}, {-82, 70}, {-82, 16}}, color = {0, 0, 127}));
+    Line(points={{-349,70},{-82.45,70},{-82.45,15.95}},
+                                                      color = {0, 0, 127}));
   connect(ramp_P_RAin.y, sinkP_RAout2.in_p0) annotation (
-    Line(points = {{-349, 70}, {120, 70}, {120, 16}}, color = {0, 0, 127}));
+    Line(points={{-349,70},{119.55,70},{119.55,15.95}},
+                                                      color = {0, 0, 127}));
   connect(Compressor.shaft_b, inertia.flange_a) annotation (
     Line(points = {{-58, -60}, {20, -60}}));
   connect(inertia.flange_b, Turbine.shaft_a) annotation (
@@ -219,7 +221,8 @@ equation
   connect(sourceP_RAin.flange, throughMassFlow.inlet) annotation (
     Line(points = {{-326, 50}, {-270, 50}, {-270, 10}, {-260, 10}}, color = {159, 159, 223}));
   annotation (
-    Diagram(coordinateSystem(extent = {{-300, -200}, {300, 200}}), graphics = {Text(origin = {-330, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-330, 30}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)", horizontalAlignment = TextAlignment.Left)}),
+    Diagram(coordinateSystem(extent = {{-300, -200}, {300, 200}}), graphics={  Text(origin = {-330, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-330, 30}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)",
+            horizontalAlignment =                                                                                                                                                                                                        TextAlignment.Left)}),
     experiment(StopTime = 3000, Tolerance = 1e-06, StartTime = 0, Interval = 6),
     Documentation(info = "<html>
 <p>The model is designed to test the component <code>Gas.Flow1DFV</code> (fluid side of a heat exchanger, finite volumes). A uniform prescribed heat flux is applied to the lateral boundary. The working fluid is pure nitrogen.</p>

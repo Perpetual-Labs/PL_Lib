@@ -150,17 +150,19 @@ equation
   connect(ramp_T_RAin.y, sourceP_RAin.in_T) annotation (
     Line(points = {{-289, 100}, {-276, 100}, {-276, 59}}, color = {0, 0, 127}));
   connect(ramp_P_RAin.y, sourceP_RAin.in_p0) annotation (
-    Line(points = {{-289, 70}, {-282, 70}, {-282, 56}}, color = {0, 0, 127}));
+    Line(points={{-289,70},{-282,70},{-282,56.4}},      color = {0, 0, 127}));
   connect(ramp_P_RAin.y, sinkP_RAout1.in_p0) annotation (
-    Line(points = {{-289, 70}, {-76, 70}, {-76, 46}}, color = {0, 0, 127}));
+    Line(points={{-289,70},{-76.45,70},{-76.45,45.95}},
+                                                      color = {0, 0, 127}));
   connect(HEX2_BA.wall, metalTubeFV2.ext) annotation (
-    Line(points = {{30, -35}, {30, -14}}, color = {255, 127, 0}));
+    Line(points={{30,-35},{30,-13.1}},    color = {255, 127, 0}));
   connect(heatExchangerTopologyFV.side2, metalTubeFV2.int) annotation (
-    Line(points = {{30, 6.9}, {30, -6.1}}, color = {255, 127, 0}));
+    Line(points={{30,6.9},{30,-7}},        color = {255, 127, 0}));
   connect(heatExchangerTopologyFV.side1, HEX2_RA.wall) annotation (
     Line(points = {{30, 13}, {30, 35}}, color = {255, 127, 0}));
   connect(ramp_P_RAin.y, sinkP_RAout2.in_p0) annotation (
-    Line(points = {{-289, 70}, {83, 70}, {83, 46}}, color = {0, 0, 127}));
+    Line(points={{-289,70},{83.55,70},{83.55,45.95}},
+                                                    color = {0, 0, 127}));
   connect(stateReader_RAin2.outlet, HEX2_RA.infl) annotation (
     Line(points = {{6, 40}, {20, 40}}, color = {159, 159, 223}));
   connect(stateReader_BAin2.outlet, HEX2_BA.infl) annotation (
@@ -192,19 +194,19 @@ equation
   connect(pressDropLin.outlet, sensT.inlet) annotation (
     Line(points = {{220, -30}, {234, -30}}, color = {159, 159, 223}));
   connect(HEX1_RA.wall, heatExchangerTopologyFV1.side1) annotation (
-    Line(points = {{-130, 36}, {-130, 14}}, color = {255, 127, 0}));
+    Line(points={{-130,35},{-130,13}},      color = {255, 127, 0}));
   connect(heatExchangerTopologyFV1.side2, metalTubeFV1.int) annotation (
-    Line(points = {{-130, 6}, {-130, -6}}, color = {255, 127, 0}));
+    Line(points={{-130,6.9},{-130,-7}},    color = {255, 127, 0}));
   connect(metalTubeFV1.ext, HEX1_BA.wall) annotation (
-    Line(points = {{-130, -14}, {-130, -34}}, color = {255, 127, 0}));
+    Line(points={{-130,-13.1},{-130,-35}},    color = {255, 127, 0}));
   connect(stateReader_BAout3.outlet, Mixer.in2) annotation (
     Line(points = {{146, -40}, {160, -40}, {160, -36}, {172, -36}}, color = {159, 159, 223}));
   connect(valve_Tcontrol.outlet, Mixer.in1) annotation (
     Line(points = {{150, -20}, {160, -20}, {160, -24}, {172, -24}}, color = {159, 159, 223}));
   connect(Tcabin_set.y, PIDcontrol.u_s) annotation (
-    Line(points = {{232, 10}, {248, 10}}, color = {0, 0, 127}));
+    Line(points={{231,10},{248,10}},      color = {0, 0, 127}));
   connect(sensT.T, PIDcontrol.u_m) annotation (
-    Line(points = {{248, -20}, {260, -20}, {260, -2}}, color = {0, 0, 127}));
+    Line(points={{247,-20},{260,-20},{260,-2}},        color = {0, 0, 127}));
   connect(throughMassFlow1.outlet, stateReader_RAin2.inlet) annotation (
     Line(points = {{-22, 40}, {-6, 40}}, color = {159, 159, 223}));
   connect(sourceP_BAin.flange, throughMassFlow3.inlet) annotation (
@@ -220,9 +222,10 @@ equation
   connect(sourceP_RAin.flange, valve_Tcontrol.inlet) annotation (
     Line(points = {{-266, 50}, {-222, 50}, {-222, 90}, {120, 90}, {120, -20}, {130, -20}}, color = {159, 159, 223}));
   connect(step.y, valve_Tcontrol.cmd) annotation (
-    Line(points = {{94, 0}, {140, 0}, {140, -12}}, color = {0, 0, 127}));
+    Line(points={{93,0},{140,0},{140,-13}},        color = {0, 0, 127}));
   annotation (
-    Diagram(coordinateSystem(extent = {{-300, -200}, {300, 200}}), graphics = {Text(origin = {-270, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-240, 80}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)", horizontalAlignment = TextAlignment.Left)}),
+    Diagram(coordinateSystem(extent = {{-300, -200}, {300, 200}}), graphics={  Text(origin = {-270, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", horizontalAlignment = TextAlignment.Left), Text(origin = {-240, 80}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)",
+            horizontalAlignment =                                                                                                                                                                                                        TextAlignment.Left)}),
     experiment(StopTime = 3000, Tolerance = 1e-06, StartTime = 0, Interval = 6),
     Documentation(info = "<html>
 <p>The model is designed to test the component <code>Gas.Flow1DFV</code> (fluid side of a heat exchanger, finite volumes). A uniform prescribed heat flux is applied to the lateral boundary. The working fluid is pure nitrogen.</p>

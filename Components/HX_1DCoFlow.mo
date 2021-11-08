@@ -1,7 +1,7 @@
 within PL_Lib.Components;
 model HX_1DCoFlow
   extends PL_Lib.Interfaces.HeatExchangerBase;
-  extends PL_Lib.Icons.HeatExchangerIcon;
+  extends PL_Lib.Icons.HeatExchanger_icon;
 
 //  replaceable package Medium = Modelica.Media.Air.DryAirNasa constrainedby Modelica.Media.Interfaces.PartialMedium;
   parameter Integer Nnodes=10 "number of Nodes";

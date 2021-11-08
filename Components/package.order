@@ -1,8 +1,9 @@
 HX_1DCoFlow
+HX_1DCounterFlow
+HX_1DShellTube
 HX_extFun
 HX_extFun_dummy
 Compressor_noMaps
 Turbine_noMaps
 SensD
-ShellAndTubeFV
 Obsolete

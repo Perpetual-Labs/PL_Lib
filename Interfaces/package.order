@@ -1,6 +1,6 @@
 HeatExchangerBase
 HeatExchangerCausal
-MassFlowToPressureAdapter
-PressureToMassFlowAdapter
 TurbineBase
 CompressorBase
+PressureToMassFlowAdapter
+MassFlowToPressureAdapter

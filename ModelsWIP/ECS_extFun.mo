@@ -211,22 +211,22 @@ equation
     Line(points = {{-113, -33}, {-113, 190}, {-90, 190}}, color = {0, 0, 127}));
   connect(throughMassFlow.outlet, stateReader_RAin2.inlet) annotation (
     Line(points = {{70, 60}, {80, 60}, {80, 40}, {94, 40}}, color = {159, 159, 223}));
-  connect(RA1_d, HX1_extFun.d_cold_in) annotation (Line(points={{-30,110},{0,
-          110},{0,154.071},{24.7,154.071}}, color={0,0,127}));
-  connect(RAin1_mdot, HX1_extFun.w_cold_in) annotation (Line(points={{-30,130},
-          {-4,130},{-4,161.143},{24.7,161.143}}, color={0,0,127}));
-  connect(RAin1_p, HX1_extFun.p_cold_in) annotation (Line(points={{-30,150},{-8,
-          150},{-8,168.214},{24.7,168.214}}, color={0,0,127}));
-  connect(RAin1_T, HX1_extFun.T_cold_in) annotation (Line(points={{-30,174},{-7,
-          174},{-7,175.286},{24.7,175.286}}, color={0,0,127}));
-  connect(BAin1_d, HX1_extFun.d_hot_in) annotation (Line(points={{-90,190},{14,
-          190},{14,118.714},{24.7,118.714}}, color={0,0,127}));
-  connect(BAin1_mdot, HX1_extFun.w_hot_in) annotation (Line(points={{-90,210},{
-          12,210},{12,125.786},{24.7,125.786}}, color={0,0,127}));
-  connect(BAin1_p, HX1_extFun.p_hot_in) annotation (Line(points={{-90,230},{10,
-          230},{10,132.857},{24.7,132.857}}, color={0,0,127}));
-  connect(BAin1_T, HX1_extFun.T_hot_in) annotation (Line(points={{-90,250},{8,
-          250},{8,139.929},{24.7,139.929}}, color={0,0,127}));
+  connect(RA1_d, HX1_extFun.d_cold_in) annotation (Line(points={{-30,110},{0,110},{0,154.071},{24.7,154.071}},
+                                            color={0,0,127}));
+  connect(RAin1_mdot, HX1_extFun.w_cold_in) annotation (Line(points={{-30,130},{-4,130},{-4,161.143},{24.7,161.143}},
+                                                 color={0,0,127}));
+  connect(RAin1_p, HX1_extFun.p_cold_in) annotation (Line(points={{-30,150},{-8,150},{-8,168.214},{24.7,168.214}},
+                                             color={0,0,127}));
+  connect(RAin1_T, HX1_extFun.T_cold_in) annotation (Line(points={{-30,174},{-7,174},{-7,175.286},{24.7,175.286}},
+                                             color={0,0,127}));
+  connect(BAin1_d, HX1_extFun.d_hot_in) annotation (Line(points={{-90,190},{14,190},{14,118.714},{24.7,118.714}},
+                                             color={0,0,127}));
+  connect(BAin1_mdot, HX1_extFun.w_hot_in) annotation (Line(points={{-90,210},{12,210},{12,125.786},{24.7,125.786}},
+                                                color={0,0,127}));
+  connect(BAin1_p, HX1_extFun.p_hot_in) annotation (Line(points={{-90,230},{10,230},{10,132.857},{24.7,132.857}},
+                                             color={0,0,127}));
+  connect(BAin1_T, HX1_extFun.T_hot_in) annotation (Line(points={{-90,250},{8,250},{8,139.929},{24.7,139.929}},
+                                            color={0,0,127}));
   annotation (
     Diagram(coordinateSystem(extent = {{-200, -200}, {200, 200}}), graphics={  Text(origin = {-170, -20}, lineColor = {170, 0, 0}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)",
             horizontalAlignment =                                                                                                                                                                                              TextAlignment.Left), Text(origin = {-140, 80}, lineColor = {0, 85, 255}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)",

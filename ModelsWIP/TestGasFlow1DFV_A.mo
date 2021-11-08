@@ -87,7 +87,7 @@ equation
 //  der(Mbal) = HEX_gas1.infl.m_flow + HEX_gas1.outfl.m_flow;
 //  Merr = Mhex - Mbal;
   connect(HEX_gas1.wall, metalTubeFV.ext) annotation (
-    Line(points = {{0, -45}, {0, -13}}, color = {255, 127, 0}));
+    Line(points={{0,-45},{0,-13.1}},    color = {255, 127, 0}));
   connect(sensT_gas2out.outlet, sinkP_gas2out.flange) annotation (
     Line(points = {{96, 40}, {110, 40}}, color = {159, 159, 223}));
   connect(stateReader_gas1in.outlet, HEX_gas1.infl) annotation (
@@ -105,11 +105,11 @@ equation
   connect(sourceMassFlow_gas1.flange, sensT_gas1in.inlet) annotation (
     Line(points = {{-110, -50}, {-96, -50}}, color = {159, 159, 223}));
   connect(ramp_T_gas2in.y, sourceMassFlow_gas2.in_T) annotation (
-    Line(points = {{-129, 140}, {-120, 140}, {-120, 46}}, color = {0, 0, 127}));
+    Line(points={{-129,140},{-120,140},{-120,45}},        color = {0, 0, 127}));
   connect(HEX_gas2.wall, heatExchangerTopologyFV.side1) annotation (
-    Line(points = {{0, 36}, {0, 12}}, color = {255, 127, 0}));
+    Line(points={{0,35},{0,11}},      color = {255, 127, 0}));
   connect(heatExchangerTopologyFV.side2, metalTubeFV.int) annotation (
-    Line(points = {{0, 4}, {0, -6}}, color = {255, 127, 0}));
+    Line(points={{0,4.9},{0,-7}},    color = {255, 127, 0}));
   connect(sensT_gas2in.outlet, stateReader_gas2in.inlet) annotation (
     Line(points = {{-84, 40}, {-36, 40}}, color = {159, 159, 223}));
   connect(stateReader_gas2out.outlet, sensT_gas2out.inlet) annotation (

@@ -96,7 +96,7 @@ equation
   connect(sourcePressure1.flange, pressDropLin1.inlet) annotation (
     Line(points = {{-160, 30}, {-150, 30}}, color = {159, 159, 223}));
   connect(step1.y, sourcePressure1.in_T) annotation (
-    Line(points = {{-178, 50}, {-170, 50}, {-170, 40}}, color = {0, 0, 127}));
+    Line(points={{-179,50},{-170,50},{-170,39}},        color = {0, 0, 127}));
   connect(pressDropLin4.outlet, sensT4.inlet) annotation (
     Line(points = {{108, -98}, {111, -98}, {111, -50}, {114, -50}}, color = {159, 159, 223}));
   connect(const.y, ExtFun.w_cold_in) annotation (
@@ -112,13 +112,13 @@ equation
   connect(const.y, massFlowToPressureAdapter2.m_dot) annotation (
     Line(points = {{-79, -10}, {-60, -10}, {-60, -64}, {-74, -64}}, color = {0, 0, 127}));
   connect(const.y, massFlowToPressureAdapter1.m_dot) annotation (
-    Line(points = {{-78, -10}, {-60, -10}, {-60, 16}, {-74, 16}}, color = {0, 0, 127}));
+    Line(points={{-79,-10},{-60,-10},{-60,16},{-74,16}},          color = {0, 0, 127}));
   connect(ExtFun.T_hot_out, firstOrder.u) annotation (
     Line(points = {{14, -20}, {20, -20}, {20, 12}, {28, 12}}, color = {0, 0, 127}));
   connect(firstOrder.y, pressureToMassFlowAdapter.T) annotation (
-    Line(points = {{52, 12}, {64, 12}, {64, -10}, {40, -10}, {40, -36}, {48, -36}}, color = {0, 0, 127}));
+    Line(points={{51,12},{64,12},{64,-10},{40,-10},{40,-36},{48,-36}},              color = {0, 0, 127}));
   connect(firstOrder1.y, pressureToMassFlowAdapter.p) annotation (
-    Line(points = {{32, -64}, {36, -64}, {36, -42}, {48, -42}}, color = {0, 0, 127}));
+    Line(points={{31,-64},{36,-64},{36,-42},{48,-42}},          color = {0, 0, 127}));
   connect(ExtFun.p_hot_out, firstOrder1.u) annotation (
     Line(points = {{14, -28}, {22, -28}, {22, -44}, {-2, -44}, {-2, -64}, {8, -64}}, color = {0, 0, 127}));
   connect(sensT4.outlet, HEX1.infl) annotation (
