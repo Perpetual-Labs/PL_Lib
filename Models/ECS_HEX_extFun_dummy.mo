@@ -3,8 +3,7 @@ model ECS_HEX_extFun_dummy
   extends Modelica.Icons.Example;
   inner ThermoPower.System system annotation (
     Placement(visible = true, transformation(extent = {{280, 140}, {300, 160}}, rotation = 0)));
-  replaceable package Medium = Modelica.Media.Air.DryAirNasa constrainedby
-    Modelica.Media.Interfaces.PartialMedium;
+  replaceable package Medium = Modelica.Media.Air.DryAirNasa constrainedby Modelica.Media.Interfaces.PartialMedium;
   //  HX Geometry Parameters:
   parameter Integer Nnodes = 10 "number of Nodes";
   parameter Integer Nt = 20 "Number of tubes in parallel";

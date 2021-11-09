@@ -1,5 +1,5 @@
 within PL_Lib.Records;
-partial record HeatExchangerParameters
+partial record HeatExchangerBaseRecord
   extends Modelica.Icons.Record;
   parameter Integer Nnodes "number of Nodes";
   parameter Integer Nt "Number of tubes in parallel";
@@ -9,4 +9,4 @@ partial record HeatExchangerParameters
   parameter Modelica.SIunits.Radius rhex "internal radius";
   parameter Modelica.SIunits.Length omegahex "internal perimeter";
   parameter Modelica.SIunits.Area Ahex "internal cross section";
-end HeatExchangerParameters;
+end HeatExchangerBaseRecord;

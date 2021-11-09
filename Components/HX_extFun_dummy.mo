@@ -62,5 +62,9 @@ equation
   annotation (Icon(graphics={Text(
           extent={{-80,-100},{80,-140}},
           textColor={28,108,200},
-          textString="%name")}));
+          textString="%name"),
+                             Text(
+          extent={{-80,-140},{80,-180}},
+          textColor={238,46,47},
+          textString="dummy C-fun.")}));
 end HX_extFun_dummy;

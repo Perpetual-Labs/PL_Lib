@@ -21,8 +21,7 @@ model ECS_TakeOffTest
   extends Templates.ECS_lossless(
     redeclare package HotFluid = HotFluid,
     redeclare package ColdFluid = ColdFluid,
-    redeclare Components.HX_1DShellTube
-                                     PHX(HX_hotSide(wnom=whex_BA), HX_coldSide(wnom=whex_RA)),
+    redeclare Components.HX_1DShellTube PHX(HX_hotSide(wnom=whex_BA), HX_coldSide(wnom=whex_RA)),
     redeclare Components.HX_1DCoFlow SHX(HX_hotSide(wnom=whex_BA), HX_coldSide(wnom=whex_RA)),
     redeclare Components.Compressor_noMaps compressor,
     redeclare Components.Turbine_noMaps turbine,
@@ -52,8 +51,9 @@ equation
   connect(inputP_cold_in.y, sinkP_RA_SHXout.in_p0) annotation (Line(points={{-229,80},{164,80},{164,45.95},{163.55,45.95}}, color={0,0,127}));
   connect(inputP_cold_in.y, sourceP_RAin.in_p0) annotation (Line(points={{-229,80},{-216,80},{-216,56.4}}, color={0,0,127}));
   connect(inputT_cold_in.y, sourceP_RAin.in_T) annotation (Line(points={{-229,110},{-210,110},{-210,59}}, color={0,0,127}));
+  connect(inputP_cold_in.y, sinkP_RA_PHXout.in_p0) annotation (Line(points={{-229,80},{-16.45,80},{-16.45,45.95}}, color={0,0,127}));
   connect(inputT_hot_in.y, sourceP_BAin.in_T) annotation (Line(points={{-229,10},{-210,10},{-210,-31}}, color={0,0,127}));
   connect(inputP_hot_in.y, sourceP_BAin.in_p0) annotation (Line(points={{-229,-20},{-216,-20},{-216,-33.6}}, color={0,0,127}));
-  connect(inputP_cold_in.y, sinkP_RA_PHXout.in_p0) annotation (Line(points={{-229,80},{-16.45,80},{-16.45,45.95}}, color={0,0,127}));
+
   annotation (Diagram(coordinateSystem(extent={{-300,-100},{300,100}})));
 end ECS_TakeOffTest;
