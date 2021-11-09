@@ -15,7 +15,7 @@ model HX_1DCounterFlow
 
   ThermoPower.Gas.Flow1DFV HX_hotSide(redeclare package Medium = HotFluid, A = Ahex,
     omega=omegahex,
-    wnom=0.1,                                                                        Cfnom = Cfhex, Dhyd = Dihex, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Cfnom, L = Lhex, N = Nnodes, dpnom = 1000, initOpt = ThermoPower.Choices.Init.Options.steadyState, noInitialPressure = false) annotation (Placement(visible=true, transformation(extent={{-10,-60},{10,-40}}, rotation=0)));
+    wnom=0.1,                                                                        Cfnom = Cfhex, Dhyd = Dihex, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Cfnom, L = Lhex, N = Nnodes, dpnom = 1000, initOpt = ThermoPower.Choices.Init.Options.steadyState, noInitialPressure = false) annotation (Placement(visible=true, transformation(extent={{-10, -60},{10, -40}}, rotation=0)));
   ThermoPower.Gas.Flow1DFV HX_coldSide(redeclare package Medium = ColdFluid, A = Ahex,
     omega=omegahex,
     wnom=0.1,                                                                          Cfnom = Cfhex, Dhyd = Dihex, FFtype = ThermoPower.Choices.Flow1D.FFtypes.Cfnom, L = Lhex, N = Nnodes, dpnom = 1000, initOpt = ThermoPower.Choices.Init.Options.steadyState, noInitialPressure = false) annotation (Placement(visible=true, transformation(
@@ -40,18 +40,19 @@ model HX_1DCounterFlow
 
 equation
   connect(infl_1, HX_coldSide.infl) annotation (Line(points={{-100,50},{-10,50}}, color={159,159,223}));
-  connect(HX_coldSide.outfl, outfl_1) annotation (Line(points={{10,50},{100,50}}, color={159,159,223}));
-  connect(infl_2, HX_hotSide.infl) annotation (Line(points={{-100,-50},{-10,-50}}, color={159,159,223}));
-  connect(HX_hotSide.outfl, outfl_2) annotation (Line(points={{10,-50},{100,-50}}, color={159,159,223}));
-  connect(HX_hotSide.wall, metalTubeFV1.ext) annotation (Line(points={{0,-45},{0,-23.1}}, color={255,127,0}));
+  connect(infl_2, HX_hotSide.infl) annotation (
+    Line(points = {{-100, -50}, {-10, -50}}, color = {159, 159, 223}));
+  connect(HX_hotSide.wall, metalTubeFV1.ext) annotation (
+    Line(points = {{0, -45}, {0, -23.1}}, color = {255, 127, 0}));
   connect(metalTubeFV1.int, heatExchangerTopologyFV1.side2) annotation (Line(points={{0,-17},{0,16.9}}, color={255,127,0}));
   connect(heatExchangerTopologyFV1.side1, HX_coldSide.wall) annotation (Line(points={{0,23},{0,45}}, color={255,127,0}));
+  connect(HX_coldSide.outfl, outfl_2) annotation (
+    Line(points = {{10, 50}, {60, 50}, {60, -50}, {100, -50}}, color = {159, 159, 223}));
+  connect(HX_hotSide.outfl, outfl_1) annotation (
+    Line(points = {{10, -50}, {40, -50}, {40, 20}, {80, 20}, {80, 50}, {100, 50}}, color = {159, 159, 223}));
   annotation (Icon(graphics={Text(
           origin={0,43.3385},
           lineColor={28,108,200},
           extent={{-80,-153.338},{80,-193.339}},
-          textString="%name"), Text(
-          extent={{-80,100},{80,60}},
-          textColor={102,44,145},
-          textString="1D Counter-Flow")}));
+          textString="%name"), Text(lineColor = {102, 44, 145}, extent = {{-80, 100}, {80, 60}}, textString = "1D Counter-Flow")}));
 end HX_1DCounterFlow;

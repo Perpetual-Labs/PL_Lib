@@ -16,8 +16,7 @@ model ECS_TaxingTest
   extends Templates.ECS_lossless(
     redeclare package HotFluid = HotFluid,
     redeclare package ColdFluid = ColdFluid,
-    redeclare Components.HX_extFun_dummy
-                                   PHX,
+    redeclare Components.HX_extFun_dummy PHX,
     redeclare Components.HX_1DCoFlow SHX(HX_hotSide(wnom=whex_BA), HX_coldSide(wnom=whex_RA)),
     redeclare Components.Compressor_noMaps compressor,
     redeclare Components.Turbine_noMaps turbine,
