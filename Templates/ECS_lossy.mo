@@ -4,8 +4,8 @@ model ECS_lossy
   replaceable package HotFluid = Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
   replaceable package ColdFluid = Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
 protected
-  parameter Modelica.SIunits.Inertia J_shaft = 10;
-  parameter Modelica.SIunits.AngularVelocity w0 = 523.3;
+  parameter Modelica.SIunits.Inertia J_shaft=10;
+  parameter Modelica.SIunits.AngularVelocity w0=523.3;
 public
   inner ThermoPower.System system annotation (Placement(visible=true, transformation(extent={{280,80},{300,100}}, rotation=0)));
   replaceable Interfaces.TurbineBase turbine(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{160,-80},{200,-40}})));
@@ -48,11 +48,17 @@ public
         rotation=0)));
   ThermoPower.Gas.SinkPressure sinkP_RA_SHXout(redeclare package Medium = ColdFluid, use_in_p0=true) annotation (Placement(visible=true, transformation(extent={{160,30},{180,50}}, rotation=0)));
   ThermoPower.Gas.SinkPressure sinkP_PACKout(redeclare package Medium = HotFluid) annotation (Placement(visible=true, transformation(extent={{280,-20},{300,0}}, rotation=0)));
-  ThermoPower.Gas.SourcePressure sourceP_RAin(redeclare package Medium = ColdFluid, use_in_T=true, use_in_p0=true) annotation (Placement(visible=true, transformation(
+  ThermoPower.Gas.SourcePressure sourceP_RAin(
+    redeclare package Medium = ColdFluid,
+    use_in_T=true,
+    use_in_p0=true) annotation (Placement(visible=true, transformation(
         origin={-290,50},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Gas.SourcePressure sourceP_BAin(redeclare package Medium = HotFluid, use_in_T=true, use_in_p0=true) annotation (Placement(visible=true, transformation(
+  ThermoPower.Gas.SourcePressure sourceP_BAin(
+    redeclare package Medium = HotFluid,
+    use_in_T=true,
+    use_in_p0=true) annotation (Placement(visible=true, transformation(
         origin={-290,-40},
         extent={{-10,-10},{10,10}},
         rotation=0)));
