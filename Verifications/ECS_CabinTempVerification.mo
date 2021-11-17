@@ -1,6 +1,6 @@
 ﻿within PL_Lib.Verifications;
 model ECS_CabinTempVerification
-  extends Experiments.ECS_TakeOffTest(redeclare Configurations.ECS_hybridConfig ecs_lossless_config);
+  extends Experiments.ECS_TakeOffTest(redeclare Configurations.ECS_hybridConfig ECS_config);
   extends PL_Lib.Icons.VerificationScenario_icon;
   inner Modelica_Requirements.Verify.PrintViolations printViolations(
     printSatisfied=true,

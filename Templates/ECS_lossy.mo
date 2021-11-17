@@ -1,6 +1,6 @@
 within PL_Lib.Templates;
 model ECS_lossy
-  extends Modelica.Icons.UnderConstruction;
+  extends PL_Lib.Interfaces.ConfigurationBase;
   replaceable package HotFluid = Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
   replaceable package ColdFluid = Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
 protected
