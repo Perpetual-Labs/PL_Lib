@@ -1,4 +1,4 @@
 within PL_Lib;
 package Models
-  extends Modelica.Icons.Package;
+  extends Modelica.Icons.InternalPackage;
 end Models;

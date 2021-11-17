@@ -2,6 +2,7 @@ within PL_Lib.Components;
 model HX_1DShellTube
   extends PL_Lib.Interfaces.HeatExchangerBase;
   extends PL_Lib.Icons.HeatExchanger_icon;
+  extends Modelica.Icons.UnderConstruction;
 
   //  replaceable package Medium = Modelica.Media.Air.DryAirNasa constrainedby Modelica.Media.Interfaces.PartialMedium;
   parameter Integer Nnodes=10 "number of Nodes";

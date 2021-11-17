@@ -5,4 +5,6 @@ CompressorBase
 PressureToMassFlowAdapter
 MassFlowToPressureAdapter
 SignalBus
-DataLoggerBase
+SignalSubBus_p
+SignalSubBus_T
+ConfigurationBase

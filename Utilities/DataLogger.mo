@@ -1,9 +1,8 @@
 within PL_Lib.Utilities;
 model DataLogger
   extends Modelica.Icons.RoundSensor;
-  extends PL_Lib.Interfaces.DataLoggerBase;
-  annotation (Icon(graphics={Line(points={{-70,0},{-90,0}}), Text(
-          extent={{-80,-60},{80,-100}},
-          textColor={28,108,200},
-          textString="%name")}));
+  Interfaces.SignalBus signalBus annotation (Placement(transformation(extent={{-120,-20},{-80,20}}), iconTransformation(
+        extent={{-20,-20},{20,20}},
+        rotation=270,
+        origin={-100,0})));
 end DataLogger;

@@ -1,10 +1,12 @@
 within PL_Lib.Templates;
 model ECS_lossy
+  extends Modelica.Icons.UnderConstruction;
   replaceable package HotFluid = Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
   replaceable package ColdFluid = Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
+protected
   parameter Modelica.SIunits.Inertia J_shaft = 10;
   parameter Modelica.SIunits.AngularVelocity w0 = 523.3;
-
+public
   inner ThermoPower.System system annotation (Placement(visible=true, transformation(extent={{280,80},{300,100}}, rotation=0)));
   replaceable Interfaces.TurbineBase turbine(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{160,-80},{200,-40}})));
   replaceable Interfaces.CompressorBase compressor(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{-40,-80},{0,-40}})));
