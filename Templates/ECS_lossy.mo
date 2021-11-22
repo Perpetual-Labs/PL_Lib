@@ -3,11 +3,6 @@ model ECS_lossy
   extends PL_Lib.Interfaces.ConfigurationBase;
   replaceable package HotFluid = Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
   replaceable package ColdFluid = Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
-protected
-  parameter Modelica.SIunits.Inertia J_shaft=10;
-  parameter Modelica.SIunits.AngularVelocity w0=523.3;
-public
-  inner ThermoPower.System system annotation (Placement(visible=true, transformation(extent={{280,80},{300,100}}, rotation=0)));
   replaceable Interfaces.TurbineBase turbine(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{160,-80},{200,-40}})));
   replaceable Interfaces.CompressorBase compressor(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{-40,-80},{0,-40}})));
   replaceable Interfaces.HeatExchangerBase PHX(redeclare package ColdFluid = ColdFluid, redeclare package HotFluid = HotFluid) annotation (Placement(transformation(extent={{-150,-20},{-110,20}})));
@@ -38,10 +33,8 @@ public
         origin={220,-40},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Gas.SensT sensT_RA_PHXin1(redeclare package Medium = ColdFluid) annotation (Placement(visible=true, transformation(
-        origin={30,44},
-        extent={{-10,-10},{10,10}},
-        rotation=0)));
+  ThermoPower.Gas.SensT sensT_RA_PHXin1(redeclare package Medium = ColdFluid) annotation (
+    Placement(visible = true, transformation(origin = {26, 44}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SinkPressure sinkP_RA_PHXout(redeclare package Medium = ColdFluid, use_in_p0=true) annotation (Placement(visible=true, transformation(
         origin={-30,40},
         extent={{-10,-10},{10,10}},
@@ -86,6 +79,9 @@ public
         origin={70,-60},
         extent={{-10,-10},{10,10}},
         rotation=0)));
+protected
+  parameter Modelica.SIunits.Inertia J_shaft=10;
+  parameter Modelica.SIunits.AngularVelocity w0=523.3;
 equation
   connect(sourceP_RAin.flange, throughMassFlow_RAin.inlet) annotation (Line(points={{-280,50},{-270,50}}, color={159,159,223}));
   connect(sourceP_BAin.flange, throughMassFlow_BAin.inlet) annotation (Line(points={{-280,-40},{-270,-40}}, color={159,159,223}));
@@ -110,8 +106,10 @@ equation
   connect(throughMassFlow_RA_SHXin.outlet, pressDropLin4.inlet) annotation (Line(points={{-190,70},{-62,70}}, color={159,159,223}));
   connect(sensT_RA_SHXout.outlet, pressDropLin5.inlet) annotation (Line(points={{116,40},{130,40}}, color={159,159,223}));
   connect(pressDropLin5.outlet, sinkP_RA_SHXout.flange) annotation (Line(points={{150,40},{160,40}}, color={159,159,223}));
-  connect(pressDropLin4.outlet, sensT_RA_PHXin1.inlet) annotation (Line(points={{-42,70},{14,70},{14,40},{24,40}}, color={159,159,223}));
-  connect(sensT_RA_PHXin1.outlet, SHX.infl_1) annotation (Line(points={{36,40},{40,40},{40,10},{50,10}}, color={159,159,223}));
+  connect(pressDropLin4.outlet, sensT_RA_PHXin1.inlet) annotation (
+    Line(points = {{-42, 70}, {14, 70}, {14, 40}, {20, 40}}, color = {159, 159, 223}));
+  connect(sensT_RA_PHXin1.outlet, SHX.infl_1) annotation (
+    Line(points = {{32, 40}, {40, 40}, {40, 10}, {50, 10}}, color = {159, 159, 223}));
   connect(sensT_BA_SHXout.outlet, pressDropLin6.inlet) annotation (Line(points={{116,-44},{130,-44}}, color={159,159,223}));
   connect(pressDropLin6.outlet, turbine.inlet) annotation (Line(points={{150,-44},{164,-44}}, color={159,159,223}));
   connect(sensT_BA_PACKout.outlet, pressDropLin7.inlet) annotation (Line(points={{226,-44},{240,-44}}, color={159,159,223}));
@@ -119,19 +117,8 @@ equation
   connect(throughMassFlow_RAin.outlet, throughMassFlow_RA_SHXin.inlet) annotation (Line(points={{-250,50},{-220,50},{-220,70},{-210,70}}, color={159,159,223}));
   connect(throughMassFlow_RAin.outlet, pressDropLin.inlet) annotation (Line(points={{-250,50},{-220,50},{-220,40},{-210,40}}, color={159,159,223}));
   annotation (
-    Diagram(coordinateSystem(extent={{-300,-100},{300,100}}), graphics={Text(
-          origin={-270,-60},
-          lineColor={238,46,47},
-          extent={{-30,10},{30,-10}},
-          horizontalAlignment=TextAlignment.Left,
-          textStyle={TextStyle.Bold},
-          textString="Bleed air (hot side)"), Text(
-          origin={-270,30},
-          lineColor={28,108,200},
-          extent={{-30,10},{30,-10}},
-          horizontalAlignment=TextAlignment.Left,
-          textStyle={TextStyle.Bold},
-          textString="Ram air (cold side)")}),
+    Diagram(coordinateSystem(extent={{-300,-100},{300,100}}), graphics={Text(origin = {-270, -60}, lineColor = {238, 46, 47}, extent = {{-30, 10}, {30, -10}}, textString = "Bleed air (hot side)", textStyle = {TextStyle.Bold}, horizontalAlignment = TextAlignment.Left), Text(origin = {-270, 30}, lineColor = {28, 108, 200}, extent = {{-30, 10}, {30, -10}}, textString = "Ram air (cold side)", textStyle = {TextStyle.Bold},
+            horizontalAlignment =                                                                                                                                                                                                        TextAlignment.Left)}),
     experiment(
       StopTime=3000,
       Tolerance=1e-06,

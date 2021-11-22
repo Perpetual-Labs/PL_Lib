@@ -1,87 +1,103 @@
 within PL_Lib.Templates;
 partial model ECS_lossless
   extends PL_Lib.Interfaces.ConfigurationBase;
+
+  parameter Modelica.SIunits.MassFlowRate whex_cold "nominal (and initial) mass flow rate";
+  parameter Modelica.SIunits.MassFlowRate whex_hot "nominal (and initial) mass flow rate";
+
   replaceable package HotFluid = Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
   replaceable package ColdFluid = Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
-  inner ThermoPower.System system annotation (Placement(visible=true, transformation(extent={{280,80},{300,100}}, rotation=0)));
-  replaceable Interfaces.TurbineBase turbine(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{160,-80},{200,-40}})));
-  replaceable Interfaces.CompressorBase compressor(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{-20,-80},{20,-40}})));
-  replaceable Interfaces.HeatExchangerBase PHX(redeclare package ColdFluid = ColdFluid, redeclare package HotFluid = HotFluid) annotation (Placement(transformation(extent={{-110,-20},{-70,20}})));
-  replaceable Interfaces.HeatExchangerBase SHX(redeclare package ColdFluid = ColdFluid, redeclare package HotFluid = HotFluid) annotation (Placement(transformation(extent={{70,-20},{110,20}})));
+  replaceable Interfaces.TurbineBase turbine(
+    redeclare package Medium = HotFluid,
+    Tdes_in=573.15,
+    pstart_in=100000,
+    pstart_out=100000,
+    Tstart_out=573.15) annotation (choicesAllMatching=true, Placement(transformation(extent={{160,-80},{200,-40}})));
+  replaceable Interfaces.CompressorBase compressor(
+    redeclare package Medium = HotFluid,
+    pstart_in=100000,
+    pstart_out=100000,
+    Tdes_in=573.15,
+    Tstart_out=573.15) annotation (choicesAllMatching=true, Placement(transformation(extent={{-20,-80},{20,-40}})));
+  replaceable Interfaces.HeatExchangerBase PHX(redeclare package ColdFluid = ColdFluid, redeclare package HotFluid = HotFluid) annotation (choicesAllMatching=true, Placement(transformation(extent={{-110,-20},{-70,20}})));
+  replaceable Interfaces.HeatExchangerBase SHX(redeclare package ColdFluid = ColdFluid, redeclare package HotFluid = HotFluid) annotation (choicesAllMatching=true, Placement(transformation(extent={{70,-20},{110,20}})));
   ThermoPower.Gas.SourcePressure sourceP_RAin(
     redeclare package Medium = ColdFluid,
     use_in_T=true,
-    use_in_p0=true) annotation (Placement(visible=true, transformation(
+    use_in_p0=true) annotation (Placement(transformation(
         origin={-210,50},
         extent={{-10,-10},{10,10}},
         rotation=0)));
   ThermoPower.Gas.SourcePressure sourceP_BAin(
     redeclare package Medium = HotFluid,
     use_in_T=true,
-    use_in_p0=true) annotation (Placement(visible=true, transformation(
+    use_in_p0=true) annotation (Placement(transformation(
         origin={-210,-40},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Gas.ThroughMassFlow throughMassFlow_RAin(redeclare package Medium = ColdFluid, w0=0.5) annotation (Placement(visible=true, transformation(
+  ThermoPower.Gas.ThroughMassFlow throughMassFlow_RAin(
+    redeclare package Medium = ColdFluid,
+    w0=whex_cold*2,
+    use_in_w0=false) annotation (Placement(transformation(
         origin={-180,50},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Gas.ThroughMassFlow throughMassFlow_BAin(redeclare package Medium = HotFluid, w0=0.25) annotation (Placement(visible=true, transformation(
+  ThermoPower.Gas.ThroughMassFlow throughMassFlow_BAin(
+    redeclare package Medium = HotFluid,
+    w0=whex_hot,
+    use_in_w0=false) annotation (Placement(transformation(
         origin={-180,-40},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Gas.ThroughMassFlow throughMassFlow_RA_SHXin(redeclare package Medium = ColdFluid, w0=0.25) annotation (Placement(visible=true, transformation(
+  ThermoPower.Gas.ThroughMassFlow throughMassFlow_RA_SHXin(
+    redeclare package Medium = ColdFluid,
+    w0=whex_cold,
+    use_in_w0=false) annotation (Placement(transformation(
         origin={-140,70},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Gas.SinkPressure sinkP_RA_PHXout(redeclare package Medium = ColdFluid, use_in_p0=true) annotation (Placement(visible=true, transformation(
+  ThermoPower.Gas.SinkPressure sinkP_RA_PHXout(redeclare package Medium = ColdFluid, use_in_p0=true) annotation (Placement(transformation(
         origin={-10,40},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Gas.SinkPressure sinkP_RA_SHXout(redeclare package Medium = ColdFluid, use_in_p0=true) annotation (Placement(visible=true, transformation(extent={{160,30},{180,50}}, rotation=0)));
-  ThermoPower.Gas.SinkPressure sinkP_PACKout(redeclare package Medium = HotFluid) annotation (Placement(visible=true, transformation(extent={{240,-20},{260,0}}, rotation=0)));
-  ThermoPower.Gas.SensT sensT_BA_PHXout(redeclare package Medium = HotFluid) annotation (Placement(visible=true, transformation(
+  ThermoPower.Gas.SinkPressure sinkP_RA_SHXout(redeclare package Medium = ColdFluid, use_in_p0=true) annotation (Placement(transformation(extent={{160,30},{180,50}})));
+  ThermoPower.Gas.SinkPressure sinkP_PACKout(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{240,-20},{260,0}})));
+  ThermoPower.Gas.SensT sensT_BA_PHXout(redeclare package Medium = HotFluid) annotation (Placement(transformation(
         origin={-40,-40},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Gas.SensT sensT_BA_SHXout(redeclare package Medium = HotFluid) annotation (Placement(visible=true, transformation(
+  ThermoPower.Gas.SensT sensT_BA_SHXout(redeclare package Medium = HotFluid) annotation (Placement(transformation(
         origin={140,-40},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Gas.SensT sensT_BA_SHXin(redeclare package Medium = HotFluid) annotation (Placement(visible=true, transformation(
+  ThermoPower.Gas.SensT sensT_BA_SHXin(redeclare package Medium = HotFluid) annotation (Placement(transformation(
         origin={40,-40},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Gas.SensT sensT_BA_PACKout(redeclare package Medium = HotFluid) annotation (Placement(visible=true, transformation(
+  ThermoPower.Gas.SensT sensT_BA_PACKout(redeclare package Medium = HotFluid) annotation (Placement(transformation(
         origin={220,-40},
         extent={{-10,-10},{10,10}},
         rotation=0)));
   ThermoPower.Gas.SensT sensT_BA_PHXin(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{-150,-46},{-130,-26}})));
-  ThermoPower.Gas.SensT sensT_RA_PHXin(redeclare package Medium = ColdFluid) annotation (Placement(visible=true, transformation(
+  ThermoPower.Gas.SensT sensT_RA_PHXin(redeclare package Medium = ColdFluid) annotation (Placement(transformation(
         origin={-140,44},
         extent={{-10,-10},{10,10}},
         rotation=0)));
   ThermoPower.Gas.SensT sensT_RA_PHXout(redeclare package Medium = ColdFluid) annotation (Placement(transformation(extent={{-50,34},{-30,54}})));
-  ThermoPower.Gas.SensT sensT_RA_SHXout(redeclare package Medium = ColdFluid) annotation (Placement(visible=true, transformation(
-        origin={140,44},
-        extent={{-10,-10},{10,10}},
-        rotation=0)));
+  ThermoPower.Gas.SensT sensT_RA_SHXout(redeclare package Medium = ColdFluid) annotation (Placement(transformation(origin={140,44}, extent={{-10,-10},{10,10}})));
+  ThermoPower.Gas.SensT sensT_RA_SHXin(redeclare package Medium = ColdFluid) annotation (Placement(transformation(extent={{30,34},{50,54}})));
   ThermoPower.Gas.SensP sensP_RA_PHXin(redeclare package Medium = ColdFluid) annotation (Placement(transformation(extent={{-120,40},{-100,60}})));
   ThermoPower.Gas.SensP sensP_RA_PHXout(redeclare package Medium = ColdFluid) annotation (Placement(transformation(extent={{-80,40},{-60,60}})));
-  ThermoPower.Gas.SensT sensT_RA_SHXin(redeclare package Medium = ColdFluid) annotation (Placement(transformation(extent={{30,34},{50,54}})));
   ThermoPower.Gas.SensP sensP_RA_SHXin(redeclare package Medium = ColdFluid) annotation (Placement(transformation(extent={{60,40},{80,60}})));
   ThermoPower.Gas.SensP sensP_RA_SHXout(redeclare package Medium = ColdFluid) annotation (Placement(transformation(extent={{100,40},{120,60}})));
   ThermoPower.Gas.SensP sensP_BA_PHXin(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{-170,-20},{-150,0}})));
-  ThermoPower.Gas.SensP sensP_BA_PHXout(redeclare package Medium = HotFluid) annotation (Placement(visible=true, transformation(extent={{-40,-10},{-20,10}}, rotation=0)));
+  ThermoPower.Gas.SensP sensP_BA_PHXout(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   ThermoPower.Gas.SensP sensP_BA_SHXin(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{30,-12},{50,8}})));
   ThermoPower.Gas.SensP sensP_BA_SHXout(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{140,-8},{160,12}})));
   ThermoPower.Gas.SensP sensP_BA_PACKout(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{200,-12},{220,8}})));
-  Modelica.Mechanics.Rotational.Components.Inertia inertia(J=J_shaft, w(start=w0, fixed=false)) annotation (Placement(visible=true, transformation(
-        origin={90,-60},
-        extent={{-10,-10},{10,10}},
-        rotation=0)));
+  Modelica.Mechanics.Rotational.Components.Inertia inertia(J=J_shaft, w(start=w0, fixed=false)) annotation (Placement(transformation(origin={90,-60}, extent={{-10,-10},{10,10}})));
 protected
-  parameter Modelica.SIunits.Inertia J_shaft=10;
+  parameter Modelica.SIunits.Inertia J_shaft=100;
   parameter Modelica.SIunits.AngularVelocity w0=523.3;
 equation
   connect(sourceP_RAin.flange, throughMassFlow_RAin.inlet) annotation (Line(points={{-200,50},{-190,50}}, color={159,159,223}));
@@ -114,11 +130,11 @@ equation
   connect(sensT_RA_PHXout.T, signalBus.signalSubBus_RA_T.T_RA_PHXout) annotation (Line(points={{-33,50},{-28,50},{-28,118},{300.1,118},{300.1,0.1}}, color={0,0,127}));
   connect(sensT_RA_SHXout.T, signalBus.signalSubBus_RA_T.T_RA_SHXout) annotation (Line(points={{147,50},{152,50},{152,114},{300.1,114},{300.1,0.1}}, color={0,0,127}));
   connect(T_cold_in, sourceP_RAin.in_T) annotation (Line(points={{-300,90},{-210,90},{-210,59}}, color={0,0,127}));
-  connect(p_cold_in, sourceP_RAin.in_p0) annotation (Line(points={{-300,50},{-260,50},{-260,80},{-216,80},{-216,56.4}}, color={0,0,127}));
-  connect(T_hot_in, sourceP_BAin.in_T) annotation (Line(points={{-300,-10},{-210,-10},{-210,-31}}, color={0,0,127}));
-  connect(p_hot_in, sourceP_BAin.in_p0) annotation (Line(points={{-300,-50},{-260,-50},{-260,-20},{-216,-20},{-216,-33.6}}, color={0,0,127}));
-  connect(p_cold_in, sinkP_RA_PHXout.in_p0) annotation (Line(points={{-300,50},{-260,50},{-260,80},{-16.45,80},{-16.45,45.95}}, color={0,0,127}));
-  connect(p_cold_in, sinkP_RA_SHXout.in_p0) annotation (Line(points={{-300,50},{-260,50},{-260,80},{163.55,80},{163.55,45.95}}, color={0,0,127}));
+  connect(p_cold_in, sourceP_RAin.in_p0) annotation (Line(points={{-300,60},{-260,60},{-260,80},{-216,80},{-216,56.4}}, color={0,0,127}));
+  connect(T_hot_in, sourceP_BAin.in_T) annotation (Line(points={{-300,-20},{-210,-20},{-210,-31}}, color={0,0,127}));
+  connect(p_hot_in, sourceP_BAin.in_p0) annotation (Line(points={{-300,-50},{-260,-50},{-260,-28},{-216,-28},{-216,-33.6}}, color={0,0,127}));
+  connect(p_cold_in, sinkP_RA_PHXout.in_p0) annotation (Line(points={{-300,60},{-260,60},{-260,80},{-16.45,80},{-16.45,45.95}}, color={0,0,127}));
+  connect(p_cold_in, sinkP_RA_SHXout.in_p0) annotation (Line(points={{-300,60},{-260,60},{-260,80},{163.55,80},{163.55,45.95}}, color={0,0,127}));
   connect(sensT_RA_PHXin.outlet, sensP_RA_PHXin.flange) annotation (Line(points={{-134,40},{-120,40},{-120,32},{-110,32},{-110,46}}, color={159,159,223}));
   connect(PHX.outfl_1, sensP_RA_PHXout.flange) annotation (Line(points={{-70,10},{-60,10},{-60,32},{-70,32},{-70,46}}, color={159,159,223}));
   connect(throughMassFlow_RA_SHXin.outlet, sensT_RA_SHXin.inlet) annotation (Line(points={{-130,70},{20,70},{20,40},{34,40}}, color={159,159,223}));
@@ -140,7 +156,7 @@ equation
   connect(sensP_BA_SHXin.p, signalBus.signalSubBus_BA_p.p_BA_SHXin) annotation (Line(points={{47,4},{54,4},{54,-96},{276,-96},{276,0.1},{300.1,0.1}}, color={0,0,127}));
   connect(sensP_BA_SHXout.p, signalBus.signalSubBus_BA_p.p_BA_SHXout) annotation (Line(points={{157,8},{160,8},{160,-94},{274,-94},{274,0.1},{300.1,0.1}}, color={0,0,127}));
   connect(sensP_BA_PACKout.p, signalBus.signalSubBus_BA_p.p_BA_PACKout) annotation (Line(points={{217,4},{232,4},{232,-92},{272,-92},{272,0.1},{300.1,0.1}}, color={0,0,127}));
-  annotation (Diagram(coordinateSystem(extent={{-300,-100},{300,100}}), graphics={Text(
+  annotation (Diagram(coordinateSystem(extent={{-300,-140},{300,140}}), graphics={Text(
           origin={-190,-60},
           lineColor={238,46,47},
           extent={{-30,10},{30,-10}},
@@ -152,9 +168,5 @@ equation
           extent={{-30,10},{30,-10}},
           textString="Ram air (cold side)",
           textStyle={TextStyle.Bold},
-          horizontalAlignment=TextAlignment.Left)}), experiment(
-      StopTime=3000,
-      Tolerance=1e-06,
-      StartTime=0,
-      Interval=6));
+          horizontalAlignment=TextAlignment.Left)}));
 end ECS_lossless;
