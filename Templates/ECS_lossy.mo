@@ -1,6 +1,7 @@
 within PL_Lib.Templates;
 model ECS_lossy
   extends PL_Lib.Interfaces.ConfigurationBase;
+  extends Modelica.Icons.UnderConstruction;
   replaceable package HotFluid = Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
   replaceable package ColdFluid = Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
   replaceable Interfaces.TurbineBase turbine(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{160,-80},{200,-40}})));

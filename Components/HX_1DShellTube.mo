@@ -107,7 +107,6 @@ equation
           extent={{-80,-153.338},{80,-193.339}},
           textString="%name"), Text(
           lineColor={102,44,145},
-          extent={{-80,100},{80,20}},
-          textString="1D Shell 
-& Tube")}));
+          extent={{-80,100},{80,60}},
+          textString="1D Shell & Tube")}));
 end HX_1DShellTube;
