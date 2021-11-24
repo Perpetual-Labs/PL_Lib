@@ -1,8 +1,8 @@
 within PL_Lib.Configurations;
-model ECS_hybridConfig
+model ECS_hybridConfig_dummy
   extends PL_Lib.Icons.ConfigurationHybrid_icon;
   extends Templates.ECS_ideal_mixer(
-    redeclare Components.HX_extFun       PHX,
+    redeclare Components.HX_extFun_dummy PHX,
     redeclare Components.HX_1DCoFlow SHX(
       Nnodes=11,
       Lhex=1,
@@ -17,4 +17,4 @@ model ECS_hybridConfig
       pstart_out=100000,
       phic_set=6e-7));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-300,-100},{300,100}})));
-end ECS_hybridConfig;
+end ECS_hybridConfig_dummy;

@@ -14,6 +14,6 @@ expandable connector SignalSubBus_T "Signal sub-bus for temperature signal readi
   SI.Temperature PHXout_cold;
   SI.Temperature SHXin_cold;
   SI.Temperature SHXout_cold;
-  
+
   SI.Temperature MIXout_hot;
 end SignalSubBus_T;
