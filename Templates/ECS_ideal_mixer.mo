@@ -29,11 +29,11 @@ partial model ECS_ideal_mixer
         extent={{-10,-10},{10,10}},
         rotation=0)));
   ThermoPower.Gas.SinkPressure sinkP_RA_PHXout(redeclare package Medium = ColdFluid, use_in_p0=true) annotation (Placement(transformation(
-        origin={-20,40},
+        origin={-50,40},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Gas.SinkPressure sinkP_RA_SHXout(redeclare package Medium = ColdFluid, use_in_p0=true) annotation (Placement(transformation(extent={{190,30},{210,50}})));
-  ThermoPower.Gas.SinkPressure sinkP_PACKout(redeclare package Medium = HotFluid) annotation (Placement(visible = true, transformation(extent = {{310, 50}, {330, 70}}, rotation = 0)));
+  ThermoPower.Gas.SinkPressure sinkP_RA_SHXout(redeclare package Medium = ColdFluid, use_in_p0=true) annotation (Placement(transformation(extent={{160,30},{180,50}})));
+  ThermoPower.Gas.SinkPressure sinkP_PACKout(redeclare package Medium = HotFluid) annotation (Placement(visible = true, transformation(extent={{270,50},{290,70}},      rotation = 0)));
   ThermoPower.Gas.SensT sensT_BA_PHXout(redeclare package Medium = HotFluid) annotation (Placement(visible=true, transformation(
         origin={-80,-36},
         extent={{-10,-10},{10,10}},
@@ -78,15 +78,23 @@ partial model ECS_ideal_mixer
         extent={{-10,-10},{10,10}},
         rotation=0)));
   ThermoPower.Gas.SensT sensT_BA_MIXout(redeclare package Medium = HotFluid) annotation (
-    Placement(visible = true, transformation(origin = {280, 64}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.Mixer mixer(redeclare package Medium = HotFluid, V = 0.01, pstart = 101325) annotation (
-    Placement(visible = true, transformation(origin = {250, 60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Blocks.Continuous.LimPID PID(Td = 0, Ti = 60, k = 0.4, limitsAtInit = true, yMax = whex_hot) annotation (
-    Placement(visible = true, transformation(origin = {300, 90}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlow_BA_MIXin(redeclare package Medium = HotFluid, use_in_T = true, use_in_w0 = true) annotation (
-    Placement(visible = true, transformation(origin = {220, 80}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin={250,64},    extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  ThermoPower.Gas.Mixer mixer(redeclare package Medium = HotFluid, V = 0.01,
+    pstart=101325,
+    Tstart=295.15)                                                                            annotation (
+    Placement(visible = true, transformation(origin={220,60},    extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Blocks.Continuous.LimPID PID(
+    Td=0.1,
+    Ti=30,
+    k=1e-3,
+    yMin=0,                                                       limitsAtInit = true, yMax = whex_hot) annotation (
+    Placement(visible = true, transformation(origin={260,90},    extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  ThermoPower.Gas.SourceMassFlow sourceMassFlow_BA_MIXin(redeclare package Medium = HotFluid,
+    T=295.15,                                                                                 use_in_T = true, use_in_w0 = true) annotation (
+    Placement(visible = true, transformation(origin={188,80},    extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealInput Tcabin_set annotation (
-    Placement(visible = true, transformation(origin = {260, 140}, extent = {{-20, -20}, {20, 20}}, rotation = -90), iconTransformation(origin = {40, 100}, extent = {{-20, -20}, {20, 20}}, rotation = -90)));
+    Placement(visible = true, transformation(origin={230,140},    extent = {{-20, -20}, {20, 20}}, rotation = -90), iconTransformation(origin = {40, 100}, extent = {{-20, -20}, {20, 20}}, rotation = -90)));
+  Modelica.Blocks.Continuous.FirstOrder actuator(T=1, y_start=0) annotation (Placement(transformation(extent={{280,80},{300,100}})));
 protected
   ThermoPower.Gas.SensP sensP_RA_PHXin(redeclare package Medium = ColdFluid) annotation (Placement(visible=true, transformation(extent={{-190,10},{-170,30}}, rotation=0)));
   ThermoPower.Gas.SensP sensP_RA_PHXout(redeclare package Medium = ColdFluid) annotation (Placement(visible=true, transformation(extent={{-90,10},{-70,30}}, rotation=0)));
@@ -130,9 +138,7 @@ equation
   connect(p_hot_in, sourceP_BAin.in_p0) annotation (
     Line(points = {{-300, -50}, {-226, -50}, {-226, -24}, {-216, -24}, {-216, -33.6}}, color = {0, 0, 127}));
   connect(p_cold_in, sinkP_RA_PHXout.in_p0) annotation (
-    Line(points = {{-300, 60}, {-260, 60}, {-260, 80}, {-26.45, 80}, {-26.45, 45.95}}, color = {0, 0, 127}));
-  connect(p_cold_in, sinkP_RA_SHXout.in_p0) annotation (
-    Line(points = {{-300, 60}, {-260, 60}, {-260, 80}, {193.55, 80}, {193.55, 45.95}}, color = {0, 0, 127}));
+    Line(points={{-300,60},{-260,60},{-260,80},{-56.45,80},{-56.45,45.95}},            color = {0, 0, 127}));
   connect(sensT_RA_SHXin.outlet, SHX.infl_1) annotation (
     Line(points = {{46, 40}, {60, 40}, {60, 10}, {70, 10}}, color = {159, 159, 223}));
   connect(PHX.outfl_2, sensP_BA_PHXout.flange) annotation (
@@ -202,27 +208,27 @@ equation
   connect(sensP_BA_PACKout.p, signalBus.p.PACKout_hot) annotation (
     Line(points = {{237, -8}, {242, -8}, {242, -106}, {300.1, -106}, {300.1, 0.1}}, color = {0, 0, 127}));
   connect(sensT_RA_PHXout.outlet, sinkP_RA_PHXout.flange) annotation (
-    Line(points = {{-74, 40}, {-30, 40}}, color = {159, 159, 223}));
+    Line(points={{-74,40},{-60,40}},      color = {159, 159, 223}));
   connect(sensT_RA_SHXout.outlet, sinkP_RA_SHXout.flange) annotation (
-    Line(points = {{146, 40}, {190, 40}}, color = {159, 159, 223}));
+    Line(points={{146,40},{160,40}},      color = {159, 159, 223}));
   connect(sourceMassFlow_BA_MIXin.flange, mixer.in1) annotation (
-    Line(points = {{230, 80}, {242, 80}, {242, 66}}, color = {159, 159, 223}));
-  connect(PID.y, sourceMassFlow_BA_MIXin.in_w0) annotation (
-    Line(points = {{311, 90}, {321, 90}, {321, 112}, {214, 112}, {214, 85}}, color = {0, 0, 127}));
+    Line(points={{198,80},{212,80},{212,66}},        color = {159, 159, 223}));
   connect(mixer.out, sensT_BA_MIXout.inlet) annotation (
-    Line(points = {{260, 60}, {274, 60}}, color = {159, 159, 223}));
+    Line(points={{230,60},{244,60}},      color = {159, 159, 223}));
   connect(sensT_BA_MIXout.T, PID.u_m) annotation (
-    Line(points = {{287, 70}, {300, 70}, {300, 78}}, color = {0, 0, 127}));
+    Line(points={{257,70},{260,70},{260,78}},        color = {0, 0, 127}));
   connect(Tcabin_set, PID.u_s) annotation (
-    Line(points = {{260, 140}, {260, 90}, {288, 90}}, color = {0, 0, 127}));
+    Line(points={{230,140},{230,90},{248,90}},        color = {0, 0, 127}));
   connect(sensT_BA_MIXout.outlet, sinkP_PACKout.flange) annotation (
-    Line(points = {{286, 60}, {310, 60}}, color = {159, 159, 223}));
-  connect(sensT_BA_PACKout.outlet, mixer.in2) annotation (
-    Line(points = {{236, -40}, {244, -40}, {244, 40}, {242, 40}, {242, 54}}, color = {159, 159, 223}));
+    Line(points={{256,60},{270,60}},      color = {159, 159, 223}));
   connect(T_hot_in, sourceMassFlow_BA_MIXin.in_T) annotation (
-    Line(points = {{-300, -20}, {-270, -20}, {-270, 120}, {220, 120}, {220, 86}}, color = {0, 0, 127}));
+    Line(points={{-300,-20},{-196,-20},{-196,92},{188,92},{188,85}},              color = {0, 0, 127}));
   connect(sensT_BA_MIXout.T, signalBus.T.MIXout_hot) annotation (
-    Line(points = {{288, 70}, {300, 70}, {300, 0}}, color = {0, 0, 127}));
+    Line(points={{257,70},{300.1,70},{300.1,0.1}},  color = {0, 0, 127}));
+  connect(PID.y, actuator.u) annotation (Line(points={{271,90},{278,90}}, color={0,0,127}));
+  connect(p_cold_in, sinkP_RA_SHXout.in_p0) annotation (Line(points={{-300,60},{-260,60},{-260,80},{163.55,80},{163.55,45.95}}, color={0,0,127}));
+  connect(sensT_BA_PACKout.outlet, mixer.in2) annotation (Line(points={{236,-40},{260,-40},{260,20},{212,20},{212,54}}, color={159,159,223}));
+  connect(actuator.y, sourceMassFlow_BA_MIXin.in_w0) annotation (Line(points={{301,90},{310,90},{310,110},{182,110},{182,85}}, color={0,0,127}));
   annotation (Diagram(coordinateSystem(extent={{-300,-140},{300,140}}), graphics={Text(
           origin={-210,-60},
           lineColor={238,46,47},

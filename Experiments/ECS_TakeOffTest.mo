@@ -21,12 +21,13 @@ model ECS_TakeOffTest "Simulation model to evaluate the ECS performance during a
   parameter SI.Temperature Thex_in_BA_00km=273.15 + 300 "Bleed air temperature (minimum)";
   parameter SI.Temperature Thex_in_BA_10km=273.15 + 400 "Bleed air temperature (maximum)";
 
-  parameter SI.Time t_TcabinStep=1000;
+  parameter SI.Time t_TcabinStep=200;
   parameter SI.Temperature Tcabin_set_init=273.15 + 20;
   parameter SI.Temperature Tcabin_set_step=4;
 
   inner ThermoPower.System system annotation (Placement(transformation(extent={{80,80},{100,100}})));
-  replaceable Configurations.ECS_hybridConfig       ECS_config(
+  replaceable Configurations.ECS_hybridConfig_dummy
+                                              ECS_config(
     redeclare package ColdFluid = ColdFluid,
     redeclare package HotFluid = HotFluid,
     whex_cold=whex_RA,
