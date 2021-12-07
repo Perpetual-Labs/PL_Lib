@@ -1,6 +1,7 @@
 within PL_Lib.Components;
 model Compressor_noMaps
   // extends ThermoPower.Gas.BaseClasses.CompressorBase;
+  extends ThermoPower.Icons.Gas.Compressor;
   extends PL_Lib.Interfaces.CompressorBase;
   import ThermoPower.Choices.TurboMachinery.TableTypes;
   parameter Modelica.SIunits.AngularVelocity Ndesign=523.3 "Design velocity";
@@ -96,5 +97,7 @@ This model adds the performance characteristics to the Compressor_Base model, by
     by <a href=\"mailto:francesco.casella@polimi.it\">Francesco Casella</a>:<br>
        First release.</li>
 </ul>
-</html>"));
+</html>"), Icon(graphics={
+                     Text(extent={{-100,-60},{100,-100}},      lineColor={28,108,200},
+          textString="%name")}));
 end Compressor_noMaps;

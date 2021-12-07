@@ -29,10 +29,10 @@ partial model ECS_ideal
         extent={{-10,-10},{10,10}},
         rotation=0)));
   ThermoPower.Gas.SinkPressure sinkP_RA_PHXout(redeclare package Medium = ColdFluid, use_in_p0=true) annotation (Placement(transformation(
-        origin={-20,40},
+        origin={-50,40},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Gas.SinkPressure sinkP_RA_SHXout(redeclare package Medium = ColdFluid, use_in_p0=true) annotation (Placement(transformation(extent={{190,30},{210,50}})));
+  ThermoPower.Gas.SinkPressure sinkP_RA_SHXout(redeclare package Medium = ColdFluid, use_in_p0=true) annotation (Placement(transformation(extent={{160,30},{180,50}})));
   ThermoPower.Gas.SinkPressure sinkP_PACKout(redeclare package Medium = HotFluid) annotation (Placement(transformation(extent={{250,-20},{270,0}})));
   ThermoPower.Gas.SensT sensT_BA_PHXout(redeclare package Medium = HotFluid) annotation (Placement(visible=true, transformation(
         origin={-80,-36},
@@ -122,9 +122,9 @@ equation
   connect(p_hot_in, sourceP_BAin.in_p0) annotation (
     Line(points = {{-300, -50}, {-226, -50}, {-226, -24}, {-216, -24}, {-216, -33.6}}, color = {0, 0, 127}));
   connect(p_cold_in, sinkP_RA_PHXout.in_p0) annotation (
-    Line(points = {{-300, 60}, {-260, 60}, {-260, 80}, {-26.45, 80}, {-26.45, 45.95}}, color = {0, 0, 127}));
+    Line(points={{-300,60},{-260,60},{-260,80},{-56.45,80},{-56.45,45.95}},            color = {0, 0, 127}));
   connect(p_cold_in, sinkP_RA_SHXout.in_p0) annotation (
-    Line(points = {{-300, 60}, {-260, 60}, {-260, 80}, {193.55, 80}, {193.55, 45.95}}, color = {0, 0, 127}));
+    Line(points={{-300,60},{-260,60},{-260,80},{163.55,80},{163.55,45.95}},            color = {0, 0, 127}));
   connect(sensT_RA_SHXin.outlet, SHX.infl_1) annotation (
     Line(points = {{46, 40}, {60, 40}, {60, 10}, {70, 10}}, color = {159, 159, 223}));
   connect(PHX.outfl_2, sensP_BA_PHXout.flange) annotation (
@@ -194,9 +194,9 @@ equation
   connect(sensP_BA_PACKout.p, signalBus.p.PACKout_hot) annotation (
     Line(points = {{237, -8}, {242, -8}, {242, -106}, {300.1, -106}, {300.1, 0.1}}, color = {0, 0, 127}));
   connect(sensT_RA_PHXout.outlet, sinkP_RA_PHXout.flange) annotation (
-    Line(points = {{-74, 40}, {-30, 40}}, color = {159, 159, 223}));
+    Line(points={{-74,40},{-60,40}},      color = {159, 159, 223}));
   connect(sensT_RA_SHXout.outlet, sinkP_RA_SHXout.flange) annotation (
-    Line(points = {{146, 40}, {190, 40}}, color = {159, 159, 223}));
+    Line(points={{146,40},{160,40}},      color = {159, 159, 223}));
   annotation (Diagram(coordinateSystem(extent={{-300,-140},{300,140}}), graphics={Text(
           origin={-210,-60},
           lineColor={238,46,47},

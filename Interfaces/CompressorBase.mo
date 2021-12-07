@@ -1,6 +1,6 @@
 within PL_Lib.Interfaces;
 partial model CompressorBase
-  extends ThermoPower.Icons.Gas.Compressor;
+
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium annotation (
     choicesAllMatching = true);
   parameter Boolean explicitIsentropicEnthalpy = true "isentropicEnthalpy function used";
@@ -105,6 +105,5 @@ equation
 </ul>
 </html>
     "),
-    Diagram(graphics),
-    Icon(graphics={  Text(extent = {{-128, -60}, {128, -100}}, lineColor = {0, 0, 255}, textString = "%name")}));
+    Diagram(graphics));
 end CompressorBase;

@@ -1,6 +1,7 @@
 within PL_Lib.Components;
 model Turbine_noMaps
   //  extends ThermoPower.Gas.BaseClasses.TurbineBase;
+  extends ThermoPower.Icons.Gas.Turbine;
   extends PL_Lib.Interfaces.TurbineBase;
   import ThermoPower.Choices.TurboMachinery.TableTypes;
   parameter Modelica.SIunits.AngularVelocity Ndesign=523.3 "Design speed";
@@ -82,5 +83,7 @@ This model adds the performance characteristics to the Turbine_Base model, by me
     by <a href=\"mailto:francesco.casella@polimi.it\">Francesco Casella</a>:<br>
        First release.</li>
 </ul>
-</html>"), Diagram(graphics));
+</html>"), Diagram(graphics),
+    Icon(graphics={  Text(extent={{-100,-60},{100,-100}},      lineColor={28,108,200},
+          textString="%name")}));
 end Turbine_noMaps;
