@@ -1,7 +1,7 @@
 within PL_Lib.Configurations;
 model ECS_hybridConfig_dummy
   extends PL_Lib.Icons.ConfigurationHybrid_icon;
-  extends Templates.ECS_ideal_mixer(
+  extends Templates.PACK.ECS_ideal_mixer(
     redeclare Components.HX_extFun_dummy PHX,
     redeclare Components.HX_1DCoFlow SHX(
       Nnodes=11,

@@ -1,4 +1,4 @@
-within PL_Lib.Templates;
+within PL_Lib.Templates.PACK;
 partial model ECS_ideal_mixer
   extends PL_Lib.Interfaces.ConfigurationBase;
 
