@@ -85,7 +85,8 @@ model HX_1DShellTube
         origin={0,20},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Thermal.HeatExchangerTopologyFV heatExchangerTopologyFV(Nw=Nnodes - 1, redeclare model HeatExchangerTopology = ThermoPower.Thermal.HeatExchangerTopologies.ShellAndTube (
+  ThermoPower.Thermal.HeatExchangerTopologyFV heatExchangerTopologyFV(Nw=Nnodes - 1, redeclare model HeatExchangerTopology =
+        ThermoPower.Thermal.HeatExchangerTopologies.ShellAndTube (
         Nw=Nnodes - 1,
         Ntp=Nnodes - 1,
         inletTubeAtTop=true,
