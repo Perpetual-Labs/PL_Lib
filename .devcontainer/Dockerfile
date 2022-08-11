@@ -25,7 +25,7 @@ RUN apt-get update \
     && apt install -y openmodelica
 
 # Install OpenModelica libraries (like all of them)
-RUN for PKG in `apt-cache search "omlib-.*" | cut -d" " -f1`; do apt-get install -y "$PKG"; done
+#RUN for PKG in `apt-cache search "omlib-.*" | cut -d" " -f1`; do apt-get install -y "$PKG"; done
 
 # Add non-root user for security
 #RUN useradd -m -s /bin/bash openmodelicausers

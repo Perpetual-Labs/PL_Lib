@@ -4,6 +4,11 @@
 //loadFile("/usr/lib/omlibrary/ThermoPower 3.1/package.mo"); getErrorString();
 //loadFile("/usr/lib/omlibrary/Modelica_Requirements 0.6/package.mo"); getErrorString();
 
+installPackage(Modelica, "3.2.3");
+getErrorString;
+installPackage(ThermoPower);
+getErrorString;
+
 loadFile("/workspaces/PL_Lib/PL_Lib/package.mo");
 getErrorString();
 mkdir("build");
