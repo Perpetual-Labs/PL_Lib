@@ -2,3 +2,5 @@
 *.ini
 
 *.bak-mo
+
+/build
