@@ -1,6 +1,6 @@
 within PL_Lib.Templates.PACK;
 partial model PACK_simpleTemplate
-//   extends PL_Lib.Interfaces.ConfigurationBase;
+  extends PL_Lib.Interfaces.ConfigurationBase;
 
   parameter Modelica.SIunits.MassFlowRate whex_cold "nominal (and initial) mass flow rate";
   parameter Modelica.SIunits.MassFlowRate whex_hot "nominal (and initial) mass flow rate";
@@ -44,6 +44,10 @@ equation
   connect(PHX.outfl_2, compressor.inlet) annotation (Line(points={{-110,-10},{-104,-10},{-104,-44},{-36,-44}}, color={159,159,223}));
   connect(PHX.outfl_1, sinkP_RA_PHXout.flange) annotation (Line(points={{-110,10},{-104,10},{-104,40},{-60,40}}, color={159,159,223}));
   connect(compressor.outlet, sinkP_PACKout.flange) annotation (Line(points={{-4,-44},{20,-44},{20,-10},{40,-10}}, color={159,159,223}));
+  connect(p_cold_in, sinkP_RA_PHXout.in_p0) annotation (Line(points={{-300,60},{-242,60},{-242,72},{-56.45,72},{-56.45,45.95}}, color={0,0,127}));
+  connect(T_cold_in, sourceMassFlow_RA_PHXin.in_T) annotation (Line(points={{-300,90},{-210,90},{-210,45}}, color={0,0,127}));
+  connect(T_hot_in, sourceP_BAin.in_T) annotation (Line(points={{-300,-20},{-210,-20},{-210,-31}}, color={0,0,127}));
+  connect(p_hot_in, sourceP_BAin.in_p0) annotation (Line(points={{-300,-50},{-262,-50},{-262,-26},{-216,-26},{-216,-33.6}}, color={0,0,127}));
   annotation (Diagram(coordinateSystem(extent={{-300,-140},{300,140}}), graphics={Text(
           origin={-190,-60},
           lineColor={238,46,47},

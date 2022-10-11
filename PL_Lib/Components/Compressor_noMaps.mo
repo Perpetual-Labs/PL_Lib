@@ -19,6 +19,7 @@ model Compressor_noMaps
 
   parameter Real eta_set=0.95;
   parameter Real PR_set=2.5;
+  parameter Modelica.SIunits.Mass mass = 1 "Compressor mass";
 
   Modelica.Blocks.Tables.CombiTable2D Eta(
     tableOnFile=if Table == TableTypes.matrix then false else true,
@@ -42,6 +43,7 @@ model Compressor_noMaps
   Real N_T_design "Referred design velocity";
   Real phic "Flow number ";
   Real beta(start=integer(size(tablePhic, 1)/2)) "Number of beta line";
+
 protected
   parameter Real tableEtaC[6,4]=[0,95,100,105; 1,82.5e-2,81e-2,80.5e-2; 2,84e-2,82.9e-2,82e-2; 3,83.2e-2,82.2e-2,81.5e-2; 4,82.5e-2,81.2e-2,79e-2; 5,79.5e-2,78e-2,76.5e-2];
   parameter Real tablePhicC[6,4]=[0,95,100,105; 1,38.3e-3,43e-3,46.8e-3; 2,39.3e-3,43.8e-3,47.9e-3; 3,40.6e-3,45.2e-3,48.4e-3; 4,41.6e-3,46.1e-3,48.9e-3; 5,42.3e-3,46.6e-3,49.3e-3];

@@ -1,5 +1,5 @@
 within PL_Lib.Experiments;
-model ECS_TakeOffTest "Simulation model to evaluate the ECS performance during a take-off scenario"
+model TakeOffTest "Simulation model to evaluate the ECS performance during a take-off scenario"
   extends Modelica.Icons.Example;
   import SI = Modelica.SIunits;
   replaceable package HotFluid = Modelica.Media.Air.DryAirNasa constrainedby Modelica.Media.Interfaces.PartialMedium;
@@ -68,4 +68,4 @@ equation
       StopTime=1500,
       Tolerance=1e-06,
       Interval=3));
-end ECS_TakeOffTest;
+end TakeOffTest;

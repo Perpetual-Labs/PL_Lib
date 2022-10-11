@@ -2,13 +2,13 @@ within PL_Lib;
 package Documentation
   extends Modelica.Icons.Information;
 
-
 annotation (Documentation(info="<html>
-<h4>PerpetualLibrary by Andrey Vasilyev, Perpetual Labs (c) 2021</h4>
-<p>Library for modelling and design of an ECS sub-system of an aircraft.</p>
+<h4>Copyright (c) 2022, Perpetual Labs, Ltd. All rights reserved.</h4>
+<p>This library is a part of a case study on modelling an environmental control system of a passenger aircraft</p>
 <p>Key assumptions:</p>
 <ul>
 <li>Dry air at both at bleed air and ram air intakes. This means there is no high pressure water separation sub-system.</li>
+<li></li>
 </ul>
 <h4>Contact info:</h4>
 <p>Dr Andrey Vasilyev</p>

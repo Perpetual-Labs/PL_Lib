@@ -20,6 +20,7 @@ model Turbine_noMaps
   parameter Real eta_set=0.95;
   parameter Real phic_set=1e-5;
   //  parameter Real PR_set = 2.5;
+  parameter Modelica.SIunits.Mass mass = 1 "Turbine mass";
 
   Modelica.Blocks.Tables.CombiTable2D Phic(
     tableOnFile=if Table == TableTypes.matrix then false else true,
