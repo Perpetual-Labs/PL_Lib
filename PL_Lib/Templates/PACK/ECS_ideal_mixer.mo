@@ -169,44 +169,8 @@ equation
     Line(points = {{18, 40}, {34, 40}}, color = {159, 159, 223}));
   connect(T_cold_in, sourceMassFlow_RA_SHXin.in_T) annotation (
     Line(points = {{-300, 90}, {8, 90}, {8, 45}}, color = {0, 0, 127}));
-  connect(sensT_BA_PHXin.T, signalBus.T.PHXin_hot) annotation (
-    Line(points = {{-173, -30}, {-170, -30}, {-170, -140}, {300.1, -140}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensP_BA_PHXin.p, signalBus.p.PHXin_hot) annotation (
-    Line(points = {{-173, -4}, {-168, -4}, {-168, -138}, {300.1, -138}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensP_RA_PHXin.p, signalBus.p.PHXin_cold) annotation (
-    Line(points = {{-173, 26}, {-166, 26}, {-166, -136}, {300.1, -136}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensT_RA_PHXin.T, signalBus.T.PHXin_cold) annotation (
-    Line(points = {{-173, 50}, {-164, 50}, {-164, -134}, {300.1, -134}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensT_BA_PHXout.T, signalBus.T.PHXout_hot) annotation (
-    Line(points = {{-73, -30}, {-70, -30}, {-70, -132}, {300.1, -132}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensP_BA_PHXout.p, signalBus.p.PHXout_hot) annotation (
-    Line(points = {{-73, -4}, {-68, -4}, {-68, -130}, {300.1, -130}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensP_RA_PHXout.p, signalBus.p.PHXout_cold) annotation (
-    Line(points = {{-73, 26}, {-66, 26}, {-66, -128}, {300.1, -128}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensT_RA_PHXout.T, signalBus.T.PHXout_cold) annotation (
-    Line(points = {{-73, 50}, {-64, 50}, {-64, -126}, {300.1, -126}, {300.1, 0.1}}, color = {0, 0, 127}));
   connect(sensT_BA_PHXout.outlet, compressor.inlet) annotation (
     Line(points = {{-74, -40}, {-50, -40}, {-50, -44}, {-36, -44}}, color = {159, 159, 223}));
-  connect(sensT_BA_SHXin.T, signalBus.T.SHXin_hot) annotation (
-    Line(points = {{47, -30}, {50, -30}, {50, -124}, {300.1, -124}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensT_RA_SHXin.T, signalBus.T.SHXin_cold) annotation (
-    Line(points = {{47, 50}, {56, 50}, {56, -118}, {300.1, -118}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensT_BA_SHXout.T, signalBus.T.SHXout_hot) annotation (
-    Line(points = {{147, -30}, {150, -30}, {150, -116}, {300.1, -116}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensT_RA_SHXout.T, signalBus.T.SHXout_cold) annotation (
-    Line(points = {{147, 50}, {156, 50}, {156, -110}, {300.1, -110}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensP_BA_SHXin.p, signalBus.p.SHXin_hot) annotation (
-    Line(points = {{47, -4}, {52, -4}, {52, -122}, {300.1, -122}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensP_RA_SHXin.p, signalBus.p.SHXin_cold) annotation (
-    Line(points = {{47, 26}, {54, 26}, {54, -120}, {300.1, -120}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensP_BA_SHXout.p, signalBus.p.SHXout_hot) annotation (
-    Line(points = {{147, -4}, {152, -4}, {152, -114}, {300.1, -114}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensP_RA_SHXout.p, signalBus.p.SHXout_cold) annotation (
-    Line(points = {{147, 24}, {154, 24}, {154, -112}, {300.1, -112}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensT_BA_PACKout.T, signalBus.T.PACKout_hot) annotation (
-    Line(points = {{237, -30}, {240, -30}, {240, -108}, {300.1, -108}, {300.1, 0.1}}, color = {0, 0, 127}));
-  connect(sensP_BA_PACKout.p, signalBus.p.PACKout_hot) annotation (
-    Line(points = {{237, -8}, {242, -8}, {242, -106}, {300.1, -106}, {300.1, 0.1}}, color = {0, 0, 127}));
   connect(sensT_RA_PHXout.outlet, sinkP_RA_PHXout.flange) annotation (
     Line(points={{-74,40},{-60,40}},      color = {159, 159, 223}));
   connect(sensT_RA_SHXout.outlet, sinkP_RA_SHXout.flange) annotation (
@@ -223,8 +187,6 @@ equation
     Line(points={{256,60},{270,60}},      color = {159, 159, 223}));
   connect(T_hot_in, sourceMassFlow_BA_MIXin.in_T) annotation (
     Line(points={{-300,-20},{-196,-20},{-196,92},{188,92},{188,85}},              color = {0, 0, 127}));
-  connect(sensT_BA_MIXout.T, signalBus.T.MIXout_hot) annotation (
-    Line(points={{257,70},{300.1,70},{300.1,0.1}},  color = {0, 0, 127}));
   connect(PID.y, actuator.u) annotation (Line(points={{271,90},{278,90}}, color={0,0,127}));
   connect(p_cold_in, sinkP_RA_SHXout.in_p0) annotation (Line(points={{-300,60},{-260,60},{-260,80},{163.55,80},{163.55,45.95}}, color={0,0,127}));
   connect(sensT_BA_PACKout.outlet, mixer.in2) annotation (Line(points={{236,-40},{260,-40},{260,20},{212,20},{212,54}}, color={159,159,223}));

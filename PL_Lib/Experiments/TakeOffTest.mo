@@ -52,16 +52,11 @@ model TakeOffTest "Simulation model to evaluate the ECS performance during a tak
     offset=Tcabin_set_init,
     startTime=t_TcabinStep) constrainedby Modelica.Blocks.Interfaces.SO annotation (Placement(transformation(extent={{-20,60},{0,80}})));
 
-  PL_Lib.Interfaces.SignalBus DataLogger annotation (Placement(transformation(extent={{40,-20},{80,20}}), iconTransformation(extent={{80,-20},{120,20}})));
 equation
   connect(inputT_cold_in.y, ECS_config.T_cold_in) annotation (Line(points={{-69,60},{-40,60},{-40,24},{-30,24}}, color={0,0,127}));
   connect(inputP_cold_in.y, ECS_config.p_cold_in) annotation (Line(points={{-69,20},{-42,20},{-42,9},{-30,9}}, color={0,0,127}));
   connect(inputP_hot_in.y, ECS_config.p_hot_in) annotation (Line(points={{-69,-60},{-40,-60},{-40,-24},{-30,-24}}, color={0,0,127}));
   connect(inputT_hot_in.y, ECS_config.T_hot_in) annotation (Line(points={{-69,-20},{-42,-20},{-42,-9},{-30,-9}}, color={0,0,127}));
-  connect(ECS_config.signalBus, DataLogger) annotation (Line(
-      points={{30,0},{60,0}},
-      color={255,204,51},
-      thickness=0.5));
   connect(Tcabin_set.y, ECS_config.Tcabin_set) annotation (Line(points={{1,70},{12,70},{12,30}}, color={0,0,127}));
   annotation (experiment(
       StartTime=0,

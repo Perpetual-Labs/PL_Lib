@@ -2,9 +2,6 @@ HeatExchangerBase
 HeatExchangerCausal
 TurbineBase
 CompressorBase
+ConfigurationBase
 PressureToMassFlowAdapter
 MassFlowToPressureAdapter
-SignalBus
-SignalSubBus_p
-SignalSubBus_T
-ConfigurationBase

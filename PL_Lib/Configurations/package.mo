@@ -1,4 +1,4 @@
 within PL_Lib;
 package Configurations
-extends Modelica.Icons.Package;
+extends Modelica.Icons.VariantsPackage;
 end Configurations;

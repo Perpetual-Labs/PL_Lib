@@ -32,7 +32,7 @@ model HX_1DCoFlow
   parameter SI.Temperature TstartN_w=metalTubeFV.Tstartbar "Temperature start value - last volume - wall" annotation (Dialog(tab="Initialisation", group="Wall"));
   parameter SI.Density rhohex = 1000 "Density of the material";
   parameter SI.Mass mhex = 1 "Heat exchanger mass";
-  parameter SI.Volumet vhex = 1 "Heat exchanger volume";
+  parameter SI.Volume vhex = 1 "Heat exchanger volume";
 
   ThermoPower.Gas.Flow1DFV HX_hotSide(
     redeclare package Medium = HotFluid,
