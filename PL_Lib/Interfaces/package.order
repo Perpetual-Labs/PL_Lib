@@ -5,3 +5,4 @@ CompressorBase
 ConfigurationBase
 PressureToMassFlowAdapter
 MassFlowToPressureAdapter
+airConditioner

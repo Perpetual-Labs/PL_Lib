@@ -36,7 +36,7 @@ partial model PACK_idealSimple
         extent={{-10,-10},{10,10}},
         rotation=0)));
   ThermoPower.Gas.SensT sensT_RA_PHXout(redeclare package Medium = ColdFluid) annotation (Placement(transformation(extent={{-90,34},{-70,54}})));
-  Modelica.Mechanics.Rotational.Components.Inertia inertia(J=J_shaft, w(start=w0, fixed=false)) annotation (Placement(transformation(origin={90,-60}, extent={{-10,-10},{10,10}})));
+  Modelica.Mechanics.Rotational.Components.Inertia inertia(J=J_shaft, w(start=w0, fixed=false)) annotation (Placement(visible = true, transformation(origin = {70, -60}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   ThermoPower.Gas.SourceMassFlow sourceMassFlow_RA_PHXin(
     redeclare package Medium = ColdFluid,
     w0=whex_cold,
@@ -64,7 +64,7 @@ equation
   connect(sensT_BA_PHXin.outlet, PHX.infl_2) annotation (
     Line(points = {{-174, -40}, {-160, -40}, {-160, -10}, {-150, -10}}, color = {159, 159, 223}));
   connect(compressor.shaft_b, inertia.flange_a) annotation (
-    Line(points = {{-8, -60}, {80, -60}}, color = {0, 0, 0}));
+    Line(points = {{-8, -60}, {60, -60}}));
   connect(T_hot_in, sourceP_BAin.in_T) annotation (
     Line(points = {{-300, -20}, {-210, -20}, {-210, -31}}, color = {0, 0, 127}));
   connect(p_hot_in, sourceP_BAin.in_p0) annotation (

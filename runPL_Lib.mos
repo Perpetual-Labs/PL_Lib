@@ -6,14 +6,18 @@
 
 installPackage(Modelica, "3.2.3");
 getErrorString;
+
 installPackage(ThermoPower);
 getErrorString;
 
 loadFile("/workspaces/PL_Lib/PL_Lib/package.mo");
 getErrorString();
+
 mkdir("build");
 getErrorString();
+
 cd("/workspaces/PL_Lib/build");
 getErrorString();
-simulate(PL_Lib.Experiments.ECS_TakeOffTest);
+
+simulate(PL_Lib.ecs_case_study_supp.Evaluation, outputFormat = "csv");
 getErrorString();
