@@ -15,14 +15,18 @@ model Evaluation_initial
   Boolean acPressRequirement=if taxiConditions or cruiseConditions then cabinPressLowerLimitConstraint and cabinPressUpperLimitConstraint else false "R.2";
   Boolean acTempRequirement=if taxiConditions or cruiseConditions then cabinTempLowerLimitConstraint and cabinTempUpperLimitConstraint else false "R.3";
   Boolean acAtmosChangeRateRequirement=true "R.4";
+
+  parameter Real acMassFlowRate(quantity="MassFlowRate", unit="kg/s") = 0.025;
+  parameter Real cabinVolume(quantity="Volume",unit="m^3") = 190;
+  Real cabinAirDensity(quantity="Density",unit="kg/m^3") = 0.897;
+
   inner ThermoPower.System system annotation (Placement(transformation(extent={{-10,40},{10,60}})));
   ThermoPower.Gas.SourcePressure sourcePressure_hot(
     redeclare package Medium = ecsMediumHot,
     use_in_p0=true,
     use_in_T=true) annotation (Placement(transformation(extent={{-90,-60},{-70,-40}})));
-  ThermoPower.Gas.SinkMassFlow sinkMassFlow_hot(redeclare package Medium = ecsMediumHot, w0=0.025) annotation (Placement(transformation(origin={110,-50},extent={{-10,-10},{10,10}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlow_cold(redeclare package Medium = ecsMediumCold,
-    w0=0.025,                                                                                  use_in_T=true) annotation (Placement(transformation(extent={{-90,40},{-70,60}})));
+  ThermoPower.Gas.SinkMassFlow sinkMassFlow_hot(redeclare package Medium = ecsMediumHot, w0=acMassFlowRate) annotation (Placement(transformation(origin={110,-50},extent={{-10,-10},{10,10}})));
+  ThermoPower.Gas.SourceMassFlow sourceMassFlow_cold(redeclare package Medium = ecsMediumCold, w0=acMassFlowRate, use_in_T=true) annotation (Placement(transformation(extent={{-90,40},{-70,60}})));
   ThermoPower.Gas.SinkPressure sinkPressure_cold(redeclare package Medium = ecsMediumCold, use_in_p0=true) annotation (Placement(transformation(extent={{80,40},{100,60}})));
   Modelica.Blocks.Sources.RealExpression inputT_cold_in(y=ambientTemp) annotation (Placement(transformation(extent={{-100,60},{-80,80}})));
   Modelica.Blocks.Sources.RealExpression inputP_hot_in(y=bleedPress) annotation (Placement(transformation(extent={{-100,-36},{-80,-16}})));
@@ -34,8 +38,9 @@ equation
   acMass = airConditioner.acMass;
   cabinPress = sensP.p;
   cabinTemp = sensT.T;
-  cabinAtmosphereMass = 0;
-  cabinAtmosphereChangeRate = 0;
+  cabinAtmosphereMass = cabinVolume * cabinAirDensity;
+  cabinAtmosphereChangeRate = cabinAtmosphereMass / acMassFlowRate;
+
   connect(sourcePressure_hot.flange, bleedAtmoshpere) annotation (Line(points={{-70,-50},{-50,-50}}, color={159,159,223}));
   connect(inputP_hot_in.y, sourcePressure_hot.in_p0) annotation (Line(points={{-79,-26},{-72,-26},{-72,-32},{-86,-32},{-86,-43.6}}, color={0,0,127}));
   connect(inputT_hot_in.y, sourcePressure_hot.in_T) annotation (Line(points={{-79,-10},{-66,-10},{-66,-36},{-80,-36},{-80,-41}}, color={0,0,127}));
