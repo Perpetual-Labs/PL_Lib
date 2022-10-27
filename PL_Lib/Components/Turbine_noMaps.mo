@@ -20,7 +20,7 @@ model Turbine_noMaps
   parameter Real eta_set=0.95;
   parameter Real phic_set=1e-5;
   //  parameter Real PR_set = 2.5;
-  parameter Modelica.SIunits.Mass mass = 1 "Turbine mass";
+  parameter Modelica.SIunits.Mass mass=1 "Turbine mass";
 
   Modelica.Blocks.Tables.CombiTable2D Phic(
     tableOnFile=if Table == TableTypes.matrix then false else true,
@@ -54,7 +54,8 @@ equation
   //  eta = Eta.y;
   eta = eta_set;
 
-  annotation (Documentation(info="<html>
+  annotation (
+    Documentation(info="<html>
 This model adds the performance characteristics to the Turbine_Base model, by means of 2D interpolation tables.
 <p>The performance characteristics are described by two characteristic equations: the first relates the flow number <tt>phic</tt>, the pressure ratio <tt>PR</tt> and the referred speed <tt>N_T</tt>; the second relates the efficiency <tt>eta</tt>, the flow number <tt>phic</tt>, and the referred speed <tt>N_T</tt> [1]. </p>
 <p>The performance maps are tabulated into two differents tables, <tt>tablePhic</tt> and <tt>tableEta</tt> which express <tt>phic</tt> and <tt>eta</tt> as a function of <tt>N_T</tt> and <tt>PR</tt> respectively, where <tt>N_T</tt> represents the first row and <tt>PR</tt> the first column [2]. The referred speed <tt>N_T</tt> is defined as a percentage of the design referred speed.
@@ -84,7 +85,10 @@ This model adds the performance characteristics to the Turbine_Base model, by me
     by <a href=\"mailto:francesco.casella@polimi.it\">Francesco Casella</a>:<br>
        First release.</li>
 </ul>
-</html>"), Diagram(graphics),
-    Icon(graphics={  Text(extent={{-100,-60},{100,-100}},      lineColor={28,108,200},
+</html>"),
+    Diagram(graphics),
+    Icon(graphics={Text(
+          extent={{-100,-60},{100,-100}},
+          lineColor={28,108,200},
           textString="%name")}));
 end Turbine_noMaps;

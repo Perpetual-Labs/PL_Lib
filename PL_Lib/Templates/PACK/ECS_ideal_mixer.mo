@@ -33,7 +33,7 @@ partial model ECS_ideal_mixer
         extent={{-10,-10},{10,10}},
         rotation=0)));
   ThermoPower.Gas.SinkPressure sinkP_RA_SHXout(redeclare package Medium = ColdFluid, use_in_p0=true) annotation (Placement(transformation(extent={{160,30},{180,50}})));
-  ThermoPower.Gas.SinkPressure sinkP_PACKout(redeclare package Medium = HotFluid) annotation (Placement(visible = true, transformation(extent={{270,50},{290,70}},      rotation = 0)));
+  ThermoPower.Gas.SinkPressure sinkP_PACKout(redeclare package Medium = HotFluid) annotation (Placement(visible=true, transformation(extent={{270,50},{290,70}}, rotation=0)));
   ThermoPower.Gas.SensT sensT_BA_PHXout(redeclare package Medium = HotFluid) annotation (Placement(visible=true, transformation(
         origin={-80,-36},
         extent={{-10,-10},{10,10}},
@@ -63,8 +63,7 @@ partial model ECS_ideal_mixer
     redeclare package Medium = ColdFluid,
     w0=whex_cold,
     use_in_w0=false,
-    use_in_T=true)
-                annotation (Placement(visible=true, transformation(
+    use_in_T=true) annotation (Placement(visible=true, transformation(
         origin={8,40},
         extent={{-10,-10},{10,10}},
         rotation=0)));
@@ -72,28 +71,50 @@ partial model ECS_ideal_mixer
     redeclare package Medium = ColdFluid,
     use_in_T=true,
     use_in_w0=false,
-    w0=whex_cold)
-                annotation (Placement(visible=true, transformation(
+    w0=whex_cold) annotation (Placement(visible=true, transformation(
         origin={-210,40},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Gas.SensT sensT_BA_MIXout(redeclare package Medium = HotFluid) annotation (
-    Placement(visible = true, transformation(origin={250,64},    extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.Mixer mixer(redeclare package Medium = HotFluid, V = 0.01,
+  ThermoPower.Gas.SensT sensT_BA_MIXout(redeclare package Medium = HotFluid) annotation (Placement(visible=true, transformation(
+        origin={250,64},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  ThermoPower.Gas.Mixer mixer(
+    redeclare package Medium = HotFluid,
+    V=0.01,
     pstart=101325,
-    Tstart=295.15)                                                                            annotation (
-    Placement(visible = true, transformation(origin={220,60},    extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Tstart=295.15) annotation (Placement(visible=true, transformation(
+        origin={220,60},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
   Modelica.Blocks.Continuous.LimPID PID(
     Td=0.1,
     Ti=30,
     k=1e-3,
-    yMin=0,                                                       limitsAtInit = true, yMax = whex_hot) annotation (
-    Placement(visible = true, transformation(origin={260,90},    extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlow_BA_MIXin(redeclare package Medium = HotFluid,
-    T=295.15,                                                                                 use_in_T = true, use_in_w0 = true) annotation (
-    Placement(visible = true, transformation(origin={188,80},    extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Blocks.Interfaces.RealInput Tcabin_set annotation (
-    Placement(visible = true, transformation(origin={230,140},    extent = {{-20, -20}, {20, 20}}, rotation = -90), iconTransformation(origin = {40, 100}, extent = {{-20, -20}, {20, 20}}, rotation = -90)));
+    yMin=0,
+    limitsAtInit=true,
+    yMax=whex_hot) annotation (Placement(visible=true, transformation(
+        origin={260,90},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  ThermoPower.Gas.SourceMassFlow sourceMassFlow_BA_MIXin(
+    redeclare package Medium = HotFluid,
+    T=295.15,
+    use_in_T=true,
+    use_in_w0=true) annotation (Placement(visible=true, transformation(
+        origin={188,80},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
+  Modelica.Blocks.Interfaces.RealInput Tcabin_set annotation (Placement(
+      visible=true,
+      transformation(
+        origin={230,140},
+        extent={{-20,-20},{20,20}},
+        rotation=-90),
+      iconTransformation(
+        origin={40,100},
+        extent={{-20,-20},{20,20}},
+        rotation=-90)));
   Modelica.Blocks.Continuous.FirstOrder actuator(T=1, y_start=0) annotation (Placement(transformation(extent={{280,80},{300,100}})));
 protected
   ThermoPower.Gas.SensP sensP_RA_PHXin(redeclare package Medium = ColdFluid) annotation (Placement(visible=true, transformation(extent={{-190,10},{-170,30}}, rotation=0)));
@@ -109,84 +130,45 @@ protected
   parameter Modelica.SIunits.Inertia J_shaft=200;
   parameter Modelica.SIunits.AngularVelocity w0=523.3;
 equation
-  connect(PHX.outfl_1, sensT_RA_PHXout.inlet) annotation (
-    Line(points = {{-110, 10}, {-100, 10}, {-100, 40}, {-86, 40}}, color = {159, 159, 223}));
-  connect(PHX.outfl_2, sensT_BA_PHXout.inlet) annotation (
-    Line(points = {{-110, -10}, {-100, -10}, {-100, -40}, {-86, -40}}, color = {159, 159, 223}));
-  connect(sensT_RA_PHXin.outlet, PHX.infl_1) annotation (
-    Line(points = {{-174, 40}, {-160, 40}, {-160, 10}, {-150, 10}}, color = {159, 159, 223}));
-  connect(sensT_BA_PHXin.outlet, PHX.infl_2) annotation (
-    Line(points = {{-174, -40}, {-160, -40}, {-160, -10}, {-150, -10}}, color = {159, 159, 223}));
-  connect(compressor.outlet, sensT_BA_SHXin.inlet) annotation (
-    Line(points = {{-4, -44}, {24, -44}, {24, -40}, {34, -40}}, color = {159, 159, 223}));
-  connect(SHX.outfl_1, sensT_RA_SHXout.inlet) annotation (
-    Line(points = {{110, 10}, {120, 10}, {120, 40}, {134, 40}}, color = {159, 159, 223}));
-  connect(SHX.outfl_2, sensT_BA_SHXout.inlet) annotation (
-    Line(points = {{110, -10}, {120, -10}, {120, -40}, {134, -40}}, color = {159, 159, 223}));
-  connect(compressor.shaft_b, inertia.flange_a) annotation (
-    Line(points = {{-8, -60}, {80, -60}}, color = {0, 0, 0}));
-  connect(inertia.flange_b, turbine.shaft_a) annotation (
-    Line(points = {{100, -60}, {178, -60}}, color = {0, 0, 0}));
-  connect(sensT_BA_SHXin.outlet, SHX.infl_2) annotation (
-    Line(points = {{46, -40}, {60, -40}, {60, -10}, {70, -10}}, color = {159, 159, 223}));
-  connect(sensT_BA_SHXout.outlet, turbine.inlet) annotation (
-    Line(points = {{146, -40}, {165, -40}, {165, -44}, {174, -44}}, color = {159, 159, 223}));
-  connect(sensT_BA_PACKout.inlet, turbine.outlet) annotation (
-    Line(points = {{224, -40}, {216, -40}, {216, -44}, {206, -44}}, color = {159, 159, 223}));
-  connect(T_hot_in, sourceP_BAin.in_T) annotation (
-    Line(points = {{-300, -20}, {-210, -20}, {-210, -31}}, color = {0, 0, 127}));
-  connect(p_hot_in, sourceP_BAin.in_p0) annotation (
-    Line(points = {{-300, -50}, {-226, -50}, {-226, -24}, {-216, -24}, {-216, -33.6}}, color = {0, 0, 127}));
-  connect(p_cold_in, sinkP_RA_PHXout.in_p0) annotation (
-    Line(points={{-300,60},{-260,60},{-260,80},{-56.45,80},{-56.45,45.95}},            color = {0, 0, 127}));
-  connect(sensT_RA_SHXin.outlet, SHX.infl_1) annotation (
-    Line(points = {{46, 40}, {60, 40}, {60, 10}, {70, 10}}, color = {159, 159, 223}));
-  connect(PHX.outfl_2, sensP_BA_PHXout.flange) annotation (
-    Line(points = {{-110, -10}, {-100, -10}, {-100, -14}, {-80, -14}}, color = {159, 159, 223}));
-  connect(sensT_BA_PHXin.outlet, sensP_BA_PHXin.flange) annotation (
-    Line(points = {{-174, -40}, {-160, -40}, {-160, -14}, {-180, -14}}, color = {159, 159, 223}));
-  connect(sensT_RA_PHXin.outlet, sensP_RA_PHXin.flange) annotation (
-    Line(points = {{-174, 40}, {-160, 40}, {-160, 16}, {-180, 16}}, color = {159, 159, 223}));
-  connect(PHX.outfl_1, sensP_RA_PHXout.flange) annotation (
-    Line(points = {{-110, 10}, {-100, 10}, {-100, 16}, {-80, 16}}, color = {159, 159, 223}));
-  connect(sensT_RA_SHXin.outlet, sensP_RA_SHXin.flange) annotation (
-    Line(points = {{46, 40}, {60, 40}, {60, 16}, {40, 16}}, color = {159, 159, 223}));
-  connect(sensT_BA_SHXin.outlet, sensP_BA_SHXin.flange) annotation (
-    Line(points = {{46, -40}, {60, -40}, {60, -14}, {40, -14}}, color = {159, 159, 223}));
-  connect(SHX.outfl_1, sensP_RA_SHXout.flange) annotation (
-    Line(points = {{110, 10}, {120, 10}, {120, 14}, {140, 14}}, color = {159, 159, 223}));
-  connect(SHX.outfl_2, sensP_BA_SHXout.flange) annotation (
-    Line(points = {{110, -10}, {120, -10}, {120, -14}, {140, -14}}, color = {159, 159, 223}));
-  connect(sensT_BA_PACKout.outlet, sensP_BA_PACKout.flange) annotation (
-    Line(points = {{236, -40}, {244, -40}, {244, -18}, {230, -18}}, color = {159, 159, 223}));
-  connect(sourceMassFlow_RA_PHXin.flange, sensT_RA_PHXin.inlet) annotation (
-    Line(points = {{-200, 40}, {-186, 40}}, color = {159, 159, 223}));
-  connect(T_cold_in, sourceMassFlow_RA_PHXin.in_T) annotation (
-    Line(points = {{-300, 90}, {-210, 90}, {-210, 45}}, color = {0, 0, 127}));
-  connect(sourceP_BAin.flange, sensT_BA_PHXin.inlet) annotation (
-    Line(points = {{-200, -40}, {-186, -40}}, color = {159, 159, 223}));
-  connect(sourceMassFlow_RA_SHXin.flange, sensT_RA_SHXin.inlet) annotation (
-    Line(points = {{18, 40}, {34, 40}}, color = {159, 159, 223}));
-  connect(T_cold_in, sourceMassFlow_RA_SHXin.in_T) annotation (
-    Line(points = {{-300, 90}, {8, 90}, {8, 45}}, color = {0, 0, 127}));
-  connect(sensT_BA_PHXout.outlet, compressor.inlet) annotation (
-    Line(points = {{-74, -40}, {-50, -40}, {-50, -44}, {-36, -44}}, color = {159, 159, 223}));
-  connect(sensT_RA_PHXout.outlet, sinkP_RA_PHXout.flange) annotation (
-    Line(points={{-74,40},{-60,40}},      color = {159, 159, 223}));
-  connect(sensT_RA_SHXout.outlet, sinkP_RA_SHXout.flange) annotation (
-    Line(points={{146,40},{160,40}},      color = {159, 159, 223}));
-  connect(sourceMassFlow_BA_MIXin.flange, mixer.in1) annotation (
-    Line(points={{198,80},{212,80},{212,66}},        color = {159, 159, 223}));
-  connect(mixer.out, sensT_BA_MIXout.inlet) annotation (
-    Line(points={{230,60},{244,60}},      color = {159, 159, 223}));
-  connect(sensT_BA_MIXout.T, PID.u_m) annotation (
-    Line(points={{257,70},{260,70},{260,78}},        color = {0, 0, 127}));
-  connect(Tcabin_set, PID.u_s) annotation (
-    Line(points={{230,140},{230,90},{248,90}},        color = {0, 0, 127}));
-  connect(sensT_BA_MIXout.outlet, sinkP_PACKout.flange) annotation (
-    Line(points={{256,60},{270,60}},      color = {159, 159, 223}));
-  connect(T_hot_in, sourceMassFlow_BA_MIXin.in_T) annotation (
-    Line(points={{-300,-20},{-196,-20},{-196,92},{188,92},{188,85}},              color = {0, 0, 127}));
+  connect(PHX.outfl_1, sensT_RA_PHXout.inlet) annotation (Line(points={{-110,10},{-100,10},{-100,40},{-86,40}}, color={159,159,223}));
+  connect(PHX.outfl_2, sensT_BA_PHXout.inlet) annotation (Line(points={{-110,-10},{-100,-10},{-100,-40},{-86,-40}}, color={159,159,223}));
+  connect(sensT_RA_PHXin.outlet, PHX.infl_1) annotation (Line(points={{-174,40},{-160,40},{-160,10},{-150,10}}, color={159,159,223}));
+  connect(sensT_BA_PHXin.outlet, PHX.infl_2) annotation (Line(points={{-174,-40},{-160,-40},{-160,-10},{-150,-10}}, color={159,159,223}));
+  connect(compressor.outlet, sensT_BA_SHXin.inlet) annotation (Line(points={{-4,-44},{24,-44},{24,-40},{34,-40}}, color={159,159,223}));
+  connect(SHX.outfl_1, sensT_RA_SHXout.inlet) annotation (Line(points={{110,10},{120,10},{120,40},{134,40}}, color={159,159,223}));
+  connect(SHX.outfl_2, sensT_BA_SHXout.inlet) annotation (Line(points={{110,-10},{120,-10},{120,-40},{134,-40}}, color={159,159,223}));
+  connect(compressor.shaft_b, inertia.flange_a) annotation (Line(points={{-8,-60},{80,-60}}, color={0,0,0}));
+  connect(inertia.flange_b, turbine.shaft_a) annotation (Line(points={{100,-60},{178,-60}}, color={0,0,0}));
+  connect(sensT_BA_SHXin.outlet, SHX.infl_2) annotation (Line(points={{46,-40},{60,-40},{60,-10},{70,-10}}, color={159,159,223}));
+  connect(sensT_BA_SHXout.outlet, turbine.inlet) annotation (Line(points={{146,-40},{165,-40},{165,-44},{174,-44}}, color={159,159,223}));
+  connect(sensT_BA_PACKout.inlet, turbine.outlet) annotation (Line(points={{224,-40},{216,-40},{216,-44},{206,-44}}, color={159,159,223}));
+  connect(T_hot_in, sourceP_BAin.in_T) annotation (Line(points={{-300,-20},{-210,-20},{-210,-31}}, color={0,0,127}));
+  connect(p_hot_in, sourceP_BAin.in_p0) annotation (Line(points={{-300,-50},{-226,-50},{-226,-24},{-216,-24},{-216,-33.6}}, color={0,0,127}));
+  connect(p_cold_in, sinkP_RA_PHXout.in_p0) annotation (Line(points={{-300,60},{-260,60},{-260,80},{-56.45,80},{-56.45,45.95}}, color={0,0,127}));
+  connect(sensT_RA_SHXin.outlet, SHX.infl_1) annotation (Line(points={{46,40},{60,40},{60,10},{70,10}}, color={159,159,223}));
+  connect(PHX.outfl_2, sensP_BA_PHXout.flange) annotation (Line(points={{-110,-10},{-100,-10},{-100,-14},{-80,-14}}, color={159,159,223}));
+  connect(sensT_BA_PHXin.outlet, sensP_BA_PHXin.flange) annotation (Line(points={{-174,-40},{-160,-40},{-160,-14},{-180,-14}}, color={159,159,223}));
+  connect(sensT_RA_PHXin.outlet, sensP_RA_PHXin.flange) annotation (Line(points={{-174,40},{-160,40},{-160,16},{-180,16}}, color={159,159,223}));
+  connect(PHX.outfl_1, sensP_RA_PHXout.flange) annotation (Line(points={{-110,10},{-100,10},{-100,16},{-80,16}}, color={159,159,223}));
+  connect(sensT_RA_SHXin.outlet, sensP_RA_SHXin.flange) annotation (Line(points={{46,40},{60,40},{60,16},{40,16}}, color={159,159,223}));
+  connect(sensT_BA_SHXin.outlet, sensP_BA_SHXin.flange) annotation (Line(points={{46,-40},{60,-40},{60,-14},{40,-14}}, color={159,159,223}));
+  connect(SHX.outfl_1, sensP_RA_SHXout.flange) annotation (Line(points={{110,10},{120,10},{120,14},{140,14}}, color={159,159,223}));
+  connect(SHX.outfl_2, sensP_BA_SHXout.flange) annotation (Line(points={{110,-10},{120,-10},{120,-14},{140,-14}}, color={159,159,223}));
+  connect(sensT_BA_PACKout.outlet, sensP_BA_PACKout.flange) annotation (Line(points={{236,-40},{244,-40},{244,-18},{230,-18}}, color={159,159,223}));
+  connect(sourceMassFlow_RA_PHXin.flange, sensT_RA_PHXin.inlet) annotation (Line(points={{-200,40},{-186,40}}, color={159,159,223}));
+  connect(T_cold_in, sourceMassFlow_RA_PHXin.in_T) annotation (Line(points={{-300,90},{-210,90},{-210,45}}, color={0,0,127}));
+  connect(sourceP_BAin.flange, sensT_BA_PHXin.inlet) annotation (Line(points={{-200,-40},{-186,-40}}, color={159,159,223}));
+  connect(sourceMassFlow_RA_SHXin.flange, sensT_RA_SHXin.inlet) annotation (Line(points={{18,40},{34,40}}, color={159,159,223}));
+  connect(T_cold_in, sourceMassFlow_RA_SHXin.in_T) annotation (Line(points={{-300,90},{8,90},{8,45}}, color={0,0,127}));
+  connect(sensT_BA_PHXout.outlet, compressor.inlet) annotation (Line(points={{-74,-40},{-50,-40},{-50,-44},{-36,-44}}, color={159,159,223}));
+  connect(sensT_RA_PHXout.outlet, sinkP_RA_PHXout.flange) annotation (Line(points={{-74,40},{-60,40}}, color={159,159,223}));
+  connect(sensT_RA_SHXout.outlet, sinkP_RA_SHXout.flange) annotation (Line(points={{146,40},{160,40}}, color={159,159,223}));
+  connect(sourceMassFlow_BA_MIXin.flange, mixer.in1) annotation (Line(points={{198,80},{212,80},{212,66}}, color={159,159,223}));
+  connect(mixer.out, sensT_BA_MIXout.inlet) annotation (Line(points={{230,60},{244,60}}, color={159,159,223}));
+  connect(sensT_BA_MIXout.T, PID.u_m) annotation (Line(points={{257,70},{260,70},{260,78}}, color={0,0,127}));
+  connect(Tcabin_set, PID.u_s) annotation (Line(points={{230,140},{230,90},{248,90}}, color={0,0,127}));
+  connect(sensT_BA_MIXout.outlet, sinkP_PACKout.flange) annotation (Line(points={{256,60},{270,60}}, color={159,159,223}));
+  connect(T_hot_in, sourceMassFlow_BA_MIXin.in_T) annotation (Line(points={{-300,-20},{-196,-20},{-196,92},{188,92},{188,85}}, color={0,0,127}));
   connect(PID.y, actuator.u) annotation (Line(points={{271,90},{278,90}}, color={0,0,127}));
   connect(p_cold_in, sinkP_RA_SHXout.in_p0) annotation (Line(points={{-300,60},{-260,60},{-260,80},{163.55,80},{163.55,45.95}}, color={0,0,127}));
   connect(sensT_BA_PACKout.outlet, mixer.in2) annotation (Line(points={{236,-40},{260,-40},{260,20},{212,20},{212,54}}, color={159,159,223}));
@@ -197,7 +179,7 @@ equation
           extent={{-30,10},{30,-10}},
           textString="Bleed air (hot side)",
           textStyle={TextStyle.Bold},
-          horizontalAlignment=TextAlignment.Left), Text(
+          horizontalAlignment=TextAlignment.Left),Text(
           origin={-230,30},
           lineColor={28,108,200},
           extent={{-30,10},{30,-10}},

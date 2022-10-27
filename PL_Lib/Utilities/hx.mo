@@ -13,7 +13,16 @@ function hx
   output Real temperatures[2];
   output Real pressures[2];
 
-  external "C" hx(tCold, tHot, mRateCold, mRateHot, densityCold, densityHot, pressureCold, pressureHot, temperatures, pressures, t) annotation (
-      IncludeDirectory = "modelica://PL_Lib/Utilities",
-      Include = "#include \"hx.c\"");
+external"C" hx(
+    tCold,
+    tHot,
+    mRateCold,
+    mRateHot,
+    densityCold,
+    densityHot,
+    pressureCold,
+    pressureHot,
+    temperatures,
+    pressures,
+    t) annotation (IncludeDirectory="modelica://PL_Lib/Utilities", Include="#include \"hx.c\"");
 end hx;

@@ -6,9 +6,9 @@ model Compressor_noMaps
   import ThermoPower.Choices.TurboMachinery.TableTypes;
   parameter Modelica.SIunits.AngularVelocity Ndesign=523.3 "Design velocity";
 
-//   parameter Real tablePhic[:,:]=fill(0,0,2) "Table for phic(N_T,beta)";
-//   parameter Real tableEta[:,:]=fill(0,0,2) "Table for eta(N_T,beta)";
-//   parameter Real tablePR[:,:]=fill(0,0,2) "Table for eta(N_T,beta)";
+  //   parameter Real tablePhic[:,:]=fill(0,0,2) "Table for phic(N_T,beta)";
+  //   parameter Real tableEta[:,:]=fill(0,0,2) "Table for eta(N_T,beta)";
+  //   parameter Real tablePR[:,:]=fill(0,0,2) "Table for eta(N_T,beta)";
 
   parameter Real tablePhic[:,:]=tablePhicC "Table for phic(N_T,beta)";
   parameter Real tableEta[:,:]=tableEtaC "Table for eta(N_T,beta)";
@@ -19,7 +19,7 @@ model Compressor_noMaps
 
   parameter Real eta_set=0.95;
   parameter Real PR_set=2.5;
-  parameter Modelica.SIunits.Mass mass = 1 "Compressor mass";
+  parameter Modelica.SIunits.Mass mass=1 "Compressor mass";
 
   Modelica.Blocks.Tables.CombiTable2D Eta(
     tableOnFile=if Table == TableTypes.matrix then false else true,
@@ -99,7 +99,8 @@ This model adds the performance characteristics to the Compressor_Base model, by
     by <a href=\"mailto:francesco.casella@polimi.it\">Francesco Casella</a>:<br>
        First release.</li>
 </ul>
-</html>"), Icon(graphics={
-                     Text(extent={{-100,-60},{100,-100}},      lineColor={28,108,200},
+</html>"), Icon(graphics={Text(
+          extent={{-100,-60},{100,-100}},
+          lineColor={28,108,200},
           textString="%name")}));
 end Compressor_noMaps;

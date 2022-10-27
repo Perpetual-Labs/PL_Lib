@@ -7,7 +7,16 @@ model HX_extFun
   Real t;
 equation
   t = time;
-  (temperatures,pressures) = hx(T_cold_in, T_hot_in, w_cold_in, w_hot_in, p_cold_in, p_hot_in, d_cold_in, d_hot_in, t);
+  (temperatures,pressures) = hx(
+    T_cold_in,
+    T_hot_in,
+    w_cold_in,
+    w_hot_in,
+    p_cold_in,
+    p_hot_in,
+    d_cold_in,
+    d_hot_in,
+    t);
 
   T_cold_out = temperatures[1];
   T_hot_out = temperatures[2];

@@ -1,6 +1,6 @@
 within PL_Lib;
 package Documentation
-  extends Modelica.Icons.Information;
+extends Modelica.Icons.Information;
 
 annotation (Documentation(info="<html>
 <h4>Copyright (c) 2022, Perpetual Labs, Ltd. All rights reserved.</h4>

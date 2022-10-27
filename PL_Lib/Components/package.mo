@@ -1,4 +1,4 @@
 within PL_Lib;
 package Components
-  extends Modelica.Icons.VariantsPackage;
+extends Modelica.Icons.VariantsPackage;
 end Components;

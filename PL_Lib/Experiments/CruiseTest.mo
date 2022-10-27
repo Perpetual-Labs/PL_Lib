@@ -26,8 +26,7 @@ model CruiseTest "Simulation model to evaluate the ECS performance during a crui
   parameter SI.Temperature Tcabin_set_step=4;
 
   inner ThermoPower.System system annotation (Placement(transformation(extent={{80,80},{100,100}})));
-  replaceable Configurations.PACK_idealSimpleConfig
-                                              ECS_config(
+  replaceable Configurations.PACK_idealSimpleConfig ECS_config(
     redeclare package ColdFluid = ColdFluid,
     redeclare package HotFluid = HotFluid,
     whex_cold=whex_RA,

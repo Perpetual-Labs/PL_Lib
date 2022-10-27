@@ -24,5 +24,8 @@ model Turbine_icon
           lineThickness=0.5,
           fillColor={159,159,223},
           fillPattern=FillPattern.Solid),
-                     Text(extent={{-128,-60},{128,-100}},      lineColor = {0, 0, 255}, textString = "%name")}), Diagram(coordinateSystem(preserveAspectRatio=false)));
+        Text(
+          extent={{-100,-120},{100,-160}},
+          lineColor={28,108,200},
+          textString="%name")}), Diagram(coordinateSystem(preserveAspectRatio=false)));
 end Turbine_icon;

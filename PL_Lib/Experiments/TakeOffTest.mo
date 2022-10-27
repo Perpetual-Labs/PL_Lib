@@ -26,8 +26,7 @@ model TakeOffTest "Simulation model to evaluate the ECS performance during a tak
   parameter SI.Temperature Tcabin_set_step=4;
 
   inner ThermoPower.System system annotation (Placement(transformation(extent={{80,80},{100,100}})));
-  replaceable Configurations.ECS_baseConfig_TcabinControl
-                                              ECS_config(
+  replaceable Configurations.ECS_baseConfig_TcabinControl ECS_config(
     redeclare package ColdFluid = ColdFluid,
     redeclare package HotFluid = HotFluid,
     whex_cold=whex_RA,

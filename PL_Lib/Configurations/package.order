@@ -3,3 +3,5 @@ ECS_baseConfig_TcabinControl
 ECS_hybridConfig
 ECS_hybridConfig_dummy
 PACK_idealSimpleConfig
+AirConditioner_initial
+AirConditioner_supplied

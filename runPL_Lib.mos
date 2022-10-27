@@ -19,5 +19,5 @@ getErrorString();
 cd("/workspaces/PL_Lib/build");
 getErrorString();
 
-simulate(PL_Lib.ecs_case_study_supp.Evaluation, outputFormat = "csv");
+simulate(PL_Lib.Experiments.Evaluation_supplied, outputFormat = "csv");
 getErrorString();

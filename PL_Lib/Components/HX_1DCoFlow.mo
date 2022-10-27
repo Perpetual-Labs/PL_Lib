@@ -30,9 +30,9 @@ model HX_1DCoFlow
   parameter SI.Temperature Tstartbar_wall=300 "Avarage temperature - wall" annotation (Dialog(tab="Initialisation", group="Wall"));
   parameter SI.Temperature Tstart1_w=metalTubeFV.Tstartbar "Temperature start value - first volume - wall" annotation (Dialog(tab="Initialisation", group="Wall"));
   parameter SI.Temperature TstartN_w=metalTubeFV.Tstartbar "Temperature start value - last volume - wall" annotation (Dialog(tab="Initialisation", group="Wall"));
-  parameter SI.Density rhohex = 1000 "Density of the material";
-  parameter SI.Mass mass = 1 "Heat exchanger mass";
-  parameter SI.Volume volume = 1 "Heat exchanger volume";
+  parameter SI.Density rhohex=1000 "Density of the material";
+  parameter SI.Mass mass=1 "Heat exchanger mass";
+  parameter SI.Volume volume=1 "Heat exchanger volume";
 
   ThermoPower.Gas.Flow1DFV HX_hotSide(
     redeclare package Medium = HotFluid,
@@ -98,10 +98,6 @@ equation
   connect(metalTubeFV.int, heatExchangerTopologyFV.side2) annotation (Line(points={{0,-17},{0,16.9}}, color={255,127,0}));
   connect(heatExchangerTopologyFV.side1, HX_coldSide.wall) annotation (Line(points={{0,23},{0,45}}, color={255,127,0}));
   annotation (Icon(graphics={Text(
-          origin={0,43.3385},
-          lineColor={28,108,200},
-          extent={{-80,-153.338},{80,-193.339}},
-          textString="%name"), Text(
           extent={{-80,100},{80,60}},
           textColor={102,44,145},
           textString="1D Co-Flow")}));

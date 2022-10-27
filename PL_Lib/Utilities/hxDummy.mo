@@ -13,7 +13,16 @@ function hxDummy
   output Real temperatures[2];
   output Real pressures[2];
 
-  external "C" hxDummy(tCold, tHot, mRateCold, mRateHot, densityCold, densityHot, pressureCold, pressureHot, temperatures, pressures, t) annotation (
-      IncludeDirectory = "modelica://PL_Lib/Utilities",
-      Include = "#include \"hxDummy.c\"");
+external"C" hxDummy(
+    tCold,
+    tHot,
+    mRateCold,
+    mRateHot,
+    densityCold,
+    densityHot,
+    pressureCold,
+    pressureHot,
+    temperatures,
+    pressures,
+    t) annotation (IncludeDirectory="modelica://PL_Lib/Utilities", Include="#include \"hxDummy.c\"");
 end hxDummy;

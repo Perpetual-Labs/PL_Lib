@@ -30,9 +30,9 @@ model HX_1DShellTube
   parameter SI.Temperature Tstartbar_wall=300 "Avarage temperature - wall" annotation (Dialog(tab="Initialisation", group="Wall"));
   parameter SI.Temperature Tstart1_w=metalTubeFV.Tstartbar "Temperature start value - first volume - wall" annotation (Dialog(tab="Initialisation", group="Wall"));
   parameter SI.Temperature TstartN_w=metalTubeFV.Tstartbar "Temperature start value - last volume - wall" annotation (Dialog(tab="Initialisation", group="Wall"));
-  parameter SI.Density rhohex = 1000 "Density of the material";
-  parameter SI.Mass mhex = 1 "Heat exchanger mass";
-  parameter SI.Volume vhex = 1 "Heat exchanger volume";
+  parameter SI.Density rhohex=1000 "Density of the material";
+  parameter SI.Mass mhex=1 "Heat exchanger mass";
+  parameter SI.Volume vhex=1 "Heat exchanger volume";
   ThermoPower.Gas.Flow1DFV HX_hotSide(
     redeclare package Medium = HotFluid,
     A=Ahex,
@@ -87,8 +87,7 @@ model HX_1DShellTube
         origin={0,20},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Thermal.HeatExchangerTopologyFV heatExchangerTopologyFV(Nw=Nnodes - 1, redeclare model HeatExchangerTopology =
-        ThermoPower.Thermal.HeatExchangerTopologies.ShellAndTube (
+  ThermoPower.Thermal.HeatExchangerTopologyFV heatExchangerTopologyFV(Nw=Nnodes - 1, redeclare model HeatExchangerTopology = ThermoPower.Thermal.HeatExchangerTopologies.ShellAndTube (
         Nw=Nnodes - 1,
         Ntp=Nnodes - 1,
         inletTubeAtTop=true,
@@ -104,11 +103,7 @@ equation
   connect(metalTubeFV.ext, heatExchangerTopologyFV.side1) annotation (Line(points={{0,16.9},{0,-17}}, color={255,127,0}));
   connect(heatExchangerTopologyFV.side2, HX_hotSide.wall) annotation (Line(points={{0,-23.1},{0,-45}}, color={255,127,0}));
   connect(metalTubeFV.int, HX_coldSide.wall) annotation (Line(points={{0,23},{0,45}}, color={255,127,0}));
-  annotation (Icon(graphics={Text(
-          origin={0,43.3385},
-          lineColor={28,108,200},
-          extent={{-80,-153.338},{80,-193.339}},
-          textString="%name"), Text(
+  annotation (Icon(graphics={  Text(
           lineColor={102,44,145},
           extent={{-80,100},{80,60}},
           textString="1D Shell & Tube")}));

@@ -14,7 +14,10 @@ model HX_extFun
         origin={50,40},
         extent={{-20,-20},{20,20}},
         rotation=0)));
-  PL_Lib.Interfaces.PressureToMassFlowAdapter pressureToMassFlowAdaptor2(redeclare package Medium = HotFluid, T0=573.15, p0=200000) annotation (Placement(visible=true, transformation(
+  PL_Lib.Interfaces.PressureToMassFlowAdapter pressureToMassFlowAdaptor2(
+    redeclare package Medium = HotFluid,
+    T0=573.15,
+    p0=200000) annotation (Placement(visible=true, transformation(
         origin={50,-40},
         extent={{-20,-20},{20,20}},
         rotation=0)));

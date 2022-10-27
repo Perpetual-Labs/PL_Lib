@@ -30,9 +30,9 @@ model HX_1DCounterFlow
   parameter SI.Temperature Tstartbar_wall=300 "Avarage temperature - wall" annotation (Dialog(tab="Initialisation", group="Wall"));
   parameter SI.Temperature Tstart1_w=metalTubeFV.Tstartbar "Temperature start value - first volume - wall" annotation (Dialog(tab="Initialisation", group="Wall"));
   parameter SI.Temperature TstartN_w=metalTubeFV.Tstartbar "Temperature start value - last volume - wall" annotation (Dialog(tab="Initialisation", group="Wall"));
-  parameter SI.Density rhohex = 1000 "Density of the material";
-  parameter SI.Mass mhex = 1 "Heat exchanger mass";
-  parameter SI.Volume vhex = 1 "Heat exchanger volume";
+  parameter SI.Density rhohex=1000 "Density of the material";
+  parameter SI.Mass mhex=1 "Heat exchanger mass";
+  parameter SI.Volume vhex=1 "Heat exchanger volume";
   ThermoPower.Gas.Flow1DFV HX_hotSide(
     redeclare package Medium = HotFluid,
     A=Ahex,
@@ -49,7 +49,10 @@ model HX_1DCounterFlow
     Tstartin=Tstartin_h,
     Tstartout=Tstartout_h,
     initOpt=initOpt,
-    noInitialPressure=false) annotation (Placement(visible=true, transformation(origin = {0, -50}, extent = {{-10, -10}, {10, 10}}, rotation=0)));
+    noInitialPressure=false) annotation (Placement(visible=true, transformation(
+        origin={0,-50},
+        extent={{-10,-10},{10,10}},
+        rotation=0)));
   ThermoPower.Gas.Flow1DFV HX_coldSide(
     redeclare package Medium = ColdFluid,
     A=Ahex,
@@ -84,8 +87,7 @@ model HX_1DCounterFlow
         origin={0,-20},
         extent={{-10,-10},{10,10}},
         rotation=0)));
-  ThermoPower.Thermal.HeatExchangerTopologyFV heatExchangerTopologyFV(Nw=Nnodes - 1, redeclare model HeatExchangerTopology =
-        ThermoPower.Thermal.HeatExchangerTopologies.CounterCurrentFlow)                                                                                                                      annotation (Placement(visible=true, transformation(
+  ThermoPower.Thermal.HeatExchangerTopologyFV heatExchangerTopologyFV(Nw=Nnodes - 1, redeclare model HeatExchangerTopology = ThermoPower.Thermal.HeatExchangerTopologies.CounterCurrentFlow) annotation (Placement(visible=true, transformation(
         origin={0,20},
         extent={{-10,-10},{10,10}},
         rotation=0)));
@@ -93,19 +95,11 @@ equation
   connect(infl_1, HX_coldSide.infl) annotation (Line(points={{-100,50},{-10,50}}, color={159,159,223}));
   connect(metalTubeFV.int, heatExchangerTopologyFV.side2) annotation (Line(points={{0,-17},{0,16.9}}, color={255,127,0}));
   connect(heatExchangerTopologyFV.side1, HX_coldSide.wall) annotation (Line(points={{0,23},{0,45}}, color={255,127,0}));
-  connect(infl_2, HX_hotSide.infl) annotation (
-    Line(points = {{-100, -50}, {-10, -50}}, color = {159, 159, 223}));
-  connect(HX_hotSide.wall, metalTubeFV.ext) annotation (
-    Line(points={{0,-45},{0,-23.1}},    color = {255, 127, 0}));
-  connect(HX_coldSide.outfl, outfl_1) annotation (
-    Line(points = {{10, 50}, {100, 50}}, color = {159, 159, 223}));
-  connect(HX_hotSide.outfl, outfl_2) annotation (
-    Line(points = {{10, -50}, {100, -50}}, color = {159, 159, 223}));
-  annotation (Icon(graphics={Text(
-          origin={0,43.3385},
-          lineColor={28,108,200},
-          extent={{-80,-153.338},{80,-193.339}},
-          textString="%name"), Text(
+  connect(infl_2, HX_hotSide.infl) annotation (Line(points={{-100,-50},{-10,-50}}, color={159,159,223}));
+  connect(HX_hotSide.wall, metalTubeFV.ext) annotation (Line(points={{0,-45},{0,-23.1}}, color={255,127,0}));
+  connect(HX_coldSide.outfl, outfl_1) annotation (Line(points={{10,50},{100,50}}, color={159,159,223}));
+  connect(HX_hotSide.outfl, outfl_2) annotation (Line(points={{10,-50},{100,-50}}, color={159,159,223}));
+  annotation (Icon(graphics={  Text(
           lineColor={102,44,145},
           extent={{-80,100},{80,60}},
           textString="1D Counter-Flow")}));
